@@ -1,18 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Free HTML5 Bootstrap Admin Template</title>
+	<title>微信系统管理平台</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -46,68 +36,23 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="row-fluid">
-				<div class="span12 center login-header">
-					<h2>Welcome to Charisma</h2>
-				</div><!--/span-->
-			</div><!--/row-->
-			<div class="row-fluid">
-				<div id="flash-messages" class="center" style="width:50%;">
-					<div class="center alert alert-success">[alert alert-success]: Success flash message...</div>
-					<div class="center alert alert-info">[alert alert-info]: Success flash message...</div>
-					<div class="center alert alert-danger">[alert alert-danger]: Success flash message...</div>
-					<div class="center alert alert-error">[alert alert-error]: Success flash message...</div>
-				</div>
-				<noscript><div class="well center" style="width:50%;">
-						<div class="center alert alert-error"><strong>FATAL:</strong> You have javascript turned off!</div>
-						<div class="center alert alert-warning">Javascript is <u>required</u> for proper operation of this site.</div>
-				</div></noscript>
 				<div class="well center login-box" style="visibility:hidden;">
-<!--
-					NOTE: some welcome text... uncoment this if you want and update {width|height} of ".login-box" in: css/<theme-name>/app-charisma.css
-					<div class="alert alert-info">
-						Please login with your Username and Password.
-					</div>
--->
-
-<!--
-					<div class="center logo">
-						NOTE: uncoment this, if you want a logo on ".login-box". just prepare your app's logo, max-width: 368px; max-height: 258px; @see: css/<theme-name>/app-charisma.css
-
-						TODO: specify image dimensions: The following image(s) are missing a width and/or height.
-						NOTE: by chrome-audits: A width and height should be specified for all images in order to speed up page display.
-
-						<img src="img/charisma/logo.png" alt="" title="" width="" height="" />
-					</div>
--->
+				<div class="center">
+					<h2>微信系统管理平台</h2>
+				</div><!--/span-->
 					<form class="form-horizontal" action="index.html" method="post">
 						<fieldset>
-							<div class="input-prepend" title="Username" data-rel="tooltip">
-								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" value="admin" />
+							<div class="input-prepend" title="请输入用户名" data-rel="tooltip">
+								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text"  />
 							</div>
 							<div class="clearfix"></div>
 
-							<div class="input-prepend" title="Password" data-rel="tooltip">
-								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password" value="admin123456" />
+							<div class="input-prepend" title="请输入密码" data-rel="tooltip">
+								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password"  />
 							</div>
 							<div class="clearfix"></div>
-
-							<div class="input-prepend" title="E-Mail to send new password" data-rel="tooltip" style="visibility:hidden;" id="forgotel">
-								<span class="add-on"><i class="icon-globe"></i></span><input class="input-large span10" name="forgotemail" type="email" value="email@domain.tld" />
-							</div>
-							<div class="clearfix"></div>
-
-							<div style="width:100%;">
-								<div class="remember">
-									<label for="remember"><input type="checkbox" id="remember" name="remember" />Remember me</label>
-								</div>
-								<div class="forgot">
-									<label for="forgotch"><input type="checkbox" id="forgotch" />Forgot password?</label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-
 							<p class="center span5">
-							<button type="submit" class="btn btn-primary" id="login">Login</button>
+							<button type="submit" class="btn btn-primary" id="login">登录</button>
 							</p>
 						</fieldset>
 					</form>
