@@ -1,0 +1,125 @@
+*{
+margin: 0;
+padding: 0;
+}
+.p_head{
+	width: 100%;
+	height: 100px;
+	background-color: #f0eff3;
+}
+span p {
+	margin: 0;
+	border: 0;
+}
+.p_head span,p{
+	font-weight: 400;
+	font-size: 15px;
+	font-size: 1em;
+	font-family:"SimHei"
+}
+.head_photo{
+	width: 80px;
+	height: 80px;
+}
+.personalInformation{
+	height: 100px;
+}
+
+.head_left{
+	float: left;
+	margin:10px 10px 10px 10px ;
+	width: 80px;
+	height: 80px;
+}
+.head_middle{
+	float: left;
+	margin-top: 10px;
+	height: 80px;
+	font-weight: 20;
+}
+.head_right{
+	float: right;
+	margin-top: 10px;
+	margin-right:20px;
+	height: 80px;
+}
+.head_right img{
+	height:50px;
+	width: 50px;
+}
+
+.p_small_name {
+	height:25px;
+	line-height: 25px;
+	font-size:0.9em;
+	color: #888888;
+}
+.facai{
+	height: 30px;
+	width: 30px;
+}
+
+
+.p_content{
+	width: 100%;
+}
+.table_tr{
+	height: 40px;
+}
+.table_tr_80{
+	height: 80px;
+}
+td{
+	font-family:"SimHei";
+	font-size:0.9em;
+}
+.table_td{
+	width: 90px;
+	padding-left: 10px;
+	color: #888888;	
+}
+
+.go_to_right{
+	background-image: url(../images/2222.gif);
+	background-repeat: no-repeat;
+	background-position:center right;
+}
+.go_to_right span{
+	padding-right: 20px;
+}
+
+
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 7px 14px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 24px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   display: block;
+   text-align: center;
+   margin: 10px 10px 10px 10px;
+   }
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }

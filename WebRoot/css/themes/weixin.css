@@ -1,0 +1,8 @@
+.personalInformation{
+	float: left;
+	margin-top: 5px;
+}
+.personalInformation div{
+	float: left;
+	margin-left: 10px;
+}

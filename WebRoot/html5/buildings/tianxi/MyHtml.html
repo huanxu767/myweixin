@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>石楼天禧</title>
+<meta name="keywords" content="石楼天禧" />
+<meta name="description" content="石楼天禧" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="../../../js/buildings/swipe.js"></script>
+<script type="text/javascript" src="../../../js/buildings/zepto.js"></script>
+<link type="text/css" rel="stylesheet" href="../../../css/buildings/mobi.css" media="all" />
+</head>
+<body>
+
+<section id="M">
+    <div class="toplogo"><img src="../../../images/buildings/logo.png" width="100%" alt="石湖天玺" /></div>
+    <div style="-webkit-transform:translate3d(0,0,0);">
+        <div id="banner_box" class="box_swipe">
+            <ul>
+                <li><img src="../../../images/buildings/1.jpg" alt="石湖天玺" style="width:100%;" /></li>
+                <li><img src="../../../images/buildings/2.jpg" alt="石湖天玺" style="width:100%;" /></li>
+				<li><img src="../../../images/buildings/3.jpg" alt="石湖天玺" style="width:100%;" /></li>
+				<li><img src="../../../images/buildings/4.jpg" alt="石湖天玺" style="width:100%;" /></li>
+				
+            </ul>
+            <ol>
+                <li class="on"></li>
+                <li ></li>
+            </ol>
+        </div>
+    </div>
+	<script>
+    $(function(){
+		new Swipe(document.getElementById('banner_box'), {
+			speed:500,
+			auto:3000,
+			callback: function(){
+				var lis = $(this.element).next("ol").children();
+				lis.removeClass("on").eq(this.index).addClass("on");
+			}
+		});
+    });
+    </script>
+    <div class="index-menu">
+        <ul>
+        	<li><a href="1.html"><img src="../../../images/buildings/btn_1.png" width="100%" alt="���ĵض�"/></a></li>
+            <li><a href="2.html"><img src="../../../images/buildings/btn_2.png" width="100%" alt="��Ŀ�滮"/></a></li>
+            <li><a href="3.html"><img src="../../../images/buildings/btn_3.png" width="100%" alt="�������"/></a></li>
+            <li><a href="4.html"><img src="../../../images/buildings/btn_4.png" width="100%" alt="��ʽ���"/></a></li>
+             </ul><br/>
+			   <ul>
+        	<li><a href="5.html"><img src="../../../images/buildings/btn_5.png" width="100%" alt="��"C:/Users/ADMINI~1/AppData/Local/Temp/wfes6i8f.bmp"�ĵض�"/></a></li>
+            <li><a href="6.html"><img src="../../../images/buildings/btn_6.png" width="100%" alt="��Ŀ�滮"/></a></li>
+            <li><a href="7.html"><img src="../../../images/buildings/btn_7.png" width="100%" alt="�������"/></a></li>
+            <li><a href="8.html"><img src="../../../images/buildings/btn_8.png" width="100%" alt="��ʽ���"/></a></li>
+             </ul>
+    </div>
+    <div class="index-pic">
+    	<ul>
+        	<li class="lbigpic"><img src="../../../images/buildings/fpic_1.jpg" width="100%" /></li>
+            <li class="lbigpic"><img src="../../../images/buildings/fpic_2.jpg" width="100%" /></li>
+            <li class="lbigpic"><img src="../../../images/buildings/fpic_3.jpg" width="100%" /></li>
+            <li class="rsmallpic"><img src="../../../images/buildings/fpic_4.jpg" width="100%" /></li>
+        </ul>
+    </div>
+</section>
+<!--<div class="mline"><img src="../../../images/buildings/line.png" width="100%" /></div>-->
+<div class="dashibg"><img src="../../../images/buildings/dashi.png" width="100%" /></div>
+<aside class="base-nav">
+    <div class="plug-phone">
+        <div class="plug-menu"><span class="close"></span></div>
+        <div class="plug-btn plug-btn1 close"><a href="index.html"><span>首页</span></a></div>
+        <div class="plug-btn plug-btn2 close"><a href="http://map.baidu.com/mobile/webapp/place/detail/qt=s&wd=%E7%9F%B3%E6%B9%96%E5%A4%A9%E7%8E%BA&c=224&searchFlag=bigBox&version=5&exptype=dep&nb_x=13422402.531172&nb_y=3650142.2192805&center_rank=1/i=0&showall=1&vt=map"><span>到达</span></a></div>
+        <div class="plug-btn plug-btn3 close"><a href="tel:0512-66559288"><span>电话</span></a></div>
+        <div class="plug-btn plug-btn4 close"><a href="15.html"><span>活动</span></a></div>
+    </div>
+</aside>
+
+<footer class="foot">&copy; 2013 石湖天玺</footer>
+<script src="../../../js/buildings/1.0.js"></script>
+<script src="../../../js/buildings/gmu.js"></script>
+<script src="../../../js/buildings/mod.js"></script>
+<div style="display:none;"></div>
+<script type="text/javascript">
+var dataForWeixin={
+	appId:	"",
+	img:	"http://qinglang.w66a.bolead.com/wls/shtx2/images/1.jpg",
+	url:	"http://qinglang.w66a.bolead.com/wls/shtx2/index.html",
+	title:	"石湖天玺΢¥��",
+	desc:	"【石湖天玺】镌刻苏州传奇",
+	fakeid:	"",
+};
+(function(){
+	var onBridgeReady=function(){
+		// ���͸����; 
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage',{
+				"appid":		dataForWeixin.appId,
+				"img_url":		dataForWeixin.img,
+				"img_width":	"120",
+				"img_height":	"120",
+				"link":				dataForWeixin.url,
+				"desc":				dataForWeixin.desc,
+				"title":			dataForWeixin.title
+			}, function(res){});
+		});
+		// ���?����Ȧ;
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline',{
+			"img_url":dataForWeixin.img,
+			"img_width":"120",
+			"img_height":"120",
+			"link":dataForWeixin.url,
+			"desc":dataForWeixin.desc,
+			"title":dataForWeixin.title
+			}, function(res){});
+		});
+	};
+	if(document.addEventListener){
+		document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	}else if(document.attachEvent){
+		document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+		document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+	}
+})();
+</script>
+</body>
+</html>

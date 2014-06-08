@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>新增牌局</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.2.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.mobile-1.4.2.min.js"></script>
+	<script src="../js/mobiscroll/mobiscroll.custom-2.6.2.min.js" type="text/javascript"></script>
+	<link href="../js/mobiscroll/mobiscroll.custom-2.6.2.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+  <script type="text/javascript">
+		//页面加载完后异步加载js
+	   	$(document).ready(function () {
+			var currYear = (new Date()).getFullYear();	
+			var opt={};
+			var minDate;
+			opt.end = {
+				theme: 'android-ics light', //皮肤样式
+		        display: 'bottom', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				lang:'zh',
+				dateFormat: 'yyyy-mm-dd',
+        		dateOrder: 'yymmdd'
+			};
+			opt.start = {
+				theme: 'android-ics light', //皮肤样式
+		        display: 'bottom', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				lang:'zh',
+				dateFormat: 'yyyy-mm-dd',
+        		dateOrder: 'yymmdd'
+			};
+			opt.start_time = {preset : 'date',onSelect:function(valueText, inst){
+			    opt.end.minDate = new Date(valueText.replace(/-/g,"/"));
+			}};
+			
+			
+			$("#start_time").val('').scroller('destroy').scroller($.extend(opt['start_time'], opt['start']));
+			
+			
+			opt.month = {preset : 'date',dateFormat:'yyyy-mm', dateOrder: 'yymm'};
+			opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
+			opt.datetime = {preset : 'datetime'};
+			opt.time = {preset : 'time'};
+			opt.default = {
+				theme: 'android-ics light', //皮肤样式
+		        display: 'bottom', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				lang:'zh',
+		        startYear:currYear - 10, //开始年份
+		        endYear:currYear + 10 //结束年份
+			};
+		  
+	    })
+		
+	 
+	</script>
+	
+  <body>
+ 
+	 <form>
+  <ul data-role="listview" data-inset="true">
+        <li class="ui-field-contain" >
+            <label for="name1">地点:</label>
+            <input name="name2" id="name2" value="" data-clear-btn="true" type="text" placeholder="在哪打的国粹？">
+        </li>
+        <li class="ui-field-contain">
+            <label for="textarea2">备注:</label>
+        <textarea cols="40" rows="8" name="textarea2" id="textarea2" placeholder="有什么要吐槽的不？"></textarea>
+        </li>
+        <li class="ui-field-contain">
+            <label for="textarea2">时间:</label>
+			<input class="input_text" type="text" readonly="readonly" placeholder="嘛时候开局的？"
+							id="start_time" name="start_time"/>
+	     </li>
+     <li class="ui-field-contain">
+        <div data-role="tabs" id="tabs" >
+   		 <h4 style="text-align:center;">四天神</h4>
+			    <div data-role="navbar">
+					    <ul>
+					            <li><a href="#dong" data-ajax="false" data-inset="true"  class="ui-btn-active">青龙</a></li>
+								<li><a href="#nan" data-ajax="false">朱雀</a></li>
+								<li><a href="#xi" data-ajax="false">白虎</a></li>
+								<li><a href="#bei" data-ajax="false">玄武</a></li>
+					     </ul>
+		         <div id="dong" >
+					<div class="ui-field-contain">
+				         <label for="text-14">姓名</label>
+				        <select name="dongUserName" id="dongUserName">
+						  <option value="rush">请选择</option>
+				          <option value="rush2">孙涛</option>
+				          <option value="express">邓杰</option>
+				          <option value="overnight">曹涛</option>
+				          <option value="overnight">殷超</option>
+				          <option value="overnight">于根虎</option>
+				          <option value="overnight">周书杰</option>
+				          <option value="standard">许欢</option>
+				 		</select>
+				    </div>
+				    
+				    <div class="ui-field-contain">
+				        <label for="text-15">输赢</label>
+				        <fieldset data-role="controlgroup" data-type="horizontal">
+					        <input name="dongIsWin" id="dongLose" value="on"  type="radio">
+					        <label for="dongLose">输</label>
+					        <input name="dongIsWin" id="dongWin" value="off" type="radio" checked="checked">
+					        <label for="dongWin" >赢</label>
+					    </fieldset>
+				    </div>
+					<div class="ui-field-contain">
+				        <label for="text-15">输赢数目</label>
+	                     <input name="dongMoney"  value="0" min="0" max="400" data-highlight="true" type="range" >
+				    </div>	
+						
+				  </div>
+				  <div id="nan">
+					 	<div class="ui-field-contain">
+				         <label for="text-14">姓名</label>
+				        <select name="select-choice-1" id="select-choice-1">
+						  <option value="rush">请选择</option>
+				          <option value="rush2">孙涛</option>
+				          <option value="express">邓杰</option>
+				          <option value="overnight">曹涛</option>
+				          <option value="overnight">殷超</option>
+				          <option value="overnight">于根虎</option>
+				          <option value="overnight">周书杰</option>
+				          <option value="standard">许欢</option>
+				 		</select>
+				    </div>
+				    
+				    <div class="ui-field-contain">
+				        <label for="text-15">输赢</label>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+					         <input name="nanIsWin" id="nanLose" value="on"  type="radio">
+					        <label for="nanLose">输</label>
+					        <input name="nanIsWin" id="nanWin" value="off" type="radio" checked="checked">
+					        <label for="nanWin" >赢</label>
+					    </fieldset>
+				    </div>
+					<div class="ui-field-contain">
+				        <label for="text-15">输赢数目</label>
+	                    <input name="slider2" id="slider2" value="0" min="0" max="400" data-highlight="true" type="range" >
+				    </div>	
+						
+					  
+				   </div>
+					<div id="xi" >
+					    	<div class="ui-field-contain">
+				         <label for="text-14">姓名</label>
+				        <select name="select-choice-1" id="select-choice-1">
+						  <option value="rush">请选择</option>
+				          <option value="rush2">孙涛</option>
+				          <option value="express">邓杰</option>
+				          <option value="overnight">曹涛</option>
+				          <option value="overnight">殷超</option>
+				          <option value="overnight">于根虎</option>
+				          <option value="overnight">周书杰</option>
+				          <option value="standard">许欢</option>
+				 		</select>
+				    </div>
+				    
+				    <div class="ui-field-contain">
+				        <label for="text-15">输赢</label>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+					        <input name="xiIsWin" id="xiLose" value="on"  type="radio">
+					        <label for="xiLose">输</label>
+					        <input name="xiIsWin" id="xiWin" value="off" type="radio" checked="checked">
+					        <label for="xiWin" >赢</label>
+					    </fieldset>
+				    </div>
+					<div class="ui-field-contain">
+				        <label for="text-15">输赢数目</label>
+	                   <input name="slider2" id="slider2" value="0" min="0" max="400" data-highlight="true" type="range" >
+				    </div>	
+						
+					</div>
+					  <div id="bei" >
+					    	<div class="ui-field-contain">
+				         <label for="text-14">姓名</label>
+				        <select name="select-choice-1" id="select-choice-1">
+						  <option value="rush">请选择</option>
+				          <option value="rush2">孙涛</option>
+				          <option value="express">邓杰</option>
+				          <option value="overnight">曹涛</option>
+				          <option value="overnight">殷超</option>
+				          <option value="overnight">于根虎</option>
+				          <option value="overnight">周书杰</option>
+				          <option value="standard">许欢</option>
+				 		</select>
+				    </div>
+				    
+				    <div class="ui-field-contain">
+				        <label for="text-15">输赢</label>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+					        <input name="beiIsWin" id="beiLose" value="on"  type="radio">
+					        <label for="beiLose">输</label>
+					        <input name="beiIsWin" id="beiWin" value="off" type="radio" checked="checked" >
+					        <label for="beiWin" >赢</label>
+					    </fieldset>
+				    </div>
+					<div class="ui-field-contain">
+				        <label for="text-15">输赢数目</label>
+	                    <input name="slider2" id="slider2" value="0" min="0" max="400" data-highlight="true" type="range" >
+				    </div>	
+						
+					  </div>
+		    </div><!-- /navbar -->
+		</div><!-- /tabs -->
+   </li>
+       
+       
+       
+        <li class="ui-body ui-body-b">
+            <fieldset class="ui-grid-a">
+                    <div class="ui-block-a"><button type="submit" class="ui-btn ui-corner-all ui-btn-a">取消</button></div>
+                    <div class="ui-block-b"><button type="submit" class="ui-btn ui-corner-all ui-btn-a">提交</button></div>
+            </fieldset>
+        </li>
+    </ul>
+</form>
+
+  </body>
+  
+</html>

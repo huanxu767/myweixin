@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<meta charset="utf-8">
+	<title>订单确认 -- 中国移动通信 购机五重礼</title>
+	<script type="text/javascript" src="script/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="script/commons.js"></script>
+	<script type="text/javascript" src="script/orderadd.js"></script>
+	
+  </head>
+  
+  <style type="text/css">
+	.mask{overflow:hidden;width:100%;position:absolute;height:0px;left:0;top:0;background:#000000;opacity:0.5;filter:alpha(opacity=50); z-index:200;}
+  </style>
+
+  <body>
+  <!--artDialog-->
+	<div class="artDialog artDialog_login_reg" style="display:none;" id="loginDiv">
+      <h2><span>登录</span><a href="#" class="close" id="closeDiv"></a></h2>
+	  <div class="artDialog-body">
+        <ul class="login_reg_cut">
+          <li class="on">登录</li>
+          <li>注册</li>
+        </ul>
+        <div class="login_reg_tabs" >
+          <div class="login_reg_tab">
+            <div class="unlogin login-form">
+              <p>邮箱账号：<input type="text" class="txt" name="email" id="email"/></p>
+              <p>登录密码：<input type="password" class="txt" name="password" id="password" /><em><a href="./findPassword.jsp" class="f-u">找回密码</a></em></p>
+              <p class="code"><label>验&nbsp;证&nbsp;码：</label><input type="text" class="txt" name="randomCode" id="randomCode" />
+              <span class="code-img"><img src="../mall/verificationcode.do" width="90" height="26" id="dCode" onclick="refresh('dCode')"/></span><em>看不清？<a href="javascript:refresh('dCode');" class="f-u">换一张</a></em></p>
+              <div class="btn">
+                <button type="button" class="btn1" id="loginBtn">登录</button>
+              </div>
+            </div>
+         </div>
+          <div class="login_reg_tab" style="display:none;">
+            <div class="unlogin login-form login-form-reg">
+              <p class="f-red1 m10-b">尊敬的用户，为方便您在成功购机后可查询订单及抽奖记录，请牢记您的账号和密码，谢谢。</p>
+              <p>我的邮箱：<input type="text" class="txt" id="rEmail"/></p>
+              <p>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" class="txt" id="rPWD"/></p>
+              <p>确认密码：<input type="password" class="txt" id="rPWD1" /></p>
+              <p class="code m10-b"><label>验&nbsp;证&nbsp;码：</label><input type="text" class="txt" id="rCode"/><span class="code-img"><img src="../mall/verificationcode.do" id="rImage" width="90" height="26" onclick="refresh('rImage')"/></span><em>看不清？<a href="javascript:refresh('rImage')" class="f-u">换一张</a></em></p>
+           <div class="btn">
+             <button type="button" class="btn1" id="registBtn">注册</button>
+           </div>
+          </div>
+         </div>
+        </div>
+	  </div>
+	</div>
+	<!--artDialog-->
+  
+  
+  
+  
+  
+  
+  <script>
+	window.onscroll = function(){
+	if(navigator.userAgent.indexOf("MSIE 6.0")>0){  //针对IE6
+		document.getElementById('popbox_cart').style.top = (document.documentElement.scrollTop+110)+'px';
+	}
+	}
+</script>
+	
+<header class="header">
+ <div class="headerMain layout">
+    <h1 class="siteLogo"><a href="http://mall.10086.cn/freshman" title="江苏移动" class="siteLogo-jsHomepage"></a></h1>
+    <div class="topLogin">
+      <p class="top-unlogin">[<a href="javascript:;" id="top_login_id">登录</a>] [<a href="javascript:;" id="top_reg_id">免费注册</a>]</p>
+      <!--登录后-->
+      <p class="top-logined" style="display:none;">Hi,<a id="top_name_id"></a> [<a href="javascript:;" id="top_out_id">注销</a>]</p>
+      <!--//登录后-->
+    </div>
+    <ul class="headerNav">
+      <li><a href="http://mall.10086.cn/freshman">返回首页</a></li>
+      <li><a href="./info.html" target="_blank">活动介绍</a></li>
+      <li><a href="javascript:;" id="query_order_id">查询订单</a></li>
+      <li><a href="javascript:;" id="query_trophy_id">查询抽奖</a></li>
+      <li><a href="javascript:;" id="blxk_id">办理18元卡</a></li>
+    </ul>
+  </div>
+</header>
+<!--//header-->
+
+
+<!--artDialog-->
+	<div class="artDialog artDialog_draw" style="display: none;" id="tipdiv">
+	  <div class="artDialog-body">
+        <h2>购前须知<a href="javascript:void(0);" class="close" id="closetip">关闭</a></h2>
+        <div class="artDialog-notes-content">
+          <h3>购前须知</h3>
+          <div class="artDialog-notes">
+            <h5><strong>一、 订单须知</strong></h5>
+            <p>您的订单信息是我们处理订单及配送的依据，订单生成后您的订单信息将无法更改，在您下订单时，请您仔细确认所购商品的名称、价格、            数量、型号、规格、尺寸、联系地址、电话、收货人等信息。如因您的订单信息有误或您临时更改寄送地址造成订单取消或无法送达，商城将不承担责任。</p>
+            <p>&nbsp;</p>
+            <h5><strong>二、 订单回访</strong></h5>
+            <p>订单生成后，我们会与您订单中所留号码联系确认订单信息，请您务必在填写订单时留下您的有效联系方式并保持畅通。如2日内联系不到您            ，您的订单将会自动被系统取消。</p>
+            <p>&nbsp;</p>
+            <h5><strong>三、 营销案订单</strong></h5>
+            <p>1、营销案产品由各省自行办理，如您在商城申请办理的营销案与您之前办理过的营销案冲突，导致不能办理，客服人员确认后会电话通知您            。 2、一般情况下商城会在48小时内为您办理营销案，但如遇订单量突增等特殊情况，可能造成营销案办理延迟，故您在月末三天申请的营            销案订单，可能次月月初才能办理成功，我们会尽快为您处理，敬请谅解。</p>
+            <p>&nbsp;</p>
+            <p>您的订单信息是我们处理订单及配送的依据，订单生成后您的订单信息将无法更改，在您下订单时，请您仔细确认所购商品的名称、价格、            数量、型号、规格、尺寸、联系地址、电话、收货人等信息。如因您的订单信息有误或您临时更改寄送地址造成订单取消或无法送达，商城将不承担责任。</p>
+            <p>&nbsp;</p>
+            <h5><strong>二、 订单回访</strong></h5>
+            <p>订单生成后，我们会与您订单中所留号码联系确认订单信息，请您务必在填写订单时留下您的有效联系方式并保持畅通。如2日内联系不到您            ，您的订单将会自动被系统取消。</p>
+            <p>&nbsp;</p>
+            <h5><strong>三、 营销案订单</strong></h5>
+            <p>1、营销案产品由各省自行办理，如您在商城申请办理的营销案与您之前办理过的营销案冲突，导致不能办理，客服人员确认后会电话通知您            。 2、一般情况下商城会在48小时内为您办理营销案，但如遇订单量突增等特殊情况，可能造成营销案办理延迟，故您在月末三天申请的营            销案订单，可能次月月初才能办理成功，我们会尽快为您处理，敬请谅解。</p>
+          </div>
+        </div>
+	  </div>
+	</div>
+	<!--artDialog-->
+<!--topBanner-->
+<div class="topBanner layout">
+  <a href="#"><img src="picture/top_banner.jpg" /></a>
+</div>
+<!--//topBanner-->
+<!--conotainer-->
+<div class="container">
+  <section class="layout m10-b">
+    <div class="userExtra userCenter-warn m10-b">
+      <p>提醒：部分浏览器暂不支持银联支付功能，如选用在线支付，建议使用IE浏览器进行支付，以确保您的订单支付流畅</p>
+    </div>
+    <!--商品清单-->
+    <div class="userCenter-order-con m10-b">
+      <h2>商品清单</h2>
+      <div class="userCenter-order-conBody">
+      <table>
+        <thead>
+          <tr>
+            <th width="18%">图片</th>
+            <th width="22%">商品名称</th>
+            <th width="15%">商品价格</th>
+            <th width="30%">存话费享购机折扣活动</th>
+            <th width="15%">小计</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" class="userCenter-order-img"><img src="" id="productImage"/></td>
+            <td><span class="f-blue2" id="productName"></span></td>
+            <td><span class="f-orange1" id="productPrice"></span></td>
+            <td id="marketdesc"></td>
+            <td><span class="f-orange1" id="productTprice"></span></td>
+          </tr>
+          <tr>
+            <td colspan="4" id="gifts">
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <!--//商品清单-->
+    
+    
+    <!--收货人信息-->
+    <div class="userCenter-order-con m10-b">
+      <h2>收货人信息</h2>
+      <div class="userCenter-order-conBody">
+      <div class="userCenter-order-form">
+      <div id="marketAddress" >
+      </div>
+        <p><em class="f-red1">*</em>收货人姓名：<input type="text" class="txt" name="deliveryName" id="deliveryName" /></p>
+        <div id="sfzDiv">
+        </div>
+        <p><em class="f-red1">*</em>收货人地址：
+        <select class="select1" id="province" name="deliveryProvince"><option>江苏省</option>
+        </select><select id ="city" name="deliveryCity">
+        <option>南京市</option></select>
+        <select id="area"  name="deliveryCountry"><option>玄武区</option></select>
+        <b> <em class="f-red1">*</em>邮政编码：</b><input type="text" class="txt" name="deliveryPostalcode" id="deliveryPostalcode" maxlength="6"/></p>
+        <p><span id="showAddress">江苏省，南京市，市辖区 </span><input type="text" class="txt input1"  name="deliveryAddress" id="deliveryAddress"/></p>
+        <p><em class="f-red1">*</em>收货人手机：<input type="text" class="txt" name="deliveryMobile" id="deliveryMobile" maxlength="11"/>
+        <b>固话：</b><input type="text" class="txt" name="deliveryPhone" id="deliveryPhone" /></p>
+        <div class="f-orange1 ">提示：流量卡将与手机分开配送，流量卡会在当月月底统一安排寄送，给您带来的不便还望谅解。</div>
+      </div>
+      </div>
+    </div>
+    <!--//收货人信息-->
+    <!--送货时间-->
+    <div class="userCenter-order-con m10-b">
+      <h2>送货时间</h2>
+      <div class="userCenter-order-conBody">
+        <div class="userCenter-order-form">
+          <p><input type="radio" name="distTime" value="0" checked="checked"/> 只工作日送货<em class="f-gray3">（双休日、节假日不送货。适合办公室/写字楼/商用地址）</em></p>
+          <p><input type="radio" name="distTime" value="1" /> 工作日、双休日与假日均可送货</p>
+          <p><input type="radio" name="distTime" value="2"/> 双休日、假日送货<em class="f-gray3">（工作日不送货，适用与家庭地址）</em></p>
+          <strong class="f-orange1">声明：配送物流指定为顺丰、EMS，我们会努力按照您所制定的时间配送，但因天气，交通等各种因素影响，您的订单可能会有延误现象，敬请谅解！</strong>
+        </div>
+      </div>
+    </div>
+    <!--//送货时间-->
+<!--订单查询设置-->
+    <div class="userCenter-order-con m10-b"  id="useradmin" style="display: none;">
+      <h2>订单查询设置</h2>
+      <div class="userCenter-order-conBody">
+        <div class="userCenter-order-form">
+          <p><em class="f-red1">*</em>邮箱账号：<input type="text" class="txt" name="email" id="email2"/><b>&nbsp;<a href="javascript:void(0);" id="changeUser" >使用已有邮箱作为查询账号</a></b></p>
+          <p><em class="f-red1">*</em>查询密码：<input type="password"  class="txt" name="password" id="password2" maxlength="10"  /><b> 
+        	<em id="pwdtip" class="f-gray3">密码6-10位</em>
+        	<a href="../mall/findPassword.jsp" target="_blank" id="findPwd"></a>
+          </b>
+		  </p>
+          <p id="pwd2"><em class="f-red1">*</em>确认密码：<input type="password"  class="txt" name="passwordTemp" id="passwordTemp"  maxlength ="10" /></p>
+          <strong class="f-orange1">请妥善保存填写邮箱及查询密码，以便您可以随时登录活动页面查询订单状态并浏览相关售后服务。 </strong>
+        </div>
+        
+     
+        
+      </div>
+    </div>
+    <!--支付方式-->
+    <div class="userCenter-order-con m10-b">
+      <h2>发票信息</h2>
+      <div class="userCenter-order-conBody">
+        <div class="userCenter-order-form">
+            <p>发票抬头：<input type="radio" name="invoiceHeadType" value="0" checked="checked"/> 个人<b>
+            <input type="radio"  name="invoiceHeadType" value="1"/> 公司</b> <input type="text" class="txt" name="invoiceHeadInfo" id="invoiceHeadInfo" /></p>
+            <p class="line"></p>
+            <p><input type="checkbox" id="tip"/> 我已阅读并同意《<a href="javascript:void(0);" id="showtip">中国移动网上商城客户购前须知</a>》</p>
+            <div class="userCenter-order-totall">
+              <span class="f-b">您一共需要支付：<em class="f-red1 f-b" id="gartheringPrice" >￥</em></span>
+            </div>
+             <div id ="errorShow">
+             </div>
+          <button type="button" class="btn1" id="submitButton" >提交订单</button>
+        </div>
+      </div>
+    </div>
+    <!--//支付方式-->
+  </section>
+</div>
+<!--//container-->
+<!--footer-->
+<footer class="footer">
+  <div class="footer-copyright">
+    <p>京ICP备05007322号 | 中国移动版权所有</p>
+  </div>
+</footer>
+<!--//footer-->
+
+<!-- 登录注册弹窗口 -->
+<div class="artDialog artDialog_login_reg" style="display:none;">
+      <h2><span>登录</span><a href="javascript:;" class="close"></a></h2>
+	  <div class="artDialog-body">
+        <ul class="login_reg_cut">
+          <li class="on">登录</li>
+          <li class="">注册</li>
+        </ul>
+        <div class="login_reg_tabs">
+          <div class="login_reg_tab" style="display: block;">
+            <div class="unlogin login-form">
+             <div id="loginError"></div>
+              <p>邮箱账号：<input type="text" class="txt" name="l_email"></p>
+              <p>登录密码：<input type="password" class="txt" name="l_pass"><em><a target="_blank" href="../mall/findPassword.jsp" class="f-u">找回密码</a></em></p>
+              <p class="code"><label>验&nbsp;证&nbsp;码：</label><input maxlength="4" type="text" class="txt" name="l_code"><span class="code-img"><img id="l_showImg" src="" width="90" height="26"></span><em>看不清？<a href="javascript:;" onclick="changeImg(this);" class="f-u">换一张</a></em></p>
+              <div class="btn">
+                <button id="login_id" type="button" class="btn1">登录</button>
+              </div>
+            </div>
+         </div>
+          <div class="login_reg_tab" style="display: none;">
+            <div class="unlogin login-form login-form-reg">
+            <div id="registError"></div>
+              <p class="f-red1 m10-b">尊敬的用户，为方便您在成功购机后可查询订单及抽奖记录，请牢记您的账号和密码，谢谢。</p>
+              <p>我的邮箱：<input type="text" class="txt" name="r_email"></p>
+              <p>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" class="txt" name="r_pass"><span class="msg">6~10位数字、字母或符号</span> </p>
+              <p>确认密码：<input type="password" class="txt" name="r_pass2"></p>
+              <p class="code m10-b"><label>验&nbsp;证&nbsp;码：</label><input maxlength="4" type="text" class="txt" name="r_code"><span class="code-img"><img id="r_showImg" src="" width="90" height="26"></span><em>看不清？<a href="javascript:;" onclick="changeImg(this);" class="f-u">换一张</a></em></p>
+           <div class="btn">
+             <button id="reg_id" type="button" class="btn1">注册</button>
+           </div>
+          </div>
+         </div>
+        </div>
+	  </div>
+	 
+</div>
+
+
+ <!--artDialog-->
+	  
+	<div class="artDialog artDialog_present" id="activityShow" style="display:none;">
+	  <div class="artDialog-body">
+        <h2>活动介绍<a href="javascript:closeHF();" class="close">关闭</a></h2>
+        <div class="artDialog-act">
+          <p class="f-gray3 m10-b">今年江苏高考生在本网站上购买指定活动机型，并登记本人有效身份证号码（所购手机收件人需为高考生本人），在被省内高校录取后，本人凭<em class="f-orange1">①有效身份证、②省内高校录取通知书、③网上所购手机</em>，至高校所在地指定移动营业厅，可参加“金榜题名购机送话费”活动。具体活动内容如下：</p>
+            <table class="m10-b">
+              <thead>
+                <tr>
+                  <th>活动营销案名称</th>
+                  <th>前23个月每月赠送话费（元） </th>
+                  <th>最后1个月赠送话费（元） </th>
+                  <th>承诺月最低合约消费（元） </th>
+                  <th>协议期（月）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>金榜题名送5000元话费</td>
+                  <td>200</td>
+                  <td>400</td>
+                  <td>400</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td>金榜题名送2000元话费</td>
+                  <td>75</td>
+                  <td>275</td>
+                  <td>150</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td>金榜题名送800元话费</td>
+                  <td>30</td>
+                  <td>110</td>
+                  <td>55</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td>金榜题名送500元话费</td>
+                  <td>15</td>
+                  <td>155</td>
+                  <td>35</td>
+                  <td>24</td>
+                </tr>
+                <tr>
+                  <td>金榜题名送300元话费</td>
+                  <td>10</td>
+                  <td>70</td>
+                  <td>20</td>
+                  <td>24</td>
+                </tr>
+              </tbody>
+            </table>
+          <div class="artDialog-act-extra">
+            <p><em class="f-b">说明：</em></p>
+            <p>第一，客户可以选择办理上述任意一款营销案，且仅能办理一款，具体活动条款办理时详见活动协议，办理时间截至今年9月底；</p>
+            <p>第二，已参加过其他优惠活动的手机、号码不得参加本次活动；</p>
+            <p>第三，该活动每个高考生只能参加一次；</p>
+            <p>第四，赠送话费分24个月返还，每月最低消费不达标、不返还，协议期内客户不能转品牌、过户、报停、销户，跨整月停机当月话费不返还。</p>
+          </div>
+        </div>
+	  </div>
+	</div>
+	<!--artDialog-->
+</body>
+</html>
