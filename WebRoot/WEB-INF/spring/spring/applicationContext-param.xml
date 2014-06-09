@@ -11,7 +11,7 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<!-- 统一变量数据 -->
-	<bean id="xwConfig" class="com.study.util.PropertiesConfiguration" scope="singleton">
+	<bean id="xwConfig" class="com.xh.utils.PropertiesConfiguration" scope="singleton">
 		<property name="config">
 			<props>
 				<!-- 可添加...... -->

@@ -12,11 +12,11 @@
 
 	<description>Spring Config - DATABASE</description>
 	
-	<context:component-scan base-package="com.study.*.service" />
-	<context:component-scan base-package="com.study.*.dao" />
+	<context:component-scan base-package="com.xh*.service" />
+	<context:component-scan base-package="com.xh.*.dao" />
 	<context:annotation-config />
 	
-	<bean id="propertyConfigurer" class="com.study.util.CustomPropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="com.xh.utils.CustomPropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:db_config.properties</value>
@@ -90,7 +90,7 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="pointcut" expression="execution(* com.study.test.service.impl.*.*(..))" />
+		<aop:pointcut id="pointcut" expression="execution(* com.xh.service.impl.*.*(..))" />
 		<aop:advisor pointcut-ref="pointcut" advice-ref="transactionAdvice" />
 	</aop:config>
 

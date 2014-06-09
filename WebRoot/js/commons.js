@@ -1,7 +1,7 @@
 /**
  * web上下文的根路径
  */
-var CONTEXT_PATH = '/freshman';
+var CONTEXT_PATH = '/myweixin';
 /**
  * 实现javascript中的trim方法类似java中trim方法
  * @return String

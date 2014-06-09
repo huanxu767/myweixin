@@ -56,14 +56,6 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-
-
-
-
-
-
-
-
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -89,18 +81,5 @@
 		<listener-class>
 			org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
-	
-	
-	
-	
-	<servlet>
-	  	<servlet-name>weixinVerification</servlet-name>
-	  	<servlet-class>com.myweixin.Action.WeixinVerification</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>weixinVerification</servlet-name>
-		<url-pattern>/weixinVerification</url-pattern>
-	</servlet-mapping>
  
 </web-app>

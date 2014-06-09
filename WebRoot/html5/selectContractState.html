@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<header data-role="none">
+			<div class="back" onclick="window.history.go(-1);"></div>
+			<div class="title">请选择合同签订状态</div>
+		</header>
+		<!-- 
+		<div id="header" class="page_header equal">
+			<div class="row">
+				<div onclick="window.history.go(-1);" class="back">
+				</div>
+				<div>
+					请选择合同签订状态
+				</div>
+				<div style="width: 40px;">
+					<div></div>
+				</div>
+			</div>
+		</div>
+		 -->
+		<div style="padding-top:40px;">
+			<div id="date_list">
+				<div class="box" style="padding: 0px;">
+					<div class="equal" style="padding: 0em;">
+					
+						<div class="row cons_info tap_block" style="height: 40px;"
+							id="item00">
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-left: 15px; width: 100%;">
+								<font style="font-size: 13pt;">不限</font>
+								<font style="visibility: hidden;">00</font>
+							</div>
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-right: 10px;">
+								<img src='../../images/biz/selected.png' />
+							</div>
+						</div>
+						<div class="row cons_info tap_block" style="height: 40px;"
+							id="item0">
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-left: 15px; width: 100%;">
+								<font style="font-size: 13pt;">未签订</font>
+								<font style="visibility: hidden;">0</font>
+							</div>
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-right: 10px;">
+								<img src='../../images/biz/selected.png' />
+							</div>
+						</div>
+						<div class="row cons_info tap_block" style="height: 40px;"
+							id="item1">
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-left: 15px; width: 100%;">
+								<font style="font-size: 13pt;">已签订</font>
+								<font style="visibility: hidden;">1</font>
+							</div>
+							<div class="bottom_border"
+								style="vertical-align: middle; padding-right: 10px;">
+								<img src='../../images/biz/selected.png' />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+		   		var firstNode = document.getElementById("item00");
+				var nodes = firstNode.parentNode.children;
+		   		for (var i = 0; i < nodes.length; i++) {
+		   			$(nodes[i].children[1].children[0]).hide();
+		   		}
+				var selectedVal = $("#contractstateno").val();
+				if(selectedVal!=null&&selectedVal!=""){
+					var curNode = document.getElementById("item" + selectedVal);
+					if(curNode)$(curNode.children[1].children[0]).show();
+				}
+			   $(".cons_info").bind("vclick", function() {
+			   		var value = $(this.children[0].children[1]).text();
+			   		var name = $(this.children[0].children[0]).text();
+			   		var record = {value: value, name: name};
+			   		
+			   		var nodes = this.parentNode.children;
+			   		for (var i = 0; i < nodes.length; i++) {
+			   			$(nodes[i].children[1].children[0]).hide();
+			   		}
+			   		$(this.children[1].children[0]).show();
+			        selectContractStateCallBack(record);
+			        window.history.go(-1);
+			   });
+			   
+			</script>
+		</div>
+	</body>
+</html>
