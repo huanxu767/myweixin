@@ -1,3 +1,9 @@
+INSERT INTO m_menu(NAME,page_url,image_url,TYPE,is_active,EventKey)
+VALUES('排行榜','/mobile/recordRankingList.html?openid=${openid}','','click',1,'V1001_TODAY_MUSIC')
+
+
+
+
 --创建麻将记录表 
 CREATE OR REPLACE TABLE m_record (
   id INT(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
@@ -36,3 +42,27 @@ CREATE  TABLE m_user (
   create_time DATETIME  COMMENT '创建时间' ,
   PRIMARY KEY  (id)
 ) ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+
+--菜单
+CREATE  TABLE m_menu (
+  id INT(11) NOT NULL AUTO_INCREMENT ,
+  parent_id INT(11)  COMMENT '父菜单ID',
+  NAME VARCHAR(12) COMMENT '名称',	
+  PAGE_URL VARCHAR(500) COMMENT 'URL地址',	
+  image_URL VARCHAR(300) COMMENT '图片地址',	
+  TYPE VARCHAR(10) COMMENT '菜单类型 view or click ', 
+  create_time DATETIME  COMMENT '创建时间' ,
+  is_active TINYINT(1) COMMENT '0 未激活 1激活' ,
+  EventKey VARCHAR(24) COMMENT '事件KEY值，与自定义菜单接口中KEY值对应',
+  PRIMARY KEY  (id)
+) ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+
+--代码表
+CREATE TABLE m_code(
+	id INT(11) NOT NULL AUTO_INCREMENT ,
+	NAME VARCHAR(12) COMMENT '名称',	
+	content VARCHAR(512) COMMENT '内容',
+	create_time DATETIME  COMMENT '创建时间' ,	
+	last_update_time DATETIME  COMMENT '最新更新时间',
+	 PRIMARY KEY  (id) 	
+)ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
