@@ -1,0 +1,54 @@
+{
+    "button": [
+        {
+            "name": "雀神牌局", 
+            "sub_button": [
+                {
+                    "type": "click", 
+                    "name": "排行榜", 
+                    "key": "V13_PAIHANGBANG"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "历史记录", 
+                    "key": "V12_LISHIJILU"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "相册", 
+                    "key": "V11_XIANGCE"
+                }
+            ]
+        }, 
+        {
+            "name": "牌友简介", 
+            "sub_button": [
+                {
+                    "type": "click", 
+                    "name": "牌友资料", 
+                    "key": "V21_PAIYOUZILIAO"
+                }
+            ]
+        }, 
+        {
+            "name": "我", 
+            "sub_button": [
+                {
+                    "type": "click", 
+                    "name": "个人信息", 
+                    "key": "V31_GERENXINXI"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "个人战绩", 
+                    "key": "V32_GERENZHANJI"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "我要吐槽", 
+                    "key": "V33_WOYAOTUCAO"
+                }
+            ]
+        }
+    ]
+}
