@@ -4,8 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
-public class CustomPropertyPlaceholderConfigurer extends
-		PropertyPlaceholderConfigurer {
+public class CustomPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 
 	protected void processProperties(ConfigurableListableBeanFactory beanFactory,  
             java.util.Properties props)throws BeansException {  

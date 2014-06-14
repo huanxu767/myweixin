@@ -12,11 +12,11 @@
 
 	<description>Spring Config - DATABASE</description>
 	
-	<context:component-scan base-package="com.xh*.service" />
+	<context:component-scan base-package="com.xh.*.service" />
 	<context:component-scan base-package="com.xh.*.dao" />
 	<context:annotation-config />
 	
-	<bean id="propertyConfigurer" class="com.xh.utils.CustomPropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="com.xh.support.EncryptablePropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:db_config.properties</value>
