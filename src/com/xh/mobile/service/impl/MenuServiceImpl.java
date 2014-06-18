@@ -37,11 +37,11 @@ public class MenuServiceImpl  implements IMenuService {
 			menus.add(menu);
 		}
 		PictureAndTextXmlMessage messages = new PictureAndTextXmlMessage();
-		messages.setArticlesMap(menus);
 		messages.setCreateTime(DateTime.getLongTime()+"");
 		messages.setFromUserName(fromUserName);
 		messages.setToUserName(toUserName);
 		messages.setMsgType("news");
+		messages.setArticlesMap(menus,toUserName);
 		return messages.getXML();
 	}
 

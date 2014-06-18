@@ -1,5 +1,6 @@
 package com.xh.mobile.pojo;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.dom4j.Element;
@@ -75,7 +76,7 @@ public class PictureAndTextXmlMessage extends BaseXmlObj{
 		return articlesMap;
 	}
 
-	public void setArticlesMap(List<Menu> articlesMap) {
+	public void setArticlesMap(List<Menu> articlesMap,String openid) {
 		/**
 		 * <item>
 				<Title><![CDATA[title1]]></Title> 
@@ -98,9 +99,9 @@ public class PictureAndTextXmlMessage extends BaseXmlObj{
 			Menu menu = articlesMap.get(i);
 			Element item = articles.addElement("item");
 			item.addElement("Title").setText(menu.getName()+"");
-			item.addElement("Description").setText(menu.getDescription()+"");
+			item.addElement("Description").setText(menu.getDescription());
 			item.addElement("PicUrl").setText(menu.getImageUrl()+"");
-			item.addElement("Url").setText(Constant.WEB_PATH+menu.getPageUrl()+"");
+			item.addElement("Url").setText((Constant.WEB_PATH+menu.getPageUrl()).replace("{openid}",openid));
 		}
 		super.setElement("ArticleCount",articlesMap.size()+"");
 	}

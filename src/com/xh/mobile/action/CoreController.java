@@ -15,10 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.xh.mobile.pojo.Menu;
-import com.xh.mobile.pojo.TextXmlMessage;
 import com.xh.mobile.service.IMenuService;
-import com.xh.utils.DateTime;
 import com.xh.utils.XMLUtils;
 
 @Controller
@@ -66,7 +63,6 @@ public class CoreController extends MultiActionController {
 	public void coreService(HttpServletRequest request,HttpServletResponse response) {
 		Map map = null;
 		// 读XML报文
-		String s = "";
 		try {
 			map = XMLUtils.readXMLToMap(request);
 			replyToWeixin(map, request, response);

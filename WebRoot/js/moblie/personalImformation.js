@@ -2,8 +2,7 @@ var initPage = {
 	option : {},
 	init : function(){
 		//检查用户是否已经存在，存在则查询个人信息
-		alert();
-		
+		alert(location.search);
 		//绑定事件
 		//this.bindEvent();
 		//查询所有用户
