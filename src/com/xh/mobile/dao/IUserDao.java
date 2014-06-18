@@ -21,6 +21,8 @@ public interface IUserDao
 	
 	public User  queryUserByEmail(String email);
 	
+	public User  queryUserByOpenid(String openid);
+	
 	public List<User> queryUsers();
 	
 	public int addUser(User user);

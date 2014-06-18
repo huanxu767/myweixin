@@ -56,7 +56,14 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
 								user.getMark(), user.getMoblie(),
 								user.getSignature(),user.getCreateTime() });
 	}
-
+	
+	public User queryUserByOpenid(String openid) {
+  	  String sql="select * from welcome_customer where openid = ? ";  
+  	  Object[] o ={openid};   
+  	  return  (User)this.getJdbcTemplate().queryForObject(sql,o,new userMapper());  
+  
+	}
+	
     private static final class userMapper implements RowMapper {
         public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
@@ -69,6 +76,8 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
             return user;
         }
     }
+
+
 
 	
 }

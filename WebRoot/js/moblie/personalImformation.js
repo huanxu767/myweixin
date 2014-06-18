@@ -1,8 +1,10 @@
 var initPage = {
-	option : {},
+	option : {openid:null},
 	init : function(){
+		//初始化参数
+		this.option.openid = request("openid");
 		//检查用户是否已经存在，存在则查询个人信息
-		alert(location.search);
+		
 		//绑定事件
 		//this.bindEvent();
 		//查询所有用户
@@ -11,6 +13,20 @@ var initPage = {
 	bindEvent : function(){
 		$("#addRecord").bind("vclick",function(){
 			initPage.addRecord();
+		});
+	},
+	//检查用户是否已经存在，存在则查询个人信息
+	queryUser : function(){
+		commAjax({
+		    'url':"/user/queryUser.do",
+		    'date':"openid="+openid,
+			success:function(data){
+				//alert(data.map.users[0].name);
+				initPage.initPlaysersSeleted(data.map.users);
+			},
+			error:function(){
+				//concole.info("用户查询出错");
+			}
 		});
 	},
 	//查询所有用户
