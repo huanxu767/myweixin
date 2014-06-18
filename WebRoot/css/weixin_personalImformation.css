@@ -1,0 +1,75 @@
+*{
+  		margin: 0;
+  		padding: 0;
+  		list-style:none;
+  	}
+  	body{
+		background-color: #f0eff3;
+  	}
+  	.content{
+  		width: 100%;
+  		padding-left: 20px;
+  		background-color: #FFF;
+  	}
+  	ul li{
+  		border-bottom:1px solid #DDD;
+  		font-family:"SimHei";
+  		font-weight:600;
+  	}
+  	.font{
+  		color: #888888;
+  		font-size: 1em;
+  		font-weight:lighter;
+  	}
+ 	.normal_left{
+ 		float: left;
+ 		width:80px;
+ 		/**background-color: #f0eff3;**/
+ 		line-height: 40px;
+ 	}
+ 	.normal_right{
+ 		float: right;
+ 		line-height: 40px;
+ 		text-align: right;
+ 		padding-right: 40px;
+ 	}
+ 	.big_li{
+ 		height: 80px;
+ 	}
+ 	.normal_li{
+ 		height: 40px;
+ 	}
+ 	.big_left{
+ 		float: left;
+ 		width:80px;
+ 		line-height: 80px;
+ 	}
+ 	.big_right{
+ 		text-align: center;
+ 		padding-right: 40px;
+ 		height:80px;
+ 		display£ºblock;
+		padding:auto 5px;
+		line-height: 80px;
+ 	}
+ 	.big_right_head{
+ 		float: right;
+ 		text-align: right;
+ 		padding-right: 20px;
+ 	}
+ 	.head_image{
+ 		 margin-top:5px;
+	 	 width: 70px;
+	 	 height: 70px;
+ 	}
+ 	.clear{
+ 		height: 15px;
+ 		clear:both;
+ 	}
+ 	.go_to_right{
+		background-image: url(../images/jiantou_meng2.gif);
+		background-repeat: no-repeat;
+		background-position:center right;
+		margin-right: 20px;
+		padding-right: 20px;
+	}
