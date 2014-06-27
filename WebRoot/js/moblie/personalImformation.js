@@ -4,7 +4,7 @@ var initPage = {
 		//初始化参数
 		this.option.openid = request("openid");
 		//检查用户是否已经存在，存在则查询个人信息
-		
+		this.queryUser();
 		//绑定事件
 		//this.bindEvent();
 		//查询所有用户
@@ -18,41 +18,24 @@ var initPage = {
 	//检查用户是否已经存在，存在则查询个人信息
 	queryUser : function(){
 		commAjax({
-		    'url':"/user/queryUser.do",
-		    'date':"openid="+openid,
+		    'url':"/mobile/checkUser.do",
+		    'data':"openid="+this.option.openid,
 			success:function(data){
-				//alert(data.map.users[0].name);
-				initPage.initPlaysersSeleted(data.map.users);
+				console.info(data);
+				initPage.initPersonalImformation(data);
 			},
 			error:function(){
 				//concole.info("用户查询出错");
 			}
 		});
-	},
-	//查询所有用户
-	queryPlayers : function(){
-		commAjax({
-		    'url':"/user/queryUsers.do",
-			success:function(data){
-				//alert(data.map.users[0].name);
-				initPage.initPlaysersSeleted(data.map.users);
-			},
-			error:function(){
-				//concole.info("用户查询出错");
-			}
-			});
 	},
 	//初始化下拉列表
-	initPlaysersSeleted :function(users){
-		//console.info(users.length);
-		var usersSeleted = "<option value='nochoice'>请选择</option>";
-		for(var j = 0;j < users.length;j++){
-			usersSeleted +="<option value='"+users[j].id+"'>"+users[j].name+"</option>";
+	initPersonalImformation :function(data){
+		if(data.flag==false){
+			alert("第三方编号为空。");
+			return;
 		}
-		var userNames = $("select[name='userName']");
-		userNames.each(function(){
-			$(this).append(usersSeleted);
-		});
+		
 	},
 	addRecord : function(){
 //		console.info("form数据系列化："+$("form").serialize());
