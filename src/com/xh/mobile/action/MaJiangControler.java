@@ -61,8 +61,8 @@ public class MaJiangControler extends BaseActionController {
 		BaseResultBean baseResult = new BaseResultBean();
 		//查询list
 		user.setCreateTime(new Date());
-		user.setMark("个人签名");
-		user.setMoblie(new Long("18652090350"));
+//		user.setMark("个人签名");
+//		user.setMoblie(new Long("18652090350"));
 		user.setName("这很棒");
 		user.setOpenId("4546ewq54e56qw4eqwe");
 		user.setSignature("个人的得得得");

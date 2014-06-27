@@ -13,6 +13,7 @@ package com.xh.mobile.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -91,5 +92,30 @@ public class BaseActionController extends MultiActionController {
 		out.flush();
 		out.close();
 	}
-	
+	public void outResult(HttpServletResponse response, String jsonString) {
+		// response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		out.print(jsonString);
+		out.flush();
+		out.close();
+	}
+	public void outResult(HttpServletResponse response, Map map) {
+		// response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		out.print(JSONUtil.toJSONString(map));
+		out.flush();
+		out.close();
+	}
 }

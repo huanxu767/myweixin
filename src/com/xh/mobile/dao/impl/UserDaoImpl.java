@@ -25,7 +25,7 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
 	 */
     public String queryUser(String email){  
         String currentPhase = "";  
-        String sql="select email from welcome_customer where email = ?";  
+        String sql="select email from m_user where email = ?";  
         Object[] o ={email};   
         try {  
             currentPhase = (String)this.getJdbcTemplate().queryForObject(sql,o, String.class);  
@@ -37,7 +37,7 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
     }  
     
     public User  queryUserByEmail(String email){
-    	  String sql="select * from welcome_customer where email = ? ";  
+    	  String sql="select * from m_user where email = ? ";  
     	  Object[] o ={email};   
     	  return  (User)this.getJdbcTemplate().queryForObject(sql,o,new userMapper());  
     }
@@ -48,33 +48,41 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
 	}
 	
 	public int addUser(User user) {
-		String sql = "insert into m_user(open_id,NAME,mark,moblie,signature,create_time) " +
-				     "values(?,?,?,?,?,?)";
+		String sql = "insert into m_user(open_id,NAME,god_number,image_url,moblie,signature,create_time) " +
+				     "values(?,?,?,?,?,?,?)";
 		return this.getJdbcTemplate().update(
 						sql,
 						new Object[] { user.getOpenId(), user.getName(),
-								user.getMark(), user.getMoblie(),
+								user.getGod_number(),user.getImage_url(), user.getMoblie(),
 								user.getSignature(),user.getCreateTime() });
 	}
-	
+	public int addUser(String openid) {
+		String sql = "insert into m_user(open_id) values(?) ";
+		return this.getJdbcTemplate().update(sql,new Object[] {openid});
+	}
 	public User queryUserByOpenid(String openid) {
-  	  String sql="select * from welcome_customer where openid = ? ";  
+  	  String sql="select * from m_user where open_id = ? ";  
   	  Object[] o ={openid};   
-  	  return  (User)this.getJdbcTemplate().queryForObject(sql,o,new userMapper());  
-  
+  	  List bean = this.getJdbcTemplate().query(sql,o,new userMapper());
+  	  if(bean.isEmpty() ){
+  		  return null;
+  	  }
+  	  return  (User)bean.get(0);
 	}
 	
     private static final class userMapper implements RowMapper {
-        public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-            User user = new User();
-            user.setId(rs.getLong("id"));
-            user.setOpenId(rs.getString("open_id"));
-            user.setName(rs.getString("name"));
-            user.setMoblie(rs.getLong("moblie"));
-            user.setSignature(rs.getString("signature"));
-            user.setCreateTime(rs.getDate("create_time"));
-            return user;
-        }
+		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+			User user = new User();
+			user.setId(rs.getLong("id"));
+			user.setOpenId(rs.getString("open_id"));
+			user.setImage_url(rs.getString("image_url"));
+			user.setGod_number(rs.getString("god_number"));
+			user.setName(rs.getString("name"));
+			user.setMoblie(rs.getLong("moblie"));
+			user.setSignature(rs.getString("signature"));
+			user.setCreateTime(rs.getDate("create_time"));
+			return user;
+		}
     }
 
 

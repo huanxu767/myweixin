@@ -11,18 +11,23 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.xh.mobile.dao.IUserDao;
+import com.xh.mobile.service.IUserService;
 
 @Controller
-public class UserController extends MultiActionController {
+public class UserController extends BaseActionController {
 
 	private final static Logger logger = Logger.getLogger(UserController.class);
-	public static final String Token = "xuhuan_token_random_456212487956";
 	
 	@Resource
-	private IUserDao userDao;
+	private IUserService userService;
+	
+	
+	@RequestMapping(value = "/mobile/checkUser.do")
+	public void checkUser(HttpServletRequest request,HttpServletResponse response,String openid) {
+		Map userMap = userService.checkUser(openid);
+		outResult(response, userMap);
+	}
 	
 	/**
 	 * ajax登录

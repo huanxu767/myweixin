@@ -19,7 +19,7 @@ public class JSONUtil {
 	 * @param obj
 	 * @return
 	 */
-	public static String toJSONString(BaseResultBean bean){
+	public static String toJSONString(Object bean){
 		Gson gson = new Gson();
 		return gson.toJson(bean);
 	}

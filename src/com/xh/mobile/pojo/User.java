@@ -8,12 +8,21 @@ import java.util.Date;
  *
  */
 public class User {
+	/**编号**/
 	private long id;
+	/**微信编号**/
 	private String openId;
+	/**名字**/
 	private String name;
-	private String mark;
+	/**头像地址**/
+	private String image_url;
+	/**雀神号**/
+	private String god_number;
+	/**号码**/
 	private long moblie;
+	/**签名**/
 	private String signature;
+	/**创建时间**/
 	private Date createTime;
 	
 	
@@ -41,11 +50,12 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMark() {
-		return mark;
+	
+	public String getGod_number() {
+		return god_number;
 	}
-	public void setMark(String mark) {
-		this.mark = mark;
+	public void setGod_number(String godNumber) {
+		god_number = godNumber;
 	}
 	public String getSignature() {
 		return signature;
@@ -59,7 +69,11 @@ public class User {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
-	
+	public String getImage_url() {
+		return image_url;
+	}
+	public void setImage_url(String imageUrl) {
+		image_url = imageUrl;
+	}
 	
 }

@@ -23,7 +23,10 @@ public interface IUserDao
 	
 	public User  queryUserByOpenid(String openid);
 	
+	
 	public List<User> queryUsers();
 	
 	public int addUser(User user);
+	
+	public int addUser(String openid);
 }
