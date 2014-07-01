@@ -4,7 +4,8 @@
     <title>MyHtml.html</title>
 	
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    
     <meta name="apple-toouch-fullscreen" content="YES">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
@@ -27,12 +28,11 @@
 		list-style: none;
 	}
 	li{
-		display:box;
-		box-pack:center;
-		box-align:center;
-		vertical-align: middle;
+		display:-webkit-box;
+		-webkit-box-pack:center;
+		-webkit-box-align:center;
+		
 		height: 500px;
-		border: 1px solid black;
 		position:absolute;
 	}
 	</style>
@@ -40,14 +40,66 @@
   
   <body>
 	<div id="canvas">
-		<ul>
-			<li style="transform:translate3d(0,0,0);"><img src="images/gerenziliao.png"></img></li>
-			<li  style="transform:translate3d(320px,0,0);"><img src="images/jiqing.png"></img></li>
-			<!-- 
-			<li style="transform:translate3d(320px,0,0);"><img src="images/paihangbang.jpg"></img></li>
-			<li style="transform:translate3d(320px,0,0);"><img src="images/shenlv_bak.png"></img></li>
-			 -->
-		</ul>
+		
 	</div>
   </body>
+  <script type="text/javascript">
+    var list = [{
+    			  height:360,
+    			  width:200,
+    			  img:"images/gerenxinxi.png"
+    			},{
+	    		  height:360,
+	    		  width:200,
+	    	      img:"images/gerenzhanji.png"
+    			}];
+    			
+  	function Slider(opts){
+		  	this.wrap = opts.dom;
+		  	this.list = opts.list;
+		  	//构造三部曲
+		  	this.init();
+		  	this.renderDOM();
+		  //	this.bindDOM();
+		  	
+  	}
+  	Slider.prototype.init = function(){
+  		//算出窗口的长宽比例
+  	    this.radio = window.innerHeight/window.innerWidth;
+  	    //屏幕宽度
+  	    this.scaleW = window.innerWidth;
+  	    //当前位于整个图片的索引
+  	    this.idx =0;
+  	}
+  	Slider.prototype.renderDOM = function(){
+  		var wrap = this.wrap;
+  		var data = this.list;
+  		console.info(data);
+  		var len = data.length;
+  		var scale = this.scaleW;
+  		this.outer = document.createElement('ul');
+  		for(var i = 0; i < len; i++){
+  			var li = document.createElement('li');
+  			var item = data[i];
+  			li.style.width = scale+'px';
+  			li.style.webkitTransform = "translate3d("+i*scale+"px,0,0)";
+  			if(item){
+  			 	console.info(item['img']);
+  				if(item['height']/item['width'] > this.radio){
+  					li.innerHTML = "<img width="+window.innerWidth+" src="+item['img']+" />";
+  				}else{
+  				 	li.innerHTML = "<img height="+window.innerHeight+" src="+item['img']+" />";
+  				}
+  			}
+  			this.outer.appendChild(li);
+  		}
+  		this.outer.style.width = scale+'px';
+  		wrap.appendChild(this.outer);
+  		wrap.style.height = window.innerHeigh+'px';
+  	}
+    new Slider({
+    	'dom':document.getElementById("canvas"),
+    	'list':list
+    });
+  </script>
 </html>
