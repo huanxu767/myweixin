@@ -6,13 +6,18 @@ var initPage = {
 		//检查用户是否已经存在，存在则查询个人信息
 		this.queryUser();
 		//绑定事件
-		//this.bindEvent();
+		this.bindEvent();
 		//查询所有用户
 		//this.queryPlayers();
 	},
 	bindEvent : function(){
-		$("#addRecord").bind("vclick",function(){
-			initPage.addRecord();
+		//$("#addRecord").bind("vclick",function(){
+		//	initPage.addRecord();
+		//});
+		$("#name").bind("click",function(){
+			$("#pageone").hide();
+			$("#edit_name").slideDown(1000);
+			
 		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
@@ -35,6 +40,7 @@ var initPage = {
 			alert("第三方编号为空。");
 			return;
 		}
+		
 		
 	},
 	addRecord : function(){
