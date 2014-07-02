@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>最简单.html</title>
+    <title>三维翻牌.html</title>
 	
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="this is my page">
@@ -9,27 +9,52 @@
     
  <style type="text/css">
  #container{
-	-webkit-perspective:800;
-	-webkit-perspective-orign:50% 50%;
-	-webkit-transform-style:webkit-preserve-3d;
-	background-color: #ddd;
+ 	-webkit-perspective:800;
+ 	-webkit-perspective-origin:50% 50%;
+ 	overflow:hidden;
  }
- .block{
- 	background-color: blue;
- 	width: 200px;
- 	height:200px;
- 	margin: 100px auto;
- 	-webkit-transform:rotateY(-45deg)
+ .pagegroup{
+  	width: 400px;
+  	height: 400px;
+  	margin: 0 auto;
+ 	-webkit-transform-style:preserver-3d;
+ 	position:relation;
  }
+ .page{
+ 	width: 360px;
+ 	height:360px;
+ 	padding:20px;
+ 	background-color: #ddd;
+ 	color:white;
+ }
+ #page1{
+ 	-webkit-transform-origin:bottom;
+ 	-webkit-transform:-webkit-transform 1s linear;
+ }
+ #page2,#page3,#page4,#page5,#page6{
+ 	-webkit-transform-origin:bottom;
+ 	-webkit-transition:-webkit-transform 1s linear;
+ 	-webkit-transform:rotate(90deg);
+ }
+ 
  </style>
   </head>
   
   <body>
     <div id="container">
-		<div class="block"> 
-		
+		<div class="pagegroup"> 
+			<div class="page" id="page1">1</div>
+			<div class="page" id="page2">2</div>
+			<div class="page" id="page3">3</div>
+			<div class="page" id="page4">4</div>
+			<div class="page" id="page5">5</div>
+			<div class="page" id="page6">6</div>
 		</div>    
     </div>
     
+    <div id="op">
+    	<a href="javascript:next();">next</a>
+    	<a href="javascript:prev();">prev</a>
+    </div>
   </body>
 </html>
