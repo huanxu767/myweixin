@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>最简单.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+ <style type="text/css">
+ 	.progress-bar{
+ 		width: 50px;
+ 		height: 50px;
+ 		background-color: yellow;
+ 	
+ 	}
+ 	.progress-bar:hover{
+ 	 	width: 900px;
+ 	}
+  #bar1{-webkit-transition:width 5s linear;-moz-transition:width 5s linear}
+  #bar2{-webkit-transition:width 5s ease;-moz-transition:width 5s ease}
+  #bar3{-webkit-transition:width 5s ease-in;-moz-transition:width 5s ease-in}
+  #bar4{-webkit-transition:width 5s ease-out;-moz-transition:width 5s ease-out}
+  #bar5{-webkit-transition:width 5s ease-in-out;-moz-transition:width 5s ease-in-out}
+ </style>
+  </head>
+  
+  <body>
+    <div id="container">
+       <p>linear</p>
+       <div class="progress-bar" id="bar1"></div>
+       <p>ease</p>
+       <div class="progress-bar" id="bar2"></div>
+       <p>ease-in</p>
+       <div class="progress-bar" id="bar3"></div>
+       <p>ease-out</p>
+       <div class="progress-bar" id="bar4"></div>
+       <p>ease-in-out</p>
+       <div class="progress-bar" id="bar5"></div>
+    </div>
+    
+  </body>
+</html>
