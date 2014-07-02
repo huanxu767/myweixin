@@ -34,6 +34,7 @@
 		
 		height: 500px;
 		position:absolute;
+		-webkit-backface-visibility:hidden;
 	}
 	</style>
   </head>
@@ -84,7 +85,7 @@
   		var data = this.list;
   		var len = data.length;
   		var scale = this.scaleW;
-  		console.info(scale);
+  		//console.info(scale);
   		this.outer = document.createElement('ul');
   		for(var i = 0; i < len; i++){
   			var li = document.createElement('li');
@@ -92,7 +93,7 @@
   			li.style.width = scale+'px';
   			li.style.webkitTransform = "translate3d("+i*scale+"px,0,0)";
   			if(item){
-  			 	console.info(item['img']);
+  			 	//console.info(item['img']);
   				if(item['height']/item['width'] > this.radio){
   					li.innerHTML = "<img width="+window.innerWidth+" src="+item['img']+" />";
   				}else{
@@ -117,7 +118,7 @@
   			//X 轴坐标偏移量
   			self.offsetX = 0 ;
   			self.startTime = new Date() * 1 ;
-  			console.log("startHandler-开始点击的横坐标"+evt.touches[0].pageX+"  开始时间:"+self.startTime);
+  			//console.log("startHandler-开始点击的横坐标"+evt.touches[0].pageX+"  开始时间:"+self.startTime);
   		}
   		var moveHandler = function(evt){
   			evt.preventDefault();
@@ -135,7 +136,7 @@
   			
   		}
   		var endHandler = function(evt){
-  			console.log("endHandler");
+  			//console.log("endHandler");
   			var boundary = scale/6;
   			var endTime = new Date() * 1;
   			var lis = outer.getElementsByTagName('li');
