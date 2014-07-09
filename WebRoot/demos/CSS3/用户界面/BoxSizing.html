@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BoxSizing.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<style type="text/css">
+.container{
+	width: 30em;
+	border: 1em solid #ddd;
+/* 	height: 300px; */
+}
+.box{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	
+	width:50%;
+	float:left;
+	border:1em solid red;
+}
+</style>
+  </head>
+  
+  <body>
+  <div class="container">
+   <div class="box">这个DIV占据左办部分</div>
+	<div class="box">这个DIV占据右办部分</div>
+  </div>
+  </body>
+</html>
