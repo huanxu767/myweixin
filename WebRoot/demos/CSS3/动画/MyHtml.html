@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+	<style type="text/css">
+	.div1{
+		width:100px;
+		height:100px;
+		background:red;
+		animation:myfirst 2s;
+		-moz-animation:myfirst 2s;
+		-webkit-animation:myfirst 2s;
+		-o-animation:myfirst 2s;
+	}
+	.div2{
+		width:100px;
+		height:100px;
+		background:red;
+		animation:mysecond 2s;
+		-moz-animation:mysecond 5s;
+		-webkit-animation:mysecond 5s;
+		-o-animation:mysecond 5s;
+		
+		-webkit-animation-delay:2s;
+		-webkit-paly-state:
+	}
+	@keyframes myfirst{
+		from{background:red}
+		to{background:yellow}
+	}
+	@-webkit-keyframes myfirst{
+		from{background:red}
+		to{background:yellow}
+	}
+	@-webkit-keyframes mysecond{
+		0% {background:red}
+		25% {background:yellow}
+		50% {background:blue}
+		100% {background:green}
+	}
+	</style>
+  </head>
+  
+  <body>
+	<div class="div1">
+	</div>
+	<br>
+	<div class="div2">
+	</div>
+  </body>
+</html>
