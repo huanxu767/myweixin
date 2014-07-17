@@ -7,15 +7,18 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="../css/weixin_personalImformation.css">
+    <link rel="stylesheet" href="../css/animate.min.css">
   </head>
   <body>
-  <div id="pageone">
+  <div id="pageone" >
   <div class="clear"></div><!-- 留空 -->
   <div class="content"><!-- 第一栏 begin -->
 	<ul>
-		<li class="big_li">
-			<span class="big_left">头像</span>
+		<li class="big_li" >
+			<span class="big_left uploadImage" onfocus="this.blur();">头像</span>
+			<span class="middle uploadImage" onfocus="this.blur();" ></span>
 			<span class="big_right_head go_to_right"><img src="../images/weixin/defaultHead.png" class="head_image" id="headImage"></img></span>
+			<input type="file" multiple="" name="fileselect[]" size="30" id="fileImage">
 		</li>
 		<li class="normal_li" id="name" >
 			<span class="normal_left">名字</span>
@@ -64,8 +67,34 @@
 	</ul>
    </div><!-- 第二栏 end -->
    </div>
-   <div class="edit_name" id="edit_name">
-   	修改姓名
+   <div class="edit_name " id="edit_name">
+   		<!-- <header class="header"><div class="sub-nav black"><span class="col-l"><button id="form-0-cancel" class="b-def">取消</button></span><span class="col-r"><button id="form-0-submit" class="b-act submit" global-hot="save.uploadForm">上传</button></span><h2 id="form-0-title" class="hd">传照片</h2></div></header> -->
+
+          <!-- <div class="convent_choice">					
+         	<div class="andArea">
+         		<div class="filePicker">点击选择文件</div>
+         			<input type="file" multiple="" name="fileselect[]" size="30" id="fileImage">
+         	</div>
+         </div> -->
+
+   	 	 <!-- <p> -->
+		 <!-- 用于文件上传的表单元素 -->
+		 <!-- bbbbbbbbbbbbbb
+		 <div style="background-image:url('../images/add_img.png');background-repeat:no-repeat;">
+			 <div  style="opacity:0;display: block; height: 69px;  width: 69px;z-index: 2;background-color:red;" >
+			 	<input type="file" name="file" style="display:block;width: 207px; height:69px;margin-left:-69px;"  accept="image/jpeg,image/png,image/gif,image/bmp" />
+			 </div>
+		</div>
+		aaaaaaaaaaaaaa
+		 <br>
+		 <form name="demoForm" id="demoForm" method="post" enctype="multipart/form-data" action="javascript: uploadAndSubmit();">
+		 <p>Upload File: <input type="file" name="file" /></p>
+		 <p><input type="submit" value="Submit" /></p>
+		 </form>
+		 <div>Progessing (in Bytes): <span id="bytesRead">
+		 </span> / <span id="bytesTotal"></span>
+		 </div>
+		 </p> -->
    </div>
    <script src="../js/jquery.js"></script>
    <script type="text/javascript" src="../js/commons.js"></script>
