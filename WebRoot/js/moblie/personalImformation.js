@@ -4,21 +4,30 @@ var initPage = {
 		//初始化参数
 		this.option.openid = request("openid");
 		//检查用户是否已经存在，存在则查询个人信息
-		this.queryUser();
+		//this.queryUser();
 		//绑定事件
 		this.bindEvent();
 		//查询所有用户
+
 		//this.queryPlayers();
+		// 绑定选择事件
+					
+
+
 	},
 	bindEvent : function(){
 		//$("#addRecord").bind("vclick",function(){
 		//	initPage.addRecord();
 		//});
 		$("#name").bind("click",function(){
-			$("#pageone").hide();
-			$("#edit_name").slideDown(1000);
-			
+			$("#pageone").addClass("animated fadeOutLeft");
+			$("#edit_name").addClass("animated fadeInRight").css("width",$(window).width()+"px").show();
 		});
+		
+		$(".uploadImage").bind("click", function(){
+		    $("#fileImage").click();
+		});
+		
 	},
 	//检查用户是否已经存在，存在则查询个人信息
 	queryUser : function(){
