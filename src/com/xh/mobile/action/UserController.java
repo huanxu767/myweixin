@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import sun.security.action.PutAllAction;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeUtility;
 import com.xh.mobile.service.IUserService;
@@ -36,81 +39,56 @@ public class UserController extends BaseActionController {
 		outResult(response, userMap);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/mobile/uploadHeadImage.do")
-	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		   // 转型为MultipartHttpRequest：     
+	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response){
+		Map returnMap = new HashMap();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;     
-        // 获得文件：     
         MultipartFile fileImage = multipartRequest.getFile("fileImage");  
-        
+        String path = request.getSession().getServletContext().getRealPath("/");
+        logger.info("path:"+path);
+        if(fileImage.getSize()>1024*1024*5){
+        	//图片大于5M
+        	returnMap.put("flag", false);
+        	returnMap.put("msg", "图片大小不能超过5M");
+        	returnMap.put("errorCode", 0001);
+        	outResult(response, returnMap);
+        	return ;
+        }
 		if(!fileImage.isEmpty()){  
-            System.out.println(fileImage);  
-            System.out.println(fileImage.getName());  
-            System.out.println(fileImage.getContentType()); //  image/jpeg  image/png  image/gif  
-            System.out.println(fileImage.getSize());  
-            System.out.println(fileImage.getOriginalFilename());  
-            fileImage.transferTo(new File("d:/"+fileImage.getOriginalFilename()));  
+//            System.out.println(fileImage);  
+//            System.out.println(fileImage.getName());  
+//            System.out.println(fileImage.getContentType()); //  image/jpeg  image/png  image/gif  
+//            System.out.println(fileImage.getSize());  
+//            System.out.println(fileImage.getOriginalFilename());
+			String orginalFilename = fileImage.getOriginalFilename();
+			if(!fileImage.getContentType().contains("image")){
+				returnMap.put("flag", false);
+	        	returnMap.put("msg", "必须上传图片文件");
+	        	returnMap.put("errorCode", 0004);
+			}else{
+				  try {
+					    String exp = orginalFilename.substring(orginalFilename.lastIndexOf("."));
+						String totalPath = System.currentTimeMillis()+Math.round(Math.random() * 100)+exp;
+						fileImage.transferTo(new File(path+"images"+File.separator+"uploadImages"+File.separator+totalPath));
+						logger.info(totalPath);
+						//上传完成写入数据库
+						returnMap.put("totalPath", totalPath);
+						returnMap.put("flag", true);
+					} catch (Exception e) {
+						logger.error("uploadHeadImage:"+e);
+			        	returnMap.put("flag", false);
+			        	returnMap.put("msg", "图片上传出错，请重新再试");
+			        	returnMap.put("errorCode", 0002);
+					} 
+			}
         }else{  
-        	System.out.println("error");
+        	returnMap.put("flag", false);
+        	returnMap.put("msg", "图片上传不能为空");
+        	returnMap.put("errorCode", 0003);
         }  
-		
-//		System.out.println("uploadHeadImage");
-//		//转型为MultipartHttpRequest(重点的所在)  
-//        MultipartHttpServletRequest multipartRequest  =  (MultipartHttpServletRequest) request;  
-//        //  获得第1张图片（根据前台的name名称得到上传的文件）   
-//
-//        //从表单域中获取文件对象的详细,如：文件名称等等
-//        String name = multipartRequest.getParameter("name");
-//        System.out.println("name: " + name);
-//     // 获得文件名(全路径)
-//        String realFileName = fileImage.getOriginalFilename();
-//        realFileName = encodeFilename(realFileName,request);
-//        System.out.println("获得文件名：" + realFileName);
-//
-//        // 获取当前web服务器项目路径
-//        String ctxPath = request.getSession().getServletContext().getRealPath("/")+ "fileupload/";
-//        
-//        // 创建文件夹
-//        File dirPath = new File(ctxPath);
-//        if (!dirPath.exists()) {
-//         dirPath.mkdir();
-//        }
-//        //创建文件
-//        File uploadFile = new File(ctxPath + realFileName);
-//        FileCopyUtils.copy(fileImage.getBytes(), uploadFile);
+		outResult(response, returnMap);
 	}
-	/** 
-     * 设置下载文件中文件的名称
-     * @param filename 
-     * @param request 
-     * @return 
-     */   
- public static String encodeFilename(String filename,HttpServletRequest request) {
-  /**
-   * 获取客户端浏览器和操作系统信息 在IE浏览器中得到的是：User-Agent=Mozilla/4.0 (compatible; MSIE
-   * 6.0; Windows NT 5.1; SV1; Maxthon; Alexa Toolbar)
-   * 在Firefox中得到的是：User-Agent=Mozilla/5.0 (Windows; U; Windows NT 5.1;
-   * zh-CN; rv:1.7.10) Gecko/20050717 Firefox/1.0.6
-   */
-  String agent = request.getHeader("USER-AGENT");
-  try {
-   if ((agent != null) && (-1 != agent.indexOf("MSIE"))) { // IE浏览器
-    String newFileName = URLEncoder.encode(filename, "UTF-8");
-    newFileName = StringUtils.replace(newFileName, "+", "%20");
-    if (newFileName.length() > 150) {
-     newFileName = new String(filename.getBytes("GB2312"),
-       "ISO8859-1");
-     newFileName = StringUtils.replace(newFileName, " ", "%20");
-    }
-    return newFileName;
-   }
-   if ((agent != null) && (-1 != agent.indexOf("Mozilla"))) // 火狐浏览器
-    return MimeUtility.encodeText(filename, "UTF-8", "B");
-   return filename;
-  } catch (Exception ex) {
-   return filename;
-  }
- }
 
 	/**
 	 * ajax登录
@@ -143,13 +121,4 @@ public class UserController extends BaseActionController {
 //		System.out.println(users.size());
 		return new ModelAndView("/test/loginsuccess.jsp",map);
 	}
-	/** 
-     * 通过传入页面读取到的文件，处理后保存到本地磁盘，并返回一个已经创建好的File 
-     * @param imgFile 从页面中读取到的文件 
-     * @param typeName  商品的分类名称 
-     * @param brandName 商品的品牌名称 
-     * @param fileTypes 允许的文件扩展名集合 
-     * @return 
-     */  
-	
 }
