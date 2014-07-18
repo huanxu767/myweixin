@@ -29,5 +29,11 @@ public interface IUserService {
 	 * @return
 	 */
 	public Map checkUser(String openid);
+	/**
+	 * 更新用户信息
+	 * @param params
+	 * @return
+	 */
+	public int updateUser(Map params);
 	
 }
