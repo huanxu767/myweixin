@@ -1,6 +1,7 @@
 package com.xh.mobile.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xh.mobile.pojo.User;
 
@@ -29,4 +30,5 @@ public interface IUserDao
 	public int addUser(User user);
 	
 	public int addUser(String openid);
+	public int updateUser(Map params);
 }
