@@ -2,7 +2,7 @@ var initPage = {
 	option : {openid:null},
 	init : function(){
 		//初始化参数
-		this.option.openid = request("openid");
+//		this.option.openid = request("openid");
 		//检查用户是否已经存在，存在则查询个人信息
 		//this.queryUser();
 		//绑定事件
@@ -27,7 +27,9 @@ var initPage = {
 		$(".uploadImage").bind("click", function(){
 		    $("#fileImage").click();
 		});
-		
+		$("#fileImage").bind("change",function(){
+		ajaxFileUpload("/mobile/uploadHeadImage.do","fileImage");
+		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
 	queryUser : function(){
@@ -82,7 +84,27 @@ var initPage = {
 		$.mobile.loading( "hide" );
 	}
 }
-
+function ajaxFileUpload(url,fileId){
+    $.ajaxFileUpload({
+	     url:url,            //需要链接到服务器地址
+	     secureuri:false,
+	     fileElementId:fileId,                        //文件选择框的id属性
+	     dataType: 'text',                                     //服务器返回的格式，可以是json
+	     success: function (data, status){ 
+	    	 console.log(data);
+	    	 datajson = data.substring(data.indexOf("{"),data.indexOf("}")+1);
+	    	 datajson = eval("("+datajson+")");  
+	    	 if(datajson.flag == true){
+	    		 console.info(datajson.flag);
+	    		 $("#headImage").attr("src","/images/uploadImages/"+datajson.totalPath);
+	    	 }
+	     },
+	     error: function (data, status, e){
+	    	 console.log("error"+data);
+	     }
+       }
+    );
+}
 $(document).ready(function() {
 	initPage.init();
 });

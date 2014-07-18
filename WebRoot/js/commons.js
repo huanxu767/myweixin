@@ -484,3 +484,4 @@ function getCookie(objName){//获取指定名称的cookie的值
 		if(temp[0] == objName) return unescape(temp[1]);
 	}
 }
+
