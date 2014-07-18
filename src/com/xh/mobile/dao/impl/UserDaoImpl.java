@@ -4,6 +4,7 @@ package com.xh.mobile.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
@@ -70,6 +71,13 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
   	  return  (User)bean.get(0);
 	}
 	
+	public int updateUser(Map params) {
+		StringBuffer sql = new StringBuffer();
+		sql.append(" update m_user set "+params.get("key")+" =?");
+		sql.append(" where open_id=?");
+		return this.getJdbcTemplate().update(sql.toString(),new Object[] {params.get("value"),params.get("openId") });
+	}
+
     private static final class userMapper implements RowMapper {
 		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
@@ -84,8 +92,4 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
 			return user;
 		}
     }
-
-
-
-	
 }
