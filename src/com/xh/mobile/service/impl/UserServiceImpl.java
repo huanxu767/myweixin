@@ -16,21 +16,17 @@ import com.xh.mobile.service.IUserService;
 @Service(value = "userService")
 public class UserServiceImpl implements IUserService{
 	
-	@Resource
 	private IUserDao userDao;
 	
-	@Override
 	public User queryUserByOpenid(String openid) {
 		return userDao.queryUserByOpenid(openid);
 	}
 
-	@Override
 	public boolean addUser(String openid) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
-	@Override
 	public Map checkUser(String openid) {
 		//验证是否存在该用户
 		Map map = new HashMap();
@@ -49,6 +45,10 @@ public class UserServiceImpl implements IUserService{
 			map.put("user", user);
 		}
 		return map;
+	}
+
+	public int updateUser(Map params) {
+		return userDao.updateUser(params);
 	}
 	
 }
