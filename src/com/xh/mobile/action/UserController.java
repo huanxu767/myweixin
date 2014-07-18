@@ -41,7 +41,7 @@ public class UserController extends BaseActionController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/mobile/uploadHeadImage.do")
-	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response){
+	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response,String openId){
 		Map returnMap = new HashMap();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;     
         MultipartFile fileImage = multipartRequest.getFile("fileImage");  
@@ -71,6 +71,11 @@ public class UserController extends BaseActionController {
 					    String exp = orginalFilename.substring(orginalFilename.lastIndexOf("."));
 						String totalPath = System.currentTimeMillis()+Math.round(Math.random() * 100)+exp;
 						fileImage.transferTo(new File(path+"images"+File.separator+"uploadImages"+File.separator+totalPath));
+						Map params = new HashMap();
+						params.put("key", "image_url");
+						params.put("value","images"+File.separator+"uploadImages"+File.separator+totalPath );
+						params.put("openId", openId);
+						userService.updateUser(params);
 						logger.info(totalPath);
 						//上传完成写入数据库
 						returnMap.put("totalPath", totalPath);
