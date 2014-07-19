@@ -16,6 +16,7 @@ import com.xh.mobile.service.IUserService;
 @Service(value = "userService")
 public class UserServiceImpl implements IUserService{
 	
+	@Resource
 	private IUserDao userDao;
 	
 	public User queryUserByOpenid(String openid) {
@@ -48,6 +49,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	public int updateUser(Map params) {
+		System.out.println(params);
 		return userDao.updateUser(params);
 	}
 	
