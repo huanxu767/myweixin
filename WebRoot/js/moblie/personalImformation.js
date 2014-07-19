@@ -1,16 +1,15 @@
 var initPage = {
-	option : {openid:null},
+	option : {openid:null,count:0},
 	init : function(){
 		//初始化参数
 		this.option.openid = request("openid");
-		console.log(initPage.option.openid);
 		//检查用户是否已经存在，存在则查询个人信息
-		//this.queryUser();
+		this.queryUser();
 		//绑定事件
 		this.bindEvent();
 		//查询所有用户
 
-		//this.queryPlayers();
+//		this.queryPlayers();
 		// 绑定选择事件
 					
 
@@ -28,8 +27,9 @@ var initPage = {
 		$(".uploadImage").bind("click", function(){
 		    $("#fileImage").click();
 		});
-		$("#fileImage").bind("change",function(){
-			ajaxFileUpload("/mobile/uploadHeadImage.do","fileImage",initPage.option.openid);
+		$("#fileImage").on("change",function(){
+			console.log("filechange");
+			initPage.ajaxFileUpload("/mobile/uploadHeadImage.do","fileImage",initPage.option.openid);
 		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
@@ -48,27 +48,18 @@ var initPage = {
 	},
 	//初始化下拉列表
 	initPersonalImformation :function(data){
+//		console.log("userMap:"+data.user.image_url);
 		if(data.flag==false){
 			alert("第三方编号为空。");
 			return;
 		}
+		if(data.user.image_url != undefined){
+			$("#headImage").attr("src","/"+data.user.image_url);
+		}else{
+			$("#headImage").attr("src","/images/weixin/defaultHead.png");
+		}
 		
 		
-	},
-	addRecord : function(){
-//		console.info("form数据系列化："+$("form").serialize());
-		initPage.loading();
-		commAjax({
-		    'url':"/user/test.do",
-		    'data':$("form").serialize(),
-			success:function(data){
-				initPage.hide();
-			},
-			error:function(){
-				//concole.info("新增记录出错了，怎么搞的");
-				initPage.hide();
-			}
-			});
 	},
 	loading : function(){
 		$("#loader").show();
@@ -83,29 +74,32 @@ var initPage = {
 	hide : function(){
 		$("#loader").hide();
 		$.mobile.loading( "hide" );
+	},
+	ajaxFileUpload : function(url,fileId,openId){
+//		console.log(openId+"ddd");
+	    $.ajaxFileUpload({
+		     url:url+"?openId="+initPage.option.openid,            //需要链接到服务器地址
+		     secureuri:true,
+		     fileElementId:fileId,                        //文件选择框的id属性
+		     dataType: 'text',                                     //服务器返回的格式，可以是json
+		     success: function (data, status){ 
+//		    	 console.log(data);
+		    	$("#fileImage").on("change",function(){
+		    		initPage.ajaxFileUpload("/mobile/uploadHeadImage.do","fileImage",initPage.option.openid);
+		    	});
+		    	 datajson = data.substring(data.indexOf("{"),data.indexOf("}")+1);
+		    	 datajson = eval("("+datajson+")");  
+		    	 if(datajson.flag == true){
+		    		 console.info(datajson.flag);
+		    		 $("#headImage").attr("src","/images/uploadImages/"+datajson.totalPath);
+		    	 }
+		     },
+		     error: function (data, status, e){
+		    	 console.log("error"+data);
+		     }
+	       }
+	    );
 	}
-}
-function ajaxFileUpload(url,fileId,openId){
-	console.log(openId+"ddd");
-    $.ajaxFileUpload({
-	     url:url+"?openId=887873213218",            //需要链接到服务器地址
-	     secureuri:false,
-	     fileElementId:fileId,                        //文件选择框的id属性
-	     dataType: 'text',                                     //服务器返回的格式，可以是json
-	     success: function (data, status){ 
-	    	 console.log(data);
-	    	 datajson = data.substring(data.indexOf("{"),data.indexOf("}")+1);
-	    	 datajson = eval("("+datajson+")");  
-	    	 if(datajson.flag == true){
-	    		 console.info(datajson.flag);
-	    		 $("#headImage").attr("src","/images/uploadImages/"+datajson.totalPath);
-	    	 }
-	     },
-	     error: function (data, status, e){
-	    	 console.log("error"+data);
-	     }
-       }
-    );
 }
 $(document).ready(function() {
 	initPage.init();
