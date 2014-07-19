@@ -38,7 +38,6 @@ public class UserController extends BaseActionController {
 		Map userMap = userService.checkUser(openid);
 		outResult(response, userMap);
 	}
-	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/mobile/uploadHeadImage.do")
 	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response,String openId){
@@ -46,7 +45,7 @@ public class UserController extends BaseActionController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;     
         MultipartFile fileImage = multipartRequest.getFile("fileImage");  
         String path = request.getSession().getServletContext().getRealPath("/");
-        logger.info("path:"+path);
+//        logger.info("path:"+path);
         if(fileImage.getSize()>1024*1024*5){
         	//图片大于5M
         	returnMap.put("flag", false);
@@ -76,7 +75,7 @@ public class UserController extends BaseActionController {
 						params.put("value","images"+File.separator+"uploadImages"+File.separator+totalPath );
 						params.put("openId", openId);
 						userService.updateUser(params);
-						logger.info(totalPath);
+//						logger.info(totalPath);
 						//上传完成写入数据库
 						returnMap.put("totalPath", totalPath);
 						returnMap.put("flag", true);
