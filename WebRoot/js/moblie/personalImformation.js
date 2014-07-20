@@ -31,6 +31,13 @@ var initPage = {
 			console.log("filechange");
 			initPage.ajaxFileUpload("/mobile/uploadHeadImage.do","fileImage",initPage.option.openid);
 		});
+		$("#headImage").bind("click", function(){
+			console.log($("#headImage").attr("src"));
+			loadImg($("#headImage").attr("src"));
+		});
+		$("#largeContainer").bind("click",function(){
+			$("#largeContainer").addClass("animated bounceOut");
+		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
 	queryUser : function(){
@@ -54,7 +61,7 @@ var initPage = {
 			return;
 		}
 		if(data.user.image_url != undefined){
-			$("#headImage").attr("src","/"+data.user.image_url);
+			$("#headImage").attr("src","/images/uploadImages/small/"+data.user.image_url);
 		}else{
 			$("#headImage").attr("src","/images/weixin/defaultHead.png");
 		}
@@ -90,8 +97,8 @@ var initPage = {
 		    	 datajson = data.substring(data.indexOf("{"),data.indexOf("}")+1);
 		    	 datajson = eval("("+datajson+")");  
 		    	 if(datajson.flag == true){
-		    		 console.info(datajson.flag);
-		    		 $("#headImage").attr("src","/images/uploadImages/"+datajson.totalPath);
+//		    		 console.info(datajson.flag);
+		    		 $("#headImage").attr("src","/images/uploadImages/small/"+datajson.totalPath);
 		    	 }
 		     },
 		     error: function (data, status, e){
@@ -101,6 +108,45 @@ var initPage = {
 	    );
 	}
 }
+
+
+var loadImg = function(_id){
+	var zWin =$(window);
+	var wImage = $("#large_img");
+
+
+	var imagsrc = _id.replace("/small","");
+	var imageObj = new Image();
+	imageObj.onload = function(){
+		var w = this.width;
+		var h = this.height;
+		var winWidth = zWin.width();
+		var winHeight = zWin.height();
+		var zpex = winWidth/winHeight;
+		var imgpex = w/h; 
+//		console.log("图片长宽："+w+"         "+h);
+//		console.log("屏幕长宽："+winWidth+"        "+winHeight);
+//		console.log("比："+zpex+"        "+imgpex);
+		var realw = winHeight * w/h;
+		var realh = winWidth * h/w;
+		var paddingLeft = parseInt((winWidth-realw)/2);
+		var paddingTop = parseInt((winHeight-realh)/2);
+		if(zpex>imgpex){
+			//设置图片的高  竖图
+			wImage.attr('src',imagsrc).css('height',winHeight).css('padding-left',paddingLeft);
+//			console.log("one:zpex>imgpex");
+		}else{
+			//设置图片的宽 横图
+			wImage.attr('src',imagsrc).css('width',winWidth).css('padding-top',paddingTop);
+			console.log("two:zpex<imgpex");
+		}
+	}
+	imageObj.src = imagsrc;
+	$("#largeContainer").removeClass("animated bounceIn bounceOut");
+	$("#largeContainer").css({width:zWin.width(),height:zWin.height()}).addClass("animated bounceIn").show();
+}
+
+
 $(document).ready(function() {
 	initPage.init();
 });
