@@ -2,16 +2,17 @@ package com.xh.mobile.action;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import sun.security.action.PutAllAction;
-
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeUtility;
 import com.xh.mobile.service.IUserService;
 
 @Controller
@@ -68,16 +66,19 @@ public class UserController extends BaseActionController {
 			}else{
 				  try {
 					    String exp = orginalFilename.substring(orginalFilename.lastIndexOf("."));
-						String totalPath = System.currentTimeMillis()+Math.round(Math.random() * 100)+exp;
-						fileImage.transferTo(new File(path+"images"+File.separator+"uploadImages"+File.separator+totalPath));
+						String webPath = System.currentTimeMillis()+Math.round(Math.random() * 100)+exp;
+						String bigPath = path+"images"+File.separator+"uploadImages"+File.separator+webPath;
+						String smallPath = path+"images"+File.separator+"uploadImages"+File.separator+"small"+File.separator+webPath;
+						fileImage.transferTo(new File(bigPath));
+						Thumbnails.of(bigPath).size(200,200).toFile(smallPath); 
 						Map params = new HashMap();
 						params.put("key", "image_url");
-						params.put("value","images"+File.separator+"uploadImages"+File.separator+totalPath );
+						params.put("value",webPath);
 						params.put("openId", openId);
 						userService.updateUser(params);
 //						logger.info(totalPath);
 						//上传完成写入数据库
-						returnMap.put("totalPath", totalPath);
+						returnMap.put("totalPath", webPath);
 						returnMap.put("flag", true);
 					} catch (Exception e) {
 						logger.error("uploadHeadImage:"+e);
@@ -124,5 +125,12 @@ public class UserController extends BaseActionController {
 //		List<User> users = userDao.queryUsersByOpenId(openId);
 //		System.out.println(users.size());
 		return new ModelAndView("/test/loginsuccess.jsp",map);
+	}
+	public static void main(String[] args) throws IOException {
+		//生成缩略图
+		Thumbnails.of("c:/1.jpg") 
+		.size(200, 200) 
+		.toFile("c:/2.jpg"); 
+		
 	}
 }
