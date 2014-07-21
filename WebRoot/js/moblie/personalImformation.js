@@ -113,9 +113,9 @@ var initPage = {
 var loadImg = function(_id){
 	var zWin =$(window);
 	var wImage = $("#large_img");
-
-
-	var imagsrc = _id.replace("/small","");
+	
+	var imagsrc = _id.replace("/small","/big");
+//	console.log(imagsrc);
 	var imageObj = new Image();
 	imageObj.onload = function(){
 		var w = this.width;
