@@ -67,10 +67,12 @@ public class UserController extends BaseActionController {
 				  try {
 					    String exp = orginalFilename.substring(orginalFilename.lastIndexOf("."));
 						String webPath = System.currentTimeMillis()+Math.round(Math.random() * 100)+exp;
-						String bigPath = path+"images"+File.separator+"uploadImages"+File.separator+webPath;
+						String orignalPath = path+"images"+File.separator+"uploadImages"+File.separator+webPath;
+						String bigPath = path+"images"+File.separator+"uploadImages"+File.separator+"big"+File.separator+webPath;
 						String smallPath = path+"images"+File.separator+"uploadImages"+File.separator+"small"+File.separator+webPath;
-						fileImage.transferTo(new File(bigPath));
-						Thumbnails.of(bigPath).size(200,200).toFile(smallPath); 
+						fileImage.transferTo(new File(orignalPath));
+						Thumbnails.of(orignalPath).size(200,200).toFile(smallPath); 
+						Thumbnails.of(orignalPath).size(500,500).toFile(bigPath); 
 						Map params = new HashMap();
 						params.put("key", "image_url");
 						params.put("value",webPath);
