@@ -20,8 +20,11 @@ var initPage = {
 		//	initPage.addRecord();
 		//});
 		$("#name").bind("click",function(){
+			
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_name").addClass("animated fadeInRight").css("width",$(window).width()+"px").show();
+			$("#userName").css("width",$(window).width()+"px");
+			$("pageone").hide();
 		});
 		
 		$(".uploadImage").bind("click", function(){
@@ -120,10 +123,10 @@ var loadImg = function(_id){
 		var paddingLeft = parseInt((winWidth-46)/2);
 		var paddingTop = parseInt((winHeight-46)/2);
 		wImage.attr('src','/images/ajax-loader.gif').css('padding-left',paddingLeft).css('padding-top',paddingTop);
-		var imagsrc = _id.replace("/small","/big");
 	}else{
 		count++;
 	}
+	var imagsrc = _id.replace("/small","/big");
 //	console.log(imagsrc);
 	var imageObj = new Image();
 	imageObj.onload = function(){
