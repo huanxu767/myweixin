@@ -19,14 +19,17 @@ var initPage = {
 		//$("#addRecord").bind("vclick",function(){
 		//	initPage.addRecord();
 		//});
+		//更改姓名
 		$("#name").bind("click",function(){
-			
+			$("#userName").blur();	
+			$("#edit_name").removeClass("animated fadeOutRight");
 			$("#pageone").addClass("animated fadeOutLeft");
-			$("#edit_name").addClass("animated fadeInRight").css("width",$(window).width()+"px").show();
-			$("#userName").css("width",$(window).width()+"px");
-			$("pageone").hide();
+			$("#edit_name").addClass("animated fadeInRight").show();
+//			$("pageone").hide();
+			$("#userName").css("width",($(window).width()-29)+"px");
+//			$("#userName").focus();	
 		});
-		
+		//上传图片
 		$(".uploadImage").bind("click", function(){
 		    $("#fileImage").click();
 		});
@@ -40,6 +43,13 @@ var initPage = {
 		});
 		$("#largeContainer").bind("click",function(){
 			$("#largeContainer").addClass("animated bounceOut");
+		});
+		//取消更改姓名
+		$("#cancelName").bind("click",function(){
+			$("#pageone").removeClass("animated fadeOutLeft");
+			$("#edit_name").removeClass("animated fadeInRight");
+			$("#pageone").addClass("animated fadeInLeft").show();
+			$("#edit_name").addClass("animated fadeOutRight");
 		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
