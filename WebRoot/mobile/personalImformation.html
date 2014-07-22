@@ -5,12 +5,13 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="this is my page">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
     <link rel="stylesheet" href="../css/weixin_personalImformation.css">
     <link rel="stylesheet" href="../css/animate.min.css">
   </head>
   <body>
-  <div id="pageone" >
+   
+  <div id="pageone"  >
   <div class="clear"></div><!-- 留空 -->
   <div class="content"><!-- 第一栏 begin -->
 	<ul>
@@ -76,9 +77,10 @@
    
    <!-- 修改名字 begin -->
    <div class="edit_name " id="edit_name" >
+        <p>敢不敢起一个碉堡了的雀神名</p>
    	 	<input id="userName" class="username" value="许欢"  type="text"  >
-   	 	<a class="button">取消</a>
-   	 	<a class="button">保存</a>
+   	 	<a class="button" id="cancelName">取消</a>
+   	 	<a class="button" onclick="do1();">保存</a>
    		<!-- <header class="header"><div class="sub-nav black"><span class="col-l"><button id="form-0-cancel" class="b-def">取消</button></span><span class="col-r"><button id="form-0-submit" class="b-act submit" global-hot="save.uploadForm">上传</button></span><h2 id="form-0-title" class="hd">传照片</h2></div></header> -->
           <!-- <div class="convent_choice">					
          	<div class="andArea">
@@ -115,5 +117,10 @@
    <script type="text/javascript" src="../js/moblie/personalImformation.js"></script>
    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
   </body>
-  
+  <script type="text/javascript">
+  function do1(){
+  				$("#userName").focus();
+  	
+  }
+  </script>
 </html>
