@@ -21,7 +21,6 @@ var initPage = {
 		//});
 		//更改姓名
 		$("#name").bind("click",function(){
-			$("#userName").blur();	
 			$("#edit_name").removeClass("animated fadeOutRight");
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_name").addClass("animated fadeInRight").show();
@@ -50,6 +49,7 @@ var initPage = {
 			$("#edit_name").removeClass("animated fadeInRight");
 			$("#pageone").addClass("animated fadeInLeft").show();
 			$("#edit_name").addClass("animated fadeOutRight");
+//			$("#userName").blur();	
 		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
