@@ -109,15 +109,25 @@ var initPage = {
 	}
 }
 
-
+var count = 0 ;
 var loadImg = function(_id){
 	var zWin =$(window);
 	var wImage = $("#large_img");
 	
-	var imagsrc = _id.replace("/small","/big");
+	if(count == 0){
+		var winWidth = zWin.width();
+		var winHeight = zWin.height();
+		var paddingLeft = parseInt((winWidth-46)/2);
+		var paddingTop = parseInt((winHeight-46)/2);
+		wImage.attr('src','/images/ajax-loader.gif').css('padding-left',paddingLeft).css('padding-top',paddingTop);
+		var imagsrc = _id.replace("/small","/big");
+	}else{
+		count++;
+	}
 //	console.log(imagsrc);
 	var imageObj = new Image();
 	imageObj.onload = function(){
+		
 		var w = this.width;
 		var h = this.height;
 		var winWidth = zWin.width();
@@ -131,6 +141,7 @@ var loadImg = function(_id){
 		var realh = winWidth * h/w;
 		var paddingLeft = parseInt((winWidth-realw)/2);
 		var paddingTop = parseInt((winHeight-realh)/2);
+		wImage.css('padding-left',0).css('padding-top',0);
 		if(zpex>imgpex){
 			//设置图片的高  竖图
 			wImage.attr('src',imagsrc).css('height',winHeight).css('padding-left',paddingLeft);
