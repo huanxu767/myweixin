@@ -30,12 +30,23 @@ public class UserController extends BaseActionController {
 	@Resource
 	private IUserService userService;
 	
-	
+	/**
+	 * 验证用户
+	 * @param request
+	 * @param response
+	 * @param openid
+	 */
 	@RequestMapping(value = "/mobile/checkUser.do")
 	public void checkUser(HttpServletRequest request,HttpServletResponse response,String openid) {
 		Map userMap = userService.checkUser(openid);
 		outResult(response, userMap);
 	}
+	/**
+	 * 上传头像
+	 * @param request
+	 * @param response
+	 * @param openId
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/mobile/uploadHeadImage.do")
 	public void uploadHeadImage(HttpServletRequest request,HttpServletResponse response,String openId){
@@ -96,7 +107,35 @@ public class UserController extends BaseActionController {
         }  
 		outResult(response, returnMap);
 	}
-
+	/**
+	 * 更新用户
+	 * @param request
+	 * @param response
+	 * @param openid
+	 * @param type
+	 * @param value
+	 */
+	@RequestMapping(value = "/mobile/updateUser.do")
+	public void updateUser(HttpServletRequest request,HttpServletResponse response,
+			String openid,int type,String value) {
+		Map params = new HashMap();
+		params.put("value",value.trim());
+		params.put("openId", openid);
+		switch (type) {
+		case 1:
+			//更新名称
+			params.put("key", "name");
+			break;
+		case 2:
+			params.put("key", "god_number");
+			break;
+		default:
+			break;
+		}
+		userService.updateUser(params);
+//		outResult(response, userMap);
+		
+	}
 	/**
 	 * ajax登录
 	 * 
@@ -133,6 +172,5 @@ public class UserController extends BaseActionController {
 		Thumbnails.of("c:/1.jpg") 
 		.size(200, 200) 
 		.toFile("c:/2.jpg"); 
-		
 	}
 }
