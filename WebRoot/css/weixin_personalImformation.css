@@ -33,6 +33,7 @@
  		line-height: 40px;
  	}
  	.normal_right{
+ 	 	display:block;
  		float: right;
  		line-height: 40px;
  		text-align: right;
@@ -84,7 +85,7 @@
 		margin-right: 20px;
 		padding-right: 20px;
 	}
-	.edit_name{
+	.edit_page{
 	 height:100%;
 	 width:100%;
 	 position:absolute;
@@ -94,7 +95,16 @@
    	 overflow:hidden;
 	 display:none;
 	}
-
+	.edit_page2{
+	 height:100%;
+	 width:100%;
+	 position:absolute;
+      left: 0; 
+   	  top: 0;
+	 /*background-color:yellow;*/
+   	 overflow:hidden;
+	 display:none;
+	}
 .convent_choice{
   float: left;
     height: 130px;
@@ -114,7 +124,7 @@
 	height: 100px;
 	background-color: green;
 }
-input.username{
+.input{
 	 display:block;
      border-radius:6px;
       border:2px solid #DDD;
@@ -127,14 +137,12 @@ input.username{
      -webkit-transition: box-shadow 0.30s ease-in-out;   //只让box-shadow属性做过渡效果！
      -moz-transition:  box-shadow 0.30s ease-in-out;      //firefox
 }
-
-
-input.username:focus{
+.input:focus{
      outline:none;
      border:#87C6F9 2px solid;
      box-shadow: 0 0 8px rgba(103, 166, 217, 1);
 }
-.edit_name p{
+.edit_page p{
 	 font-weight:900;
 	 height:40px;
 	 padding-top: 15px;

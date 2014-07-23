@@ -16,18 +16,30 @@ var initPage = {
 
 	},
 	bindEvent : function(){
-		//$("#addRecord").bind("vclick",function(){
-		//	initPage.addRecord();
-		//});
 		//更改姓名
-		$("#name").bind("click",function(){
+		$("#changeName").bind("click",function(){
 			$("#edit_name").removeClass("animated fadeOutRight");
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_name").addClass("animated fadeInRight").show();
-//			$("pageone").hide();
 			$("#userName").css("width",($(window).width()-29)+"px");
-//			$("#userName").focus();	
+			$("#userName").val($("#name").html());
 		});
+		
+		//更改缺神号
+		$("#changeNo").bind("click",function(){
+			$("#edit_No").removeClass("animated fadeOutRight");
+			$("#pageone").addClass("animated fadeOutLeft");
+			$("#edit_No").addClass("animated fadeInRight").show();
+			$("#userNo").css("width",($(window).width()-29)+"px");
+			$("#userNo").val($("#no").html());
+		});
+		//更改缺神号
+		$("#moblieNo").bind("click",function(){
+			$("#edit_mobile").removeClass("animated fadeOutRight");
+			$("#pageone").addClass("animated fadeOutLeft");
+			$("#edit_mobile").addClass("animated fadeInRight").show();
+		});
+		
 		//上传图片
 		$(".uploadImage").bind("click", function(){
 		    $("#fileImage").click();
@@ -45,11 +57,43 @@ var initPage = {
 		});
 		//取消更改姓名
 		$("#cancelName").bind("click",function(){
-			$("#pageone").removeClass("animated fadeOutLeft");
-			$("#edit_name").removeClass("animated fadeInRight");
-			$("#pageone").addClass("animated fadeInLeft").show();
-			$("#edit_name").addClass("animated fadeOutRight");
+			initPage.swipLeft("edit_name");
 //			$("#userName").blur();	
+		});
+		$("#saveName").bind("click",function(){
+			initPage.swipLeft("edit_name");
+			$("#name").html($("#userName").val());
+			//可以优化下  看是否改变
+			initPage.updateName("1",$("#userName").val());
+		});
+		//取消更改姓名
+		$("#cancelNo").bind("click",function(){
+			initPage.swipLeft("edit_No");
+		});
+		$("#saveNo").bind("click",function(){
+			initPage.swipLeft("edit_No");
+			$("#no").html($("#userNo").val());
+			//可以优化下  看是否改变
+			initPage.updateName("2",$("#userNo").val());
+		});
+		
+	},
+	swipLeft : function(id){
+		$("#pageone").removeClass("animated fadeOutLeft");
+		$("#"+id).removeClass("animated fadeInRight");
+		$("#pageone").addClass("animated fadeInLeft").show();
+		$("#"+id).addClass("animated fadeOutRight");
+	},
+	updateName : function(type,value){
+		commAjax({
+		    'url':"/mobile/updateUser.do",
+		    'data':"openid="+this.option.openid+"&type="+type+"&value="+value,
+			success:function(data){
+				console.info(data);
+			},
+			error:function(){
+				//concole.info("用户查询出错");
+			}
 		});
 	},
 	//检查用户是否已经存在，存在则查询个人信息
@@ -78,8 +122,16 @@ var initPage = {
 		}else{
 			$("#headImage").attr("src","/images/weixin/defaultHead.png");
 		}
-		
-		
+		if(data.user.name != undefined){
+			$("#name").html(data.user.name);	
+		}else{
+			$("#name").html("小伙伴快起个名字吧");
+		}
+		if(data.user.god_number != undefined){
+			$("#no").html(data.user.god_number);	
+		}else{
+			$("#no").html("这需要一个雀神号");
+		}
 	},
 	loading : function(){
 		$("#loader").show();
