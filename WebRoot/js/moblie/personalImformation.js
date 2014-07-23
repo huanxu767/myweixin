@@ -33,11 +33,13 @@ var initPage = {
 			$("#userNo").css("width",($(window).width()-29)+"px");
 			$("#userNo").val($("#no").html());
 		});
-		//更改缺神号
+		//更改号码
 		$("#moblieNo").bind("click",function(){
 			$("#edit_mobile").removeClass("animated fadeOutRight");
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_mobile").addClass("animated fadeInRight").show();
+			$("#userMobile").css("width",($(window).width()-29)+"px");
+			$("#userMobile").val($("#mobile").html());
 		});
 		
 		//上传图片
@@ -75,6 +77,16 @@ var initPage = {
 			$("#no").html($("#userNo").val());
 			//可以优化下  看是否改变
 			initPage.updateName("2",$("#userNo").val());
+		});
+		
+		$("#cancelMobile").bind("click",function(){
+			initPage.swipLeft("edit_mobile");
+		});
+		$("#saveMobile").bind("click",function(){
+			initPage.swipLeft("edit_mobile");
+			$("#mobile").html($("#userMobile").val());
+			//可以优化下  看是否改变
+			initPage.updateName("3",$("#userMobile").val());
 		});
 		
 	},
@@ -131,6 +143,11 @@ var initPage = {
 			$("#no").html(data.user.god_number);	
 		}else{
 			$("#no").html("这需要一个雀神号");
+		}
+		if(data.user.moblie != undefined){
+			$("#mobile").html(data.user.moblie);	
+		}else{
+			$("#mobile").html("大侠号码多少");
 		}
 	},
 	loading : function(){
