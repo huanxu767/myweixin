@@ -129,6 +129,9 @@ public class UserController extends BaseActionController {
 		case 2:
 			params.put("key", "god_number");
 			break;
+		case 3:
+			params.put("key", "moblie");
+			break;
 		default:
 			break;
 		}
