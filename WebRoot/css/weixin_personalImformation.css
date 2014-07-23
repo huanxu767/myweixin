@@ -95,16 +95,6 @@
    	 overflow:hidden;
 	 display:none;
 	}
-	.edit_page2{
-	 height:100%;
-	 width:100%;
-	 position:absolute;
-      left: 0; 
-   	  top: 0;
-	 /*background-color:yellow;*/
-   	 overflow:hidden;
-	 display:none;
-	}
 .convent_choice{
   float: left;
     height: 130px;
