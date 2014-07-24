@@ -6,6 +6,12 @@
   	body{
 		background-color: #f0eff3;
   	}
+  	a{
+  		text-decoration:none;
+  		color: #888888;
+  		font-size: 1em;
+  		font-weight:lighter;
+  	}
   	#pageone{
   		width: 100%;
   		overflow: hidden;
@@ -106,6 +112,7 @@
 
 .uploadImage{
   color:black;
+  font-weight: 900;
 }
 
  .large{width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;background-color: black;display: none;}
