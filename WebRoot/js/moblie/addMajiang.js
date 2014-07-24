@@ -5,7 +5,7 @@ var initPage = {
 		//绑定事件
 		this.bindEvent();
 		//查询所有用户
-	//	this.queryPlayers();
+		this.queryPlayers();
 	},
 	bindEvent : function(){
 		$("#addRecord").bind("click",function(){
