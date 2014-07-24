@@ -31,7 +31,12 @@ var initPage = {
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_No").addClass("animated fadeInRight").show();
 			$("#userNo").css("width",($(window).width()-29)+"px");
-			$("#userNo").val($("#no").html());
+			if($("#no a").length>0){
+				$("#userNo").val($("#no a").html());
+			}else{
+				$("#userNo").val($("#no").html());
+			}
+			
 		});
 		//更改号码
 		$("#moblieNo").bind("click",function(){
@@ -39,9 +44,20 @@ var initPage = {
 			$("#pageone").addClass("animated fadeOutLeft");
 			$("#edit_mobile").addClass("animated fadeInRight").show();
 			$("#userMobile").css("width",($(window).width()-29)+"px");
-			$("#userMobile").val($("#mobile").html());
+			if($("#mobile a").length>0){
+				$("#userMobile").val(($("#mobile a").html()+"").replace(/-/g,""));
+			}else{
+				$("#userMobile").val(($("#mobile").html()+"").replace(/-/g,""));
+			}
 		});
 		
+		$("#mark").bind("click",function(){
+			$("#edit_Mark").removeClass("animated fadeOutRight");
+			$("#pageone").addClass("animated fadeOutLeft");
+			$("#edit_Mark").addClass("animated fadeInRight").show();
+			$("#userMark").css("width",($(window).width()-29)+"px").height(80);
+			$("#userMark").val($("#idvalue").html().trim());
+		});
 		//上传图片
 		$(".uploadImage").bind("click", function(){
 		    $("#fileImage").click();
@@ -84,11 +100,19 @@ var initPage = {
 		});
 		$("#saveMobile").bind("click",function(){
 			initPage.swipLeft("edit_mobile");
-			$("#mobile").html($("#userMobile").val());
+			$("#mobile").html(initPage.formateMobileNo($("#userMobile").val()));
 			//可以优化下  看是否改变
 			initPage.updateName("3",$("#userMobile").val());
 		});
 		
+		$("#cancelMark").bind("click",function(){
+			initPage.swipLeft("edit_Mark");
+		});
+		$("#saveMark").bind("click",function(){
+			initPage.swipLeft("edit_Mark");
+			$("#idvalue").html($("#userMark").val());
+			initPage.updateName("4",$("#userMark").val());
+		});
 	},
 	swipLeft : function(id){
 		$("#pageone").removeClass("animated fadeOutLeft");
@@ -144,10 +168,15 @@ var initPage = {
 		}else{
 			$("#no").html("这需要一个雀神号");
 		}
-		if(data.user.moblie != undefined){
-			$("#mobile").html(data.user.moblie);	
+		if(data.user.moblie != undefined && data.user.moblie!="0"){
+			$("#mobile").html(initPage.formateMobileNo(data.user.moblie+""));	
 		}else{
 			$("#mobile").html("大侠号码多少");
+		}
+		if(data.user.signature != undefined ){
+			$("#idvalue").html(data.user.signature);	
+		}else{
+			$("#idvalue").html("这家伙太懒，什么都没留下");
 		}
 	},
 	loading : function(){
@@ -159,6 +188,11 @@ var initPage = {
             textonly: false,
             html: ""
    		 });
+	},
+	formateMobileNo : function(mobileNo){
+		var newMobile = mobileNo.substring(0,3)+"-"+mobileNo.substring(3,7)+"-"+mobileNo.substring(7,12);
+		console.log("ddd:"+newMobile);
+		return newMobile;
 	},
 	hide : function(){
 		$("#loader").hide();
