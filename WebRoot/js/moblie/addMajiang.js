@@ -58,7 +58,7 @@ var initPage = {
 	//查询所有用户
 	queryPlayers : function(){
 		commAjax({
-		    'url':"/user/queryUsers.do",
+		    'url':"/mobile/queryUsers.do",
 			success:function(data){
 				//alert(data.map.users[0].name);
 				initPage.initPlaysersSeleted(data.map.users);
