@@ -1,6 +1,7 @@
 package com.xh.mobile.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -51,6 +52,12 @@ public class UserServiceImpl implements IUserService{
 	public int updateUser(Map params) {
 		System.out.println(params);
 		return userDao.updateUser(params);
+	}
+
+	@Override
+	public List<User> queryUsers() {
+		// TODO Auto-generated method stub
+		return userDao.queryUsers();
 	}
 	
 }

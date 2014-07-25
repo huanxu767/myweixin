@@ -1,11 +1,15 @@
 var initPage = {
-	option : {},
+	option : {openid:null},
 	init : function(){
+		//初始化参数
+		this.option.openid = request("openid");
+		
 		this.initDatePiker();
 		//绑定事件
 		this.bindEvent();
 		//查询所有用户
 		this.queryPlayers();
+		$("#openId").val(this.option.openid);
 	},
 	bindEvent : function(){
 		$("#addRecord").bind("click",function(){
@@ -14,7 +18,6 @@ var initPage = {
 	},
 	//初始化 日期控件
 	initDatePiker : function(){
-
 		var currYear = (new Date()).getFullYear();	
 		var opt={};
 		var minDate;
@@ -75,16 +78,16 @@ var initPage = {
 		for(var j = 0;j < users.length;j++){
 			usersSeleted +="<option value='"+users[j].id+"'>"+users[j].name+"</option>";
 		}
-		var userNames = $("select[name='userName']");
+		var userNames = $("select[name='playerId']");
 		userNames.each(function(){
 			$(this).append(usersSeleted);
 		});
 	},
 	addRecord : function(){
-//		console.info("form数据系列化："+$("form").serialize());
+		console.info("form数据系列化："+$("form").serialize());
 		initPage.loading();
 		commAjax({
-		    'url':"/user/test.do",
+		    'url':"/record/addRecord.do",
 		    'data':$("form").serialize(),
 			success:function(data){
 				initPage.hide();

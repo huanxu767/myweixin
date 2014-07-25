@@ -3,6 +3,7 @@ package com.xh.mobile.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xh.mobile.pojo.BaseResultBean;
+import com.xh.mobile.pojo.User;
 import com.xh.mobile.service.IUserService;
 
 @Controller
@@ -142,6 +145,28 @@ public class UserController extends BaseActionController {
 //		outResult(response, userMap);
 		
 	}
+	
+	/**
+	 * 查询所有用户
+	 * 
+	 * @param request
+	 * @param response
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/mobile/queryUsers.do")
+	public void queryUsers(HttpServletRequest request,
+			HttpServletResponse response) {
+		BaseResultBean baseResult = new BaseResultBean();
+		Map<String, Object> map = new HashMap<String, Object>();
+		//查询list
+		List<User> users = userService.queryUsers();
+		map.put("users", users);
+		baseResult.setSuccess(true);
+		baseResult.setMap(map);
+		outResult(response, baseResult);
+	}
+	
 	/**
 	 * ajax登录
 	 * 

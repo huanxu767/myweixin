@@ -44,7 +44,7 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
     }
 
 	public List<User> queryUsers() {
-		String sql = "select * from m_user where 1=1 ";
+		String sql = "select * from m_user where 1=1 and name is not null ";
 		return (List<User>) this.getJdbcTemplate().query(sql,new userMapper());
 	}
 	

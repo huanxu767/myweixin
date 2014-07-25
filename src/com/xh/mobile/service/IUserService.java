@@ -1,6 +1,7 @@
 package com.xh.mobile.service;
 
 
+import java.util.List;
 import java.util.Map;
 
 import com.xh.mobile.pojo.User;
@@ -35,5 +36,9 @@ public interface IUserService {
 	 * @return
 	 */
 	public int updateUser(Map params);
-	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	public List<User> queryUsers();
 }

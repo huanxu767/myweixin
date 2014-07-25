@@ -1,6 +1,7 @@
 package com.xh.mobile.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 麻将记录
@@ -9,45 +10,40 @@ import java.util.Date;
  */
 public class MajiangRecord {
 	private long id;
-	private long placeId;
-	private String description;
-	private Date startTime;
-	private long eastPlayerId;//东边 玩家编号
+	private String place;/**地点*/
+	private String description;/**备注*/
+	private String recordTime;/**牌局时间*/
+	private Date startTime;/**开始时间*/
+	private String openId;/**维护人第三方编号*/
+	
+	private List<PlayerRecord> playersRecordList;
+	
+	/** 非数据库对应*/
+	private String[] playerId;
+	
 	private int eastPlayerIsWin;//0输 1赢
 	private int eastPlayerMoney;//东边 赢的钱
 	
-	private long southPlayerId;//南边 玩家编号
 	private int southPlayerIsWin;//0输 1赢
 	private int southPlayerMoney;//南边 赢的钱
 	
-	private long westPlayerId;//西边 玩家编号
 	private int westPlayerIsWin;//0输 1赢
 	private int westPlayerMoney;//西边 赢的钱
 	
-	private long northPlayerId;//北边 玩家编号
 	private int northPlayerIsWin;//0输 1赢
 	private int northPlayerMoney;//北边 赢的钱
 	
-	//非数据库对应 
-	private String[] userName;
-	
-	public String[] getUserName() {
-		return userName;
-	}
-	public void setUserName(String[] userName) {
-		this.userName = userName;
-	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getPlaceId() {
-		return placeId;
+	public String getPlace() {
+		return place;
 	}
-	public void setPlaceId(long placeId) {
-		this.placeId = placeId;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public String getDescription() {
 		return description;
@@ -55,18 +51,29 @@ public class MajiangRecord {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public String getRecordTime() {
+		return recordTime;
+	}
+	public void setRecordTime(String recordTime) {
+		this.recordTime = recordTime;
+	}
 	public Date getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-	public long getEastPlayerId() {
-		return eastPlayerId;
+	public List<PlayerRecord> getPlayersRecordList() {
+		return playersRecordList;
 	}
-	public void setEastPlayerId(long eastPlayerId) {
-		this.eastPlayerId = eastPlayerId;
+	public void setPlayersRecordList(List<PlayerRecord> playersRecordList) {
+		this.playersRecordList = playersRecordList;
+	}
+	public String[] getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(String[] playerId) {
+		this.playerId = playerId;
 	}
 	public int getEastPlayerIsWin() {
 		return eastPlayerIsWin;
@@ -80,12 +87,6 @@ public class MajiangRecord {
 	public void setEastPlayerMoney(int eastPlayerMoney) {
 		this.eastPlayerMoney = eastPlayerMoney;
 	}
-	public long getSouthPlayerId() {
-		return southPlayerId;
-	}
-	public void setSouthPlayerId(long southPlayerId) {
-		this.southPlayerId = southPlayerId;
-	}
 	public int getSouthPlayerIsWin() {
 		return southPlayerIsWin;
 	}
@@ -97,12 +98,6 @@ public class MajiangRecord {
 	}
 	public void setSouthPlayerMoney(int southPlayerMoney) {
 		this.southPlayerMoney = southPlayerMoney;
-	}
-	public long getWestPlayerId() {
-		return westPlayerId;
-	}
-	public void setWestPlayerId(long westPlayerId) {
-		this.westPlayerId = westPlayerId;
 	}
 	public int getWestPlayerIsWin() {
 		return westPlayerIsWin;
@@ -116,12 +111,6 @@ public class MajiangRecord {
 	public void setWestPlayerMoney(int westPlayerMoney) {
 		this.westPlayerMoney = westPlayerMoney;
 	}
-	public long getNorthPlayerId() {
-		return northPlayerId;
-	}
-	public void setNorthPlayerId(long northPlayerId) {
-		this.northPlayerId = northPlayerId;
-	}
 	public int getNorthPlayerIsWin() {
 		return northPlayerIsWin;
 	}
@@ -133,6 +122,12 @@ public class MajiangRecord {
 	}
 	public void setNorthPlayerMoney(int northPlayerMoney) {
 		this.northPlayerMoney = northPlayerMoney;
+	}
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	
 }

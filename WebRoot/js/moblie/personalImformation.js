@@ -8,7 +8,6 @@ var initPage = {
 		//绑定事件
 		this.bindEvent();
 		//查询所有用户
-
 //		this.queryPlayers();
 		// 绑定选择事件
 					
