@@ -177,6 +177,46 @@ var initPage = {
 		}else{
 			$("#idvalue").html("这家伙太懒，什么都没留下");
 		}
+		if(data.loseTimes != undefined ){
+			$("#loseTimes").html(data.loseTimes);	
+		}else{
+			$("#loseTimes").html("0");
+		}
+		if(data.winTimes != undefined ){
+			$("#winTimes").html(data.winTimes);	
+		}else{
+			$("#winTimes").html("0");
+		}
+		if(data.winTimes != undefined ){
+			$("#winTimes").html(data.winTimes);	
+		}else{
+			$("#winTimes").html("0");
+		}
+		if(data.winMoney != undefined ){
+			$("#winMoney").html(data.winMoney);	
+		}else{
+			$("#winMoney").html("0");
+		}
+		if(data.loseMoney != undefined ){
+			$("#loseMoney").html(data.loseMoney);	
+		}else{
+			$("#loseMoney").html("0");
+		}
+		if(data.loseMoney != undefined ){
+			$("#loseMoney").html(data.loseMoney);	
+		}else{
+			$("#loseMoney").html("0");
+		}
+		if(data.totalTimes != undefined ){
+			$("#totalTimes").html(data.totalTimes);	
+		}else{
+			$("#totalTimes").html("0");
+		}
+		if(data.recordPer != undefined ){
+			$("#recordPer").html(data.recordPer);	
+		}else{
+			$("#recordPer").html("0.00%");
+		}
 	},
 	loading : function(){
 		$("#loader").show();

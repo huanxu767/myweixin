@@ -92,4 +92,10 @@ public class UserDaoImpl extends BaseJdbcDAO implements IUserDao
 			return user;
 		}
     }
+
+	@Override
+	public List queryUserRecord(Long id) {
+		String sql="SELECT COUNT(*) counts,SUM(money) money,is_win isWin FROM m_player_record WHERE player_id = ? GROUP BY is_win";
+		return this.getJdbcTemplate().queryForList(sql, new Object[]{id});
+	}
 }

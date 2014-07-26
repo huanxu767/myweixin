@@ -90,10 +90,13 @@ var initPage = {
 		    'url':"/record/addRecord.do",
 		    'data':$("form").serialize(),
 			success:function(data){
+				console.log("牌局添加成功");
+				alert("牌局添加成功");
+				$("form")[0].reset();
 				initPage.hide();
 			},
 			error:function(){
-				//concole.info("新增记录出错了，怎么搞的");
+				alert("添加牌局信息出错，请检查数据");
 				initPage.hide();
 			}
 			});

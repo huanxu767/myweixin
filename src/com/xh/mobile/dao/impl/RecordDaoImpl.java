@@ -49,10 +49,23 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	}
 
 	public boolean addPlayerRecord(List<PlayerRecord> list) {
-		
-		return false;
+		boolean flag = false;
+		try {
+			for (int i = 0; i < list.size(); i++) {
+				PlayerRecord playerRecord = list.get(i);
+				String sql = "insert into m_player_record(player_id,is_win,money,record_id,direction) " +
+					     "values(?,?,?,?,?)";
+				this.getJdbcTemplate().update(
+						sql,
+						new Object[] { playerRecord.getPlayerId(),
+								playerRecord.getIsWin(), playerRecord.getMoney(),
+								playerRecord.getRecordId(),
+								playerRecord.getDirection() });
+			}
+			flag = true;
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		return flag;
 	}
-	
-	
-	
 }

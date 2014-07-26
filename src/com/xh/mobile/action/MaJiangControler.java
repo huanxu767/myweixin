@@ -1,7 +1,8 @@
 package com.xh.mobile.action;
 
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xh.mobile.pojo.MajiangRecord;
-import com.xh.mobile.pojo.PlayerRecord;
 import com.xh.mobile.service.IRecordService;
 
 @Controller
@@ -27,9 +27,11 @@ public class MaJiangControler extends BaseActionController {
 	@RequestMapping(value = "/addRecord.do")
 	public void addRecord(HttpServletRequest request,HttpServletResponse response,
 			MajiangRecord record) {
-		recordService.addRecord(record);
+		Map map = new HashMap();
+		boolean flag = recordService.addRecord(record);
 		System.out.println("dddd");
-//		outResult(response, userMap);
+		map.put("flag", flag);
+		outResult(response, map);
 	}
 	
 }

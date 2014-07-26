@@ -38,7 +38,7 @@ public class RecordServiceImpl implements IRecordService{
 		PlayerRecord southplayerRecord = new PlayerRecord();
 		southplayerRecord.setPlayerId(playerIds[1]);
 		southplayerRecord.setIsWin(record.getSouthPlayerIsWin());
-		southplayerRecord.setDirection(1);
+		southplayerRecord.setDirection(2);
 		southplayerRecord.setRecordId(recordId);
 		southplayerRecord.setMoney(record.getSouthPlayerMoney());
 		playerRecordList.add(southplayerRecord);
@@ -47,7 +47,7 @@ public class RecordServiceImpl implements IRecordService{
 		PlayerRecord westplayerRecord = new PlayerRecord();
 		westplayerRecord.setPlayerId(playerIds[2]);
 		westplayerRecord.setIsWin(record.getWestPlayerIsWin());
-		westplayerRecord.setDirection(1);
+		westplayerRecord.setDirection(3);
 		westplayerRecord.setRecordId(recordId);
 		westplayerRecord.setMoney(record.getWestPlayerMoney());
 		playerRecordList.add(westplayerRecord);
@@ -56,12 +56,11 @@ public class RecordServiceImpl implements IRecordService{
 		PlayerRecord northplayerRecord = new PlayerRecord();
 		northplayerRecord.setPlayerId(playerIds[3]);
 		northplayerRecord.setIsWin(record.getNorthPlayerIsWin());
-		northplayerRecord.setDirection(1);
+		northplayerRecord.setDirection(4);
 		northplayerRecord.setRecordId(recordId);
 		northplayerRecord.setMoney(record.getNorthPlayerMoney());
 		playerRecordList.add(northplayerRecord);
-
-		
+		recordDao.addPlayerRecord(playerRecordList);
 		return false;
 	}
 }
