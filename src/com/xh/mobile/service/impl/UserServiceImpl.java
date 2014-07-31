@@ -66,7 +66,7 @@ public class UserServiceImpl implements IUserService{
 					map.put("totalTimes", loseTimes+winTimes);
 					if(winTimes != 0){
 						NumberFormat formatter = new DecimalFormat("0.00%");
-						Double x=new Double(winTimes/(loseTimes+winTimes));
+						Double x=new Double(new Double(winTimes)/(loseTimes+winTimes));
 						String xx = formatter.format(x);
 						map.put("recordPer", xx);
 					}else{
@@ -95,7 +95,7 @@ public class UserServiceImpl implements IUserService{
 	}
 	public static void main(String[] args) {
 		NumberFormat formatter = new DecimalFormat("0.00%");
-		Double x=new Double(34.0/55.0);
+		Double x=new Double(2.0/3);
 		String xx = formatter.format(x);
 		System.out.println(xx);
 	}
