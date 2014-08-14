@@ -2,6 +2,7 @@ package com.xh.mobile.action;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -33,5 +34,11 @@ public class MaJiangControler extends BaseActionController {
 		map.put("flag", flag);
 		outResult(response, map);
 	}
-	
+	@RequestMapping(value = "/getRanking.do")
+	public void getRanking(HttpServletRequest request,HttpServletResponse response) {
+		Map map = new HashMap();
+		List list = recordService.getRanking("1");
+		map.put("list", list);
+		outResult(response, map);
+	}
 }

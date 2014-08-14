@@ -2,6 +2,7 @@ package com.xh.mobile.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -62,5 +63,10 @@ public class RecordServiceImpl implements IRecordService{
 		playerRecordList.add(northplayerRecord);
 		recordDao.addPlayerRecord(playerRecordList);
 		return false;
+	}
+
+
+	public List<Map> getRanking(String type) {
+		return recordDao.queryRanking(type);
 	}
 }

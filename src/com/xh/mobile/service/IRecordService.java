@@ -1,6 +1,9 @@
 package com.xh.mobile.service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import com.xh.mobile.pojo.MajiangRecord;
 
 /**
@@ -9,8 +12,17 @@ import com.xh.mobile.pojo.MajiangRecord;
  *
  */
 public interface IRecordService {
-	
+	/**
+	 * 新增牌局
+	 * @param record
+	 * @return
+	 */
 	public boolean addRecord(MajiangRecord record);
-	
+	/**
+	 * 获取排行榜
+	 * @param type 1 赢钱榜 2输钱榜
+	 * @return
+	 */
+	public List<Map> getRanking(String type);
 	
 }
