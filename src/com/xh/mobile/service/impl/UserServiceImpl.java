@@ -99,5 +99,10 @@ public class UserServiceImpl implements IUserService{
 		String xx = formatter.format(x);
 		System.out.println(xx);
 	}
+
+	@Override
+	public Map queryUserById(String id) {
+		return userDao.queryUserById(id);
+	}
 	
 }

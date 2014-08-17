@@ -166,6 +166,20 @@ public class UserController extends BaseActionController {
 		baseResult.setMap(map);
 		outResult(response, baseResult);
 	}
+	/**
+	 * 查询所有用户
+	 * 
+	 * @param request
+	 * @param response
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/mobile/getUser.do")
+	public void getUser(HttpServletRequest request,
+			HttpServletResponse response,String id) {
+		Map user = userService.queryUserById(id);
+		outResult(response, user);
+	}
 	
 	/**
 	 * ajax登录

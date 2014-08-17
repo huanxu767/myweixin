@@ -33,4 +33,6 @@ public interface IUserDao {
 	public int updateUser(Map params);
 
 	public List queryUserRecord(Long id);
+	
+	public Map queryUserById(String id);
 }

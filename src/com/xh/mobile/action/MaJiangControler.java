@@ -38,7 +38,11 @@ public class MaJiangControler extends BaseActionController {
 	public void getRanking(HttpServletRequest request,HttpServletResponse response) {
 		Map map = new HashMap();
 		List list = recordService.getRanking("1");
-		map.put("list", list);
+		List lostList = recordService.getRanking("2");
+		List perList = recordService.getRanking("3");
+		map.put("winlist", list);
+		map.put("loseList", lostList);
+		map.put("perList", perList);
 		outResult(response, map);
 	}
 }

@@ -41,4 +41,10 @@ public interface IUserService {
 	 * @return
 	 */
 	public List<User> queryUsers();
+	/**
+	 * 查询用户信息
+	 * @param id
+	 * @return
+	 */
+	public Map queryUserById(String id);
 }
