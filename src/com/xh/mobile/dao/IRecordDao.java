@@ -18,4 +18,7 @@ public interface IRecordDao {
 	public boolean addPlayerRecord(List<PlayerRecord> list);
 	
 	public List queryRanking(String type);
+	
+	public List queryHistory(String playerId);
+	
 }

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -94,6 +95,22 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 			//胜率
 			sql.append("  winperDesc DESC");
 		}
+		return this.getJdbcTemplate().queryForList(sql.toString());
+	}
+	
+	public List queryHistory(String playerId) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT record_id,MAX(c.create_time) time,MAX(c.place), GROUP_CONCAT(u.name) NAMES ");
+		sql.append(" 	    GROUP_CONCAT(CONCAT(LEFT(u.name,5),(CASE r.is_win WHEN 0 THEN '-' WHEN 1 THEN '+' END),r.`money`)) record");
+		sql.append("FROM m_player_record r");
+		sql.append("LEFT JOIN m_user u ON   r.player_id=u.id ");
+		sql.append("LEFT JOIN m_record c ON   c.id = r.record_id ");
+		if(!StringUtils.isEmpty(playerId)){
+			sql.append(" r.player_id = ? ");
+			Object args = new Object[]{playerId};
+			return this.getJdbcTemplate().queryForList(sql.toString(),args);
+		}
+		sql.append("GROUP BY record_id DESC");
 		return this.getJdbcTemplate().queryForList(sql.toString());
 	}
 }
