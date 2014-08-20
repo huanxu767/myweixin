@@ -24,7 +24,12 @@ public class MaJiangControler extends BaseActionController {
 	
 	@Resource
 	private IRecordService recordService;
-	
+	/**
+	 * 新增牌局
+	 * @param request
+	 * @param response
+	 * @param record
+	 */
 	@RequestMapping(value = "/addRecord.do")
 	public void addRecord(HttpServletRequest request,HttpServletResponse response,
 			MajiangRecord record) {
@@ -34,6 +39,11 @@ public class MaJiangControler extends BaseActionController {
 		map.put("flag", flag);
 		outResult(response, map);
 	}
+	/**
+	 * 排行榜
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/getRanking.do")
 	public void getRanking(HttpServletRequest request,HttpServletResponse response) {
 		Map map = new HashMap();
@@ -43,6 +53,18 @@ public class MaJiangControler extends BaseActionController {
 		map.put("winlist", list);
 		map.put("loseList", lostList);
 		map.put("perList", perList);
+		outResult(response, map);
+	}
+	/**
+	 * 历史记录
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getHistory.do")
+	public void getHistory(HttpServletRequest request,HttpServletResponse response,String playerId) {
+		Map map = new HashMap();
+		List list = recordService.queryHistory(playerId);
+		map.put("list", list);
 		outResult(response, map);
 	}
 }

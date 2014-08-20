@@ -100,11 +100,11 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	
 	public List queryHistory(String playerId) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT record_id,MAX(c.create_time) time,MAX(c.place), GROUP_CONCAT(u.name) NAMES ");
-		sql.append(" 	    GROUP_CONCAT(CONCAT(LEFT(u.name,5),(CASE r.is_win WHEN 0 THEN '-' WHEN 1 THEN '+' END),r.`money`)) record");
-		sql.append("FROM m_player_record r");
-		sql.append("LEFT JOIN m_user u ON   r.player_id=u.id ");
-		sql.append("LEFT JOIN m_record c ON   c.id = r.record_id ");
+		sql.append(" SELECT record_id,MAX(c.create_time) time,MAX(c.place), GROUP_CONCAT(u.name) NAMES, ");
+		sql.append(" 	    GROUP_CONCAT(CONCAT(LEFT(u.name,5),(CASE r.is_win WHEN 0 THEN '-' WHEN 1 THEN '+' END),r.money)) record");
+		sql.append(" FROM m_player_record r");
+		sql.append(" LEFT JOIN m_user u ON   r.player_id=u.id ");
+		sql.append(" LEFT JOIN m_record c ON   c.id = r.record_id ");
 		if(!StringUtils.isEmpty(playerId)){
 			sql.append(" r.player_id = ? ");
 			Object args = new Object[]{playerId};

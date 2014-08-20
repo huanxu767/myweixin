@@ -24,5 +24,12 @@ public interface IRecordService {
 	 * @return
 	 */
 	public List<Map> getRanking(String type);
+	/**
+	 * 查询历史记录
+	 * @param playerId
+	 * @return
+	 */
+	public List queryHistory(String playerId);
+	
 	
 }

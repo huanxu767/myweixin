@@ -69,4 +69,10 @@ public class RecordServiceImpl implements IRecordService{
 	public List<Map> getRanking(String type) {
 		return recordDao.queryRanking(type);
 	}
+
+
+	@Override
+	public List queryHistory(String playerId) {
+		return recordDao.queryHistory(playerId);
+	}
 }
