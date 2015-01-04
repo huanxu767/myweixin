@@ -124,3 +124,12 @@ VALUES(10,'牌局相册','/mobile/recordRankingList.html?openid=${openid}','','c
 INSERT INTO m_menu(parent_id,NAME,page_url,image_url,TYPE,is_active,EventKey)
 VALUES(10,'基情相册','/mobile/recordRankingList.html?openid=${openid}','','click',1,'');
 
+
+SELECT rc.place,DATE_FORMAT(rc.create_time,'%y-%m-%d %r %w'), 
+	GROUP_CONCAT(CONCAT(us.name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,money) ) content
+FROM m_player_record m
+LEFT JOIN m_user us ON us.id = m.player_id 
+LEFT JOIN m_record rc ON rc.id = m.record_id
+WHERE us.id=110011
+GROUP BY m.record_id
+
