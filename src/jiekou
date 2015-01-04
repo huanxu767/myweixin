@@ -17,6 +17,11 @@
                     "type": "click", 
                     "name": "相册", 
                     "key": "V11_XIANGCE"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "排行榜", 
+                    "key": "V13_PAIHANGBANG"
                 }
             ]
         }, 
