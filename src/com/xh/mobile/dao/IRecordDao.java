@@ -7,7 +7,7 @@ import com.xh.mobile.pojo.PlayerRecord;
 
 
 /**
- * 马静记录管理
+ * 记录管理
  * @author xuhuan
  *
  */
@@ -20,5 +20,7 @@ public interface IRecordDao {
 	public List queryRanking(String type);
 	
 	public List queryHistory(String playerId);
+
+	public List queryAllHistory(String userId);
 	
 }

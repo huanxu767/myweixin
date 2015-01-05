@@ -30,6 +30,17 @@ public interface IRecordService {
 	 * @return
 	 */
 	public List queryHistory(String playerId);
+	/**
+	 * 查询全部历史记录
+	 * @return
+	 */
+	public List queryAllHistory();
+	
+	/**
+	 * 查询个人历史记录
+	 * @return
+	 */
+	public List queryAllHistory(String userId);
 	
 	
 }

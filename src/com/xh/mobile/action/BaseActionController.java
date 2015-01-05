@@ -106,8 +106,8 @@ public class BaseActionController extends MultiActionController {
 		out.close();
 	}
 	public void outResult(HttpServletResponse response, Map map) {
-		// response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain;charset=UTF-8");
+//		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();

@@ -71,8 +71,18 @@ public class RecordServiceImpl implements IRecordService{
 	}
 
 
-	@Override
 	public List queryHistory(String playerId) {
 		return recordDao.queryHistory(playerId);
+	}
+
+
+	public List queryAllHistory(String userId) {
+		List list = recordDao.queryAllHistory(userId);
+		return list;
+	}
+
+	public List queryAllHistory() {
+		List list = recordDao.queryAllHistory(null);
+		return list;
 	}
 }
