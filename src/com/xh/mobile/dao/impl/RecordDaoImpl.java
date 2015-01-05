@@ -118,8 +118,8 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	public List queryAllHistory(String userId) {
 		StringBuffer sql = new StringBuffer();
 		ArrayList list = new ArrayList();
-		sql.append(" SELECT rc.place,DATE_FORMAT(rc.create_time,'%y-%m-%d %r %w'), ");
-		sql.append(" GROUP_CONCAT(CONCAT(us.name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,money) ) content");
+		sql.append(" SELECT rc.place,DATE_FORMAT(rc.create_time,'%y-%m-%d %r %w') date, ");
+		sql.append(" GROUP_CONCAT(CONCAT(us.name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(money,CHAR)) ) content");
 		sql.append(" FROM m_player_record m");
 		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
 		sql.append(" LEFT JOIN m_record rc ON rc.id = m.record_id ");
