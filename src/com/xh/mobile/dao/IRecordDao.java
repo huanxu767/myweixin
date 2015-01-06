@@ -21,6 +21,6 @@ public interface IRecordDao {
 	
 	public List queryHistory(String playerId);
 
-	public List queryAllHistory(String userId);
+	public List queryAllHistory(String openid);
 	
 }

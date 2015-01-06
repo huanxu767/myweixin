@@ -40,7 +40,7 @@ public interface IRecordService {
 	 * 查询个人历史记录
 	 * @return
 	 */
-	public List queryAllHistory(String userId);
+	public List queryAllHistory(String uuid);
 	
 	
 }

@@ -76,8 +76,8 @@ public class RecordServiceImpl implements IRecordService{
 	}
 
 
-	public List queryAllHistory(String userId) {
-		List list = recordDao.queryAllHistory(userId);
+	public List queryAllHistory(String openid) {
+		List list = recordDao.queryAllHistory(openid);
 		return list;
 	}
 

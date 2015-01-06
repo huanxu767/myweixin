@@ -73,9 +73,21 @@ public class MaJiangControler extends BaseActionController {
 	 * @param response
 	 */
 	@RequestMapping(value = "/getAllHistory.do")
-	public void getAllHistory(HttpServletRequest request,HttpServletResponse response,String playerId) {
+	public void getAllHistory(HttpServletRequest request,HttpServletResponse response) {
 		Map map = new HashMap();
 		List list = recordService.queryAllHistory();
+		map.put("list", list);
+		outResult(response, map);
+	}
+	/**
+	 * 个人历史记录
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getMyHistory.do")
+	public void getMyHistory(HttpServletRequest request,HttpServletResponse response,String openid) {
+		Map map = new HashMap();
+		List list = recordService.queryAllHistory(openid);
 		map.put("list", list);
 		outResult(response, map);
 	}
