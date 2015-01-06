@@ -20,8 +20,8 @@
                 }, 
                 {
                     "type": "click", 
-                    "name": "排行榜", 
-                    "key": "V13_PAIHANGBANG"
+                    "name": "新增牌局", 
+                    "key": "V121_XINZENPAIJU"
                 }
             ]
         }, 
