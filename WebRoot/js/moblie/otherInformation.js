@@ -3,9 +3,12 @@ var initPage = {
 	init : function(){
 		this.option.id = request("id");
 		this.getOherPermation();
+		this.bindEvent();
 	},
 	bindEvent : function(){
-		
+		$("#showDetail").bind("click",function(){
+			initPage.showDetail();
+		});
 	},
 	
 	getOherPermation : function(){
@@ -30,6 +33,9 @@ var initPage = {
 		$("#sign").html(data.signature);
 		$("#call").attr("href","tel:"+data.moblie);
 		$("#sms").attr("href","sms:"+data.moblie);
+	},
+	showDetail :function(){
+		location.href = "../mobile/myHistory.html?openid="+this.option.id;
 	}
 }
 
