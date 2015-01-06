@@ -1,7 +1,9 @@
 var initPage = {
-	option : {},
+	option : {option:null},
 	init : function(){
+		this.option.openid = request("openid");
 		initPage.queryHistory();
+		
 	},
 	bindEvent : function(){
 		
@@ -42,7 +44,8 @@ var initPage = {
 	},	//查询所有用户
 	queryHistory : function(){
 		commAjax({
-		    'url':"/record/getAllHistory.do",
+		    'url':"/record/getMyHistory.do",
+		    'data':"openid="+this.option.openid,
 			success:function(data){
 				initPage.historyRank(data.list);
 			},
