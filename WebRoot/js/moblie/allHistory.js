@@ -19,11 +19,11 @@ var initPage = {
 			date = list[j].date;
 			dateArray = date.split(" ");
 			currentDate = dateArray[0];
-			length = length-1; 
 			if(currentDate != lastDate){
 				lastDate = currentDate;
 				historyHtml += "<li data-role='list-divider'>"+initPage.formateDate(date)+"<span class='ui-li-count'>"+length+"</span></li>";
 			}
+			length = length-1; 
 			historyHtml += "<li><a href='#' ><h2>"+list[j].place+"</h2>"; 
 			historyHtml += "<p>"+list[j].content+"</p>"; 
 			historyHtml += "<p class='ui-li-aside'><strong>"+dateArray[1].substring(0,5)+"</strong>"+dateArray[2]+"</p>"; 
