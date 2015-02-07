@@ -21,6 +21,7 @@ import com.xh.mobile.dao.IRecordDao;
 import com.xh.mobile.pojo.MajiangRecord;
 import com.xh.mobile.pojo.PlayerRecord;
 import com.xh.utils.BaseJdbcDAO;
+import com.xh.utils.WebAppConfig;
 
 
 /**
@@ -32,7 +33,9 @@ import com.xh.utils.BaseJdbcDAO;
 public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	
 	private final static Logger logger = Logger.getLogger(RecordDaoImpl.class);
-
+	/** 进入排行榜最低要求，参与场次要达到一定要求*/
+	private final static int rankMinLimite = Integer.parseInt(WebAppConfig.GLOBAL_CONFIG_PROPERTIES.getProperty("majiang.rank.mintime"));
+	
 	public Long addRecord(final MajiangRecord record) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.getJdbcTemplate().update(new PreparedStatementCreator() {
@@ -83,6 +86,7 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 		sql.append("	LEFT JOIN (SELECT player_id,SUM(money) money,is_win,COUNT(*) times FROM m_player_record  WHERE is_win = 1 GROUP BY player_id ) winMoney ON  winMoney.player_id = us.id");
 		sql.append("    LEFT JOIN (SELECT player_id,SUM(money) money,is_win,COUNT(*) times FROM m_player_record  WHERE is_win = 0 GROUP BY player_id ) loseMoney ON  loseMoney.player_id = us.id");
 		sql.append(" WHERE us.NAME IS NOT NULL  ");
+		sql.append(" and (IFNULL(winMoney.times, 0) + IFNULL(loseMoney.times, 0))>"+rankMinLimite);
 		sql.append(" ORDER BY ");
 		if("1".equals(type)){
 			//赢钱
