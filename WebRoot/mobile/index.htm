@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<title>Highcharts Example</title>
+
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+
+		<script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: '个人战绩'
+            },
+            legend: {
+				align: 'right',
+				layout: 'vertical',
+				verticalAlign: 'top',
+				itemMarginBottom: 0,
+				floating: true,
+	 			itemStyle: {
+	 				'fontWeight': 'normal'
+	 			}
+			},
+		 	tooltip: {
+                formatter: function() {
+                        return '<b>许欢＋290</b><br/><b>邓杰－90</b><br/><b>孙涛－100</b><br/><b>殷超－100</b><br/>'+
+                        this.y;
+                }
+            },
+            xAxis: {
+            	tickInterval:1,
+                tickmarkPlacement:'on',
+            	labels: {'rotation': -45,step:3
+            		 },
+                categories: ['2014-5-1', '2014-5-2', '2014-5-3', '2014-5-4', '2014-5-5','2014-5-1', '2014-5-2', '2014-5-3', '2014-5-4', '2014-5-5'
+                             ]
+            },
+            yAxis: {
+            	max:300,
+	            min:-100,
+	            title: {
+	                text: '钞票',
+	                align: 'high',
+	                margin: -30,
+	                y: -10,
+	                rotation: 0
+	            }
+	        },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '许欢',
+                data: [-5, 90, 150, -89, 20,-5, 290, 150, -99, 20]
+            }]
+        });
+    });
+    
+    
+			
+		</script>
+	</head>
+	<body>
+<script src="../js/hchars/highcharts.js"></script>
+
+<div id="container" style="height: 350px;width:100%; margin: 0 auto"></div>
+
+	</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+		<meta http-equiv="cache-control" content="private" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=0" />
+		<title>天气查询</title>
+		<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../js/public.js"></script>
+		<script type="text/javascript" src="../../js/highCharts/highcharts.js"></script>
+
+
+ 		
+<style type="text/css">
+.title{text-align: center;font-size: 25px;margin-top: 20px;}
+.tianqi{text-align: center;font-size: 15px;margin-top: 10px;}
+.wendu{text-align: center;font-size: 60px;margin-top: 10px;}
+span{display:block;}
+/* .bottom{position: absolute;bottom: 5px;left: 0;right: 0;} */
+.bottom{} 
+.today{height: 40px; }
+.today span{line-height: 40px;text-align: center;}
+.today span:nth-child(1){float: left;width: 70px;}
+.today span:nth-child(2){float: left;width: 40px;}
+.today span:nth-child(3){float: right;width: 42px;margin-right:2px;}
+.today span:nth-child(4){float: right;width: 42px;}
+
+.next_day{height:34px; border-bottom: 1px #BBB solid;margin-left: 10px;overflow: hidden;}
+.next_day span{line-height: 34px;}
+table{width: 100%}
+td{text-align: center;}
+tr td:nth-child(1){width: 70px;}	
+tr td:nth-child(2){width: *;}
+tr td:nth-child(3){width: 40px;}
+tr td:nth-child(4){width: 40px;}
+.heng {height: 1px; border-top:1px #BBB solid; }
+.char{height:250px;margin-top: 5px;width: 100%;}
+.clear{clear:both}
+.margin-top-20{margin-top: 20px;}
+</style>
+
+</head>
+<body style="background-color: #fff;color:#4c4c4c;">
+<!--  <div class='title' id="city_name">&nbsp;</div> -->
+<div id="main" style="display: none;">
+ <div class='tianqi' id="t_tianqi"></div>
+ <div class='wendu' id="t_wendu"></div>
+ 
+ 
+ <div class="bottom">
+ <div class="today"><span id="t_today"></span><span>今天</span>
+ 		<span id="t_min"></span><span id="t_max"></span>
+ </div>
+  <div class="heng"></div>
+ 
+ <table id="table">
+ </table>
+ <div class="heng"></div>
+ </div>
+ <div class="clear"></div>
+ </div>
+<div id ="container" class="char" ></div>
+
+  </body>
+  <script type="text/javascript">
+
+		function getWeekday(date){
+	var week; 
+	switch(date.getDay()){
+	case 0:
+		week="星期日";
+		break;
+	case 1:
+		week="星期一";
+		break;
+	case 2:
+		week="星期二";
+		break;
+	case 3:
+		week="星期三";
+		break;
+	case 4:
+		week="星期四";
+		break;
+	case 5:
+		week="星期五";
+		break;
+	case 6:
+		week="星期六";
+		break;
+	}
+
+	return week;
+}
+
+function dis_img(weather){
+		var style_img="../../images/weather/s_13.svg";
+		if(weather.indexOf("多云")!==-1){style_img="../../images/weather/s_1.svg";}
+		else if(weather.indexOf("多云")!==-1 && weather.indexOf("阴")!==-1){style_img="../../images/weather/s_2.svg";}
+		else if(weather.indexOf("阴")!==-1 && weather.indexOf("雨")!==-1){style_img="../../images/weather/s_3.svg";}
+		else if(weather.indexOf("晴")!==-1 && weather.indexOf("雨")!==-1){style_img="../../images/weather/s_12.svg";}
+		else if(weather.indexOf("晴")!==-1 && weather.indexOf("雾")!==-1){style_img="../../images/weather/s_12.svg";}
+		else if(weather.indexOf("晴")!==-1){style_img="../../images/weather/s_13.svg";}
+		else if(weather.indexOf("多云")!==-1){style_img="../../images/weather/s_2.svg";}
+		else if(weather.indexOf("阵雨")!==-1){style_img="../../images/weather/s_3.svg";}
+		else if(weather.indexOf("小雨")!==-1){style_img="../../images/weather/s_3.svg";}
+		else if(weather.indexOf("中雨")!==-1){style_img="../../images/weather/s_4.svg";}
+		else if(weather.indexOf("大雨")!==-1){style_img="../../images/weather/s_5.svg";}
+		else if(weather.indexOf("暴雨")!==-1){style_img="../../images/weather/s_5.svg";}
+		else if(weather.indexOf("冰雹")!==-1){style_img="../../images/weather/s_6.svg";}
+		else if(weather.indexOf("雷阵雨")!==-1){style_img="../../images/weather/s_7.svg";}
+		else if(weather.indexOf("小雪")!==-1){style_img="../../images/weather/s_8.svg";}
+		else if(weather.indexOf("中雪")!==-1){style_img="../../images/weather/s_9.svg";}
+		else if(weather.indexOf("大雪")!==-1){style_img="../../images/weather/s_10.svg";}
+		else if(weather.indexOf("暴雪")!==-1){style_img="../../images/weather/s_10.svg";}
+		else if(weather.indexOf("扬沙")!==-1){style_img="../../images/weather/s_11.svg";}
+		else if(weather.indexOf("沙尘")!==-1){style_img="../../images/weather/s_11.svg";}
+		else if(weather.indexOf("雾")!==-1){style_img="../../images/weather/s_12.svg";}
+		else{style_img="../../images/weather/s_2.svg";}
+		return style_img;
+	};
+
+	function echo(arr,add,city){
+		document.title = " ";
+		document.title = city;
+		var maxT = [];
+		var minT = [];
+		var weekT = [];
+// 		$("#city_name").html(city);
+		
+// 		$('#today_wind').html(arr[0].d1+arr[0].p1+"级");
+// 		$('#img_today').attr("src",dis_img(arr[0].s1));
+ 		var day = new Date(add.now.replace(/-/g,"/"));
+		
+		//alert(add.update);
+// 		$('#today_date').html(add.update);
+		$("#t_max").html(arr[0].t1);
+		maxT[0] = Number(arr[0].t1);
+		minT[0] = Number(arr[0].t2==''?arr[0].t1:arr[0].t2);
+		weekT[0] = getWeekday(day);
+		$("#t_min").html((arr[0].t2==''?arr[0].t1:arr[0].t2));
+		$("#t_wendu").html(arr[0].t1+"℃");
+		$("#t_tianqi").html(arr[0].s1);
+		$("#t_today").html(getWeekday(day));
+		
+ 		var html="";
+ 		
+		for(var i=1;i<=4;i++)
+		{
+			day = day.nextDay();
+			html+="<tr>";
+			html+="<td>"+getWeekday(day)+"</td>";
+			html+="<td><img src='"+dis_img(arr[i].s1)+"' /></td>";
+			html+="<td>"+arr[i].t1+"</td>";
+			html+="<td>"+(arr[i].t2==''?arr[i-1].t2:arr[i].t2)+"</td>";
+			html+="</tr>";
+			
+			maxT[i] = Number(arr[i].t1);
+			minT[i] = Number(arr[i].t2==''?arr[i-1].t2:arr[i].t2);
+			weekT[i] = getWeekday(day);
+			//$('#week'+i).html(getWeekday(day));
+			//$('#date'+i).html(day.format("MM.dd"));
+// 			$('#temp'+i+'_1').html(arr[i].t1+'℃');
+// 			$('#temp'+i+'_2').html((arr[i].t2==''?arr[i].t1:arr[i].t2)+'℃');
+// 			$('#img'+i).attr("src",dis_img(arr[i].s1));
+		}
+		
+		$("#table").html(html);
+		
+		  var data = [
+	                    {
+	                      name : '最高温度',
+	                      data:maxT
+	                    },
+	                    {
+	                      name : '最低气温',
+	                      data:minT
+	                    }
+	                 ];    
+	    $('#container').highcharts({
+	    	
+
+	        title: {
+// 	            text: '<span style="font-size:14px">天气预报</span>'
+	        	text: ' 天气预报'
+	        },
+	      
+			credits: {
+				enabled: false
+			},
+			legend: {
+				align: 'right',
+				layout: 'vertical',
+				verticalAlign: 'top',
+				itemMarginBottom: 0,
+				floating: true,
+	 			itemStyle: {
+	 				'fontWeight': 'normal'
+	 			}
+			},
+	        xAxis: {
+	        	 categories: weekT,
+	            plotLines: [{'color': '#E0E3E8'}],
+	            labels: {'rotation': -45},//x轴label倾斜角度{'rotation': -45, step:3, staggerLines: 1}
+	            tickLength: 0,//隐藏刻度线 tickWidth: 0 也可
+	            lineColor: '#D3D3CF',
+	            lineWidth: 1
+	        },
+	        yAxis: {
+	            title: {
+	            	
+	                text: '单位(℃)',
+	                style: {'color': '#9f9f9f'},
+	                align: 'high',
+	                margin: -52,
+	                y: -10,
+	                rotation: 0
+	            }
+//	            
+	            
+	        },
+	        tooltip: {
+	        	crosshairs: true,
+	            shared: true,
+	            headerFormat: '<span style="font-size:12px">{point.key}</span><table>',
+	            pointFormat: '<tr>' +
+	                '<td style="padding:0"><span style="color:{series.color};">{point.y:.1f}℃</span> </td></tr>',
+	            footerFormat: '</table>',
+	            useHTML: true
+	        },
+	        scrollbar: {
+				enabled: true
+			},
+			series:data
+	    });
+	    $("#main").show();
+	  }
+		
+		var days = 4;//查询当天及未来三的天气信息
+
+		var city_list = {};
+		city_list['南京'] = '32401';
+		city_list['无锡'] = '32402';
+		city_list['徐州'] = '32403';
+		city_list['常州'] = '32404';
+		city_list['苏州'] = '32405';
+		city_list['南通'] = '32406';
+		city_list['连云港'] = '32407';
+		city_list['淮安'] = '32408';
+		city_list['盐城'] = '32409';
+		city_list['扬州'] = '32410';
+		city_list['镇江'] = '32411';
+		city_list['泰州'] = '32412';
+		city_list['宿迁'] = '32413';
+
+		var weather=function(){
+			
+			var tmp=0;
+			var SWther={w:[{}],add:{}};
+			var SWther={};
+			this.getWeather=function(city,type){
+				loading();
+				$.getScript("http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=4&city="+city+"&dfc=3",
+						function(){
+						loading_hide();
+						closeTimeoutListener();
+							if(type=='js')
+							{
+								
+								echo(window.SWther.w[city],window.SWther.add,city);
+								//数据本地存储
+ 								localStorage["suypower_yxyd_info_"+city] = JSON.stringify(window.SWther.w[city]);
+ 								localStorage["suypower_yxyd_info_"+city_list[city]] = JSON.stringify(window.SWther.add);
+							}
+				});
+		}
+	}
+
+	//创建天气预报核心对象
+	var weather_=new weather();
+
+	var city = getUrlParam("city");
+	$(document).ready(function(){
+		//先读取本地作缓存
+//先读取本地作缓存
+ 		var city_data_date = localStorage["suypower_yxyd_info_"+city_list[city]];
+ 		var city_data = localStorage["suypower_yxyd_info_"+city];
+
+ 		if(typeof city_data_date == "string" && city_data_date != "[object Object]" && typeof city_data == "string" && city_data != "[object Object]")
+ 		{			echo($.parseJSON(city_data),$.parseJSON(city_data_date),city);
+ 					return;
+		}
+
+		weather_.getWeather(city,'js');
+		//$(".city").html(city);
+		
+		
+
+	    
+	    
+	    
+	});
+	
+	
+	
+	
+	
+	</script>
+</html>
