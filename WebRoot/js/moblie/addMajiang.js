@@ -18,45 +18,16 @@ var initPage = {
 	},
 	//初始化 日期控件
 	initDatePiker : function(){
-		var currYear = (new Date()).getFullYear();	
-		var opt={};
-		var minDate;
-		opt.end = {
-			theme: 'android-ics light', //皮肤样式
-	        display: 'bottom', //显示方式 
-	        mode: 'scroller', //日期选择模式
-			lang:'zh',
-			dateFormat: 'yyyy-mm-dd',
-    		dateOrder: 'yymmdd'
-		};
-		opt.start = {
-			theme: 'android-ics light', //皮肤样式
-	        display: 'bottom', //显示方式 
-	        mode: 'scroller', //日期选择模式
-			lang:'zh',
-			dateFormat: 'yyyy-mm-dd',
-    		dateOrder: 'yymmdd'
-		};
-		opt.start_time = {preset : 'date',onSelect:function(valueText, inst){
-		    opt.end.minDate = new Date(valueText.replace(/-/g,"/"));
-		}};
-		
-		
-		$("#startTime").val('').scroller('destroy').scroller($.extend(opt['start_time'], opt['start']));
-		
-		
-		opt.month = {preset : 'date',dateFormat:'yyyy-mm', dateOrder: 'yymm'};
-		opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
-		opt.datetime = {preset : 'datetime'};
-		opt.time = {preset : 'time'};
-		opt.default = {
-			theme: 'android-ics light', //皮肤样式
-	        display: 'bottom', //显示方式 
-	        mode: 'scroller', //日期选择模式
-			lang:'zh',
-	        startYear:currYear - 10, //开始年份
-	        endYear:currYear + 10 //结束年份
-		};
+		var now = new Date();
+	    $('#startTime').mobiscroll().datetime({
+	        theme: 'android-ics light',
+	        display: 'bottom',
+	        minDate: new Date(now.getFullYear()-1, now.getMonth(), now.getDate()),
+//	        dateFormat: 'yy/mm/dd',
+	        lang:'zh'
+//	        monthNames:['一月','二月','三月','一月','二月','三月','一月','二月','三月','一月','二月','三月']
+//	        invalid: [ 'w0', 'w6', '5/1', '12/24', '12/25' ]
+	    });
 	},
 	//查询所有用户
 	queryPlayers : function(){
