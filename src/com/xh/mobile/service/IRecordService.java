@@ -17,7 +17,7 @@ public interface IRecordService {
 	 * @param record
 	 * @return
 	 */
-	public boolean addRecord(MajiangRecord record);
+	public boolean executeAddRecord(MajiangRecord record);
 	/**
 	 * 获取排行榜
 	 * @param type 1 赢钱榜 2输钱榜
@@ -41,6 +41,11 @@ public interface IRecordService {
 	 * @return
 	 */
 	public List queryAllHistory(String uuid);
-	
+	/**
+	 * 查询个人纪录图表
+	 * @param playerId
+	 * @return
+	 */
+	public Map queryMyRecordsChart(String playerId,int currentPage,int pageSize);
 	
 }

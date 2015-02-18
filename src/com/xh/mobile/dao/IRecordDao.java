@@ -22,5 +22,17 @@ public interface IRecordDao {
 	public List queryHistory(String playerId);
 
 	public List queryAllHistory(String openid);
+	/**
+	 * 查询我的纪录总数
+	 * @param playerId
+	 * @return
+	 */
+	public int queryMyrecordsNum(String playerId);
+	/**
+	 * 查询纪录报表
+	 * @param playerId
+	 * @return
+	 */
+	public List queryMyrecordsChart(String playerId,int currentPage,int pageSize);
 	
 }

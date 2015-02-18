@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,7 @@ public class MaJiangControler extends BaseActionController {
 	public void addRecord(HttpServletRequest request,HttpServletResponse response,
 			MajiangRecord record) {
 		Map map = new HashMap();
-		boolean flag = recordService.addRecord(record);
-		System.out.println("dddd");
+		boolean flag = recordService.executeAddRecord(record);
 		map.put("flag", flag);
 		outResult(response, map);
 	}
@@ -89,6 +89,26 @@ public class MaJiangControler extends BaseActionController {
 		Map map = new HashMap();
 		List list = recordService.queryAllHistory(openid);
 		map.put("list", list);
+		outResult(response, map);
+	}
+	/**
+	 * 个人报表纪录
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getMyRecordsChart.do")
+	public void getMyRecordsChart(HttpServletRequest request,HttpServletResponse response,String id,
+			int currentPage,int pageSize) {
+		Map map = new HashMap();
+		if(StringUtils.isEmpty(id)){
+			map.put("flag", false);
+		}
+		map = recordService.queryMyRecordsChart(id, currentPage, pageSize);
+		if(map == null || map.isEmpty()){
+			map.put("flag", false);
+		}else{
+			map.put("flag", true);
+		}
 		outResult(response, map);
 	}
 }

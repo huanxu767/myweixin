@@ -122,7 +122,7 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	public List queryAllHistory(String openid) {
 		StringBuffer sql = new StringBuffer();
 		ArrayList list = new ArrayList();
-		sql.append(" SELECT rc.place,DATE_FORMAT(rc.create_time,'%y-%m-%d %r %w') date, ");
+		sql.append(" SELECT rc.place,DATE_FORMAT(rc.record_time,'%y-%m-%d %h:%i %p %w') date, ");
 		sql.append(" GROUP_CONCAT(CONCAT(us.real_name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(money,CHAR)) ) content");
 		sql.append(" FROM m_player_record m");
 		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
@@ -137,6 +137,36 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 			list.add("%"+openid+"%");
 		}
 		return this.getJdbcTemplate().queryForList(sql.toString(), list.toArray());
+	}
+
+	public int queryMyrecordsNum(String playerId) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select count(*) nums from m_player_record pr where pr.player_id = ? ");
+		Map map = this.getJdbcTemplate().queryForMap(sql.toString(), new Object[]{playerId});
+		return Integer.parseInt(map.get("nums")+"");
+	}
+
+	public List queryMyrecordsChart(String playerId, int currentPage,
+			int pageSize) {
+		StringBuffer sql = new StringBuffer();
+		sql.append(" select  r.id,r.place,r.create_time,DATE_FORMAT(r.record_time,'%y-%m-%d') date,pr.is_win,pr.money,");
+		sql.append(" CONCAT(CASE pr.is_win WHEN '1' THEN '' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(pr.money,CHAR)) mymoney,");
+		sql.append(" (");
+		sql.append("  	select GROUP_CONCAT( ");
+		sql.append("  		CONCAT(us.real_name, ");
+		sql.append("  		CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END , ");
+		sql.append("  		CONVERT(money,CHAR),'<br>' ");
+		sql.append("  	)");
+		sql.append(" ) content");
+		sql.append(" from m_player_record m ");
+		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
+		sql.append(" where m.record_id = r.id ");
+		sql.append(" ) tooltip");
+		sql.append(" from m_record r ,m_player_record pr");
+		sql.append(" where r.id = pr.record_id and pr.player_id = ?");
+		sql.append(" order by r.id desc ");
+		sql.append(" limit ?,?");
+		return this.getJdbcTemplate().queryForList(sql.toString(), new Object[]{playerId,(currentPage-1)*pageSize,pageSize});
 	}
 
 }

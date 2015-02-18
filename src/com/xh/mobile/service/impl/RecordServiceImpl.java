@@ -1,11 +1,13 @@
 package com.xh.mobile.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.xh.mobile.dao.IRecordDao;
@@ -20,14 +22,11 @@ public class RecordServiceImpl implements IRecordService{
 	private IRecordDao recordDao;
 
 
-	public boolean addRecord(MajiangRecord record) {
-		
+	public boolean executeAddRecord(MajiangRecord record) {
 		Long recordId = recordDao.addRecord(record);
-		System.out.println("return id:"+recordId);
 		String[] playerIds = record.getPlayerId();
 		List playerRecordList = new ArrayList();
-
-		//		东
+//		东
 		PlayerRecord earstplayerRecord = new PlayerRecord();
 		earstplayerRecord.setPlayerId(playerIds[0]);
 		earstplayerRecord.setIsWin(record.getEastPlayerIsWin());
@@ -84,5 +83,26 @@ public class RecordServiceImpl implements IRecordService{
 	public List queryAllHistory() {
 		List list = recordDao.queryAllHistory(null);
 		return list;
+	}
+
+
+	public Map queryMyRecordsChart(String playerId, int currentPage, int pageSize) {
+//		http://127.0.0.1:8080/record/getMyRecordsChart.do?playerId=110006&currentPage=0&pageSize=5
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		List<String> xList = new ArrayList<String>();
+		List<Map<String,String>> yList = new ArrayList<Map<String,String>>();
+		resultMap.put("counts", recordDao.queryMyrecordsNum(playerId));
+		List list = recordDao.queryMyrecordsChart(playerId, currentPage, pageSize);
+		for (int i = 0;list != null && i < list.size(); i++) {
+			Map tempMap = (Map)list.get(i);//X轴数据
+			Map seriesMap = new HashMap();//y轴数据
+			xList.add(tempMap.get("date")+"");
+			seriesMap.put("y", Integer.parseInt(tempMap.get("mymoney")+""));
+			seriesMap.put("extra", tempMap.get("tooltip"));
+			yList.add(seriesMap);
+		}
+		resultMap.put("xList",xList );
+		resultMap.put("yList", yList);
+		return resultMap;
 	}
 }
