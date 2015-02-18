@@ -6,6 +6,7 @@
     <meta http-equiv="description" content="this is my page">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" href="../css/weixin.css">
   </head>
   <body >
@@ -25,7 +26,6 @@
     		</div>
     	</div>
   	</div>
-
   <div class="p_content"  >
   	<table  border=1 bordercolor="#DDDDDD" cellspacing=0 frame="hsides" rules="rows" cellpadding=0 width="100%">
       <tr class="table_tr">
@@ -42,7 +42,7 @@
        <td class="table_td">个人签名</td>
        <td id="sign"></td>
       </tr>
-      <tr class="table_tr_80">
+      <tr class="table_tr">
        <td class="table_td">战斗记录</td>
        <td class="go_to_right" id="showDetail">
      		 此玩家详细记录，戳这儿就对了
@@ -50,10 +50,12 @@
       </tr>
     </table>
   </div>
-  <a href="" class="button" id="call">拨号</a>   
-  <a href="" class="button" id="sms">发短信</a> 
+    <div id="container" style="height: 350px;width:100%; margin: 0 auto"></div>
+<!--   <a href="" class="button" id="call">拨号</a>    -->
+<!--   <a href="" class="button" id="sms">发短信</a>  -->
  <br/>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script src="../js/hchars/highcharts.js"></script>
    <script type="text/javascript" src="../js/commons.js"></script>
    <script type="text/javascript" src="../js/moblie/otherInformation.js"></script>
    
