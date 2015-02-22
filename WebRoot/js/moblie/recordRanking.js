@@ -29,7 +29,7 @@ var initPage = {
 		var rankingHtml = "<ol data-role='listview'   >";
 		for(var j = 0;j < list.length;j++){
 			rankingHtml += " <li><a href='otherInformation.html?id="+list[j].id+"' data-transition='slide' data-ajax='false'>";
-			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"' width='180px' height='180px' class='head_image'></img>";
+			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"'  style='border-radius: 8px;margin:3px 0;width:74px;height:74px'></img>";
 			rankingHtml += "	<h2>"+list[j].NAME+"</h2>";
 			rankingHtml += "    <p>胜率："+list[j].winper+"% 赢了："+list[j].totalmoney+"</p>";
 			rankingHtml += "    </a>";
@@ -42,7 +42,7 @@ var initPage = {
 		var rankingHtml = "<ol data-role='listview'   >";
 		for(var j = 0;j < list.length;j++){
 			rankingHtml += " <li><a href='otherInformation.html?id="+list[j].id+"' data-transition='slide' data-ajax='false'>";
-			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"' width='180px' height='180px' class='head_image' ></img>";
+			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"'style='border-radius: 8px;margin:3px 0;width:74px;height:74px' ></img>";
 			rankingHtml += "	<h2>"+list[j].NAME+"</h2>";
 			rankingHtml += "    <p>胜率："+list[j].winper+"% 输赢："+list[j].totalmoney+"</p>";
 			rankingHtml += "    </a>";
@@ -55,7 +55,7 @@ var initPage = {
 		var rankingHtml = "<ol data-role='listview'   >";
 		for(var j = 0;j < list.length;j++){
 			rankingHtml += " <li><a href='otherInformation.html?id="+list[j].id+"' data-transition='slide' data-ajax='false'>";
-			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"' width='180px' height='180px' class='head_image'></img>";
+			rankingHtml += " 	<img src='../images/uploadImages/small/"+list[j].image_url+"' style='border-radius: 8px;margin:3px 0;width:74px;height:74px'></img>";
 			rankingHtml += "	<h2>"+list[j].NAME+"</h2>";
 			rankingHtml += "    <p>胜率："+list[j].winper+"% 输赢："+list[j].totalmoney+"</p>";
 			rankingHtml += "    </a>";
