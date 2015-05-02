@@ -13,7 +13,6 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import sun.security.provider.SystemSigner;
 
 /**
  * 描述： 关于日期、时间经常使用和操作方法实现的封装类
