@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <title>一个都不能少21</title>
+    <title>一个都不能少</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <style>
         *{margin: 0;padding: 0;}
         body{background-color: #FAFAFA;}
-        .container {padding-top: 20px; background-color: #fff;width: 100%;float: left;border-top: 1px #ddd solid; border-bottom: 1px #ddd solid;}
-        .container > div{width: 25%;height: 80px; float: left;overflow: hidden;text-align: center;}
-        .container img{height: 60px;}
+        .container {padding-top: 10px; background-color: #fff;width: 100%;float: left;border-top: 1px #ddd solid; border-bottom: 1px #ddd solid;}
+        .container > div{width: 25%;height: 85px; float: left;overflow: hidden;text-align: center;}
+        .container img{height: 60px;border-radius:6px;width: 60px;}
         .container p{font-size: 14px;}
+        .container span{color: #5A5A5A;}
         .clear{clear:both;}
         .content{padding-left:15px;margin-top: 20px;background-color: #fff;
-            border-top: 1px #ddd solid; border-bottom: 1px #ddd solid;}
+            border-top: 1px #ddd solid; border-bottom: 1px #ddd solid;margin-bottom: 20px;}
         .content > div{height: 35px;line-height: 35px;border-bottom: 1px #ddd solid;padding-right: 15px;}
         .content > div:last-child{border-bottom-width: 0;}
         .cell div:nth-child(1){float: left;color: #565252;}
@@ -23,82 +24,19 @@
 
 <body >
 <!-- 麻油er -->
-    <div class='container'>
-       <div>
-           <img src="../images/uploadImages/small/1406452660894.jpg">
-           <p>麻油</p>
-       </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
-        <div>
-            <img src="../images/uploadImages/small/1406452660894.jpg">
-            <p>麻油</p>
-        </div>
+    <div class='container' id="content">
+      
     </div>
     <!-- 牌局总资料-->
 <div class="clear"></div>
     <div class='content'>
         <div class='cell'>
             <div>一共打了几场</div>
-            <div>122</div>
+            <div id="recordNum"></div>
         </div>
-        <div class='cell'>
-            <div>总输赢</div>
-            <div>2500</div>
+         <div class='cell'>
+            <div>总输赢（元）</div>
+            <div id="recordMoney"></div>
         </div>
         <div class='cell'>
             <div>年度棋牌室</div>
@@ -109,5 +47,10 @@
             <div>孙涛</div>
         </div>
     </div>
+    	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    		<script type="text/javascript" src="../js/commons.js"></script>
+    	
+	<script src="../js/moblie/everyOne.js"></script>
+
 </body>
 </html>
