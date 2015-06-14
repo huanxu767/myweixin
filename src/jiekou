@@ -15,7 +15,7 @@
                 }, 
                 {
                     "type": "click", 
-                    "name": "相册", 
+                    "name": "算翻", 
                     "key": "V11_XIANGCE"
                 }, 
                 {
@@ -47,13 +47,81 @@
                     "type": "click", 
                     "name": "个人战绩", 
                     "key": "V32_GERENZHANJI"
-                }, 
-                {
-                    "type": "click", 
-                    "name": "我要吐槽", 
-                    "key": "V33_WOYAOTUCAO"
                 }
             ]
         }
     ]
+}
+
+
+
+
+{
+    "menu": {
+        "button": [
+            {
+                "name": "雀神牌局", 
+                "sub_button": [
+                    {
+                        "type": "click", 
+                        "name": "排行榜", 
+                        "key": "V13_PAIHANGBANG", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "历史记录", 
+                        "key": "V12_LISHIJILU", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "相册", 
+                        "key": "V11_XIANGCE", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "新增牌局", 
+                        "key": "V121_XINZENPAIJU", 
+                        "sub_button": [ ]
+                    }
+                ]
+            }, 
+            {
+                "name": "牌友简介", 
+                "sub_button": [
+                    {
+                        "type": "click", 
+                        "name": "牌友资料", 
+                        "key": "V21_PAIYOUZILIAO", 
+                        "sub_button": [ ]
+                    }
+                ]
+            }, 
+            {
+                "name": "我", 
+                "sub_button": [
+                    {
+                        "type": "click", 
+                        "name": "个人信息", 
+                        "key": "V31_GERENXINXI", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "个人战绩", 
+                        "key": "V32_GERENZHANJI", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "我要吐槽", 
+                        "key": "V33_WOYAOTUCAO", 
+                        "sub_button": [ ]
+                    }
+                ]
+            }
+        ]
+    }
 }
