@@ -47,5 +47,10 @@ public interface IRecordService {
 	 * @return
 	 */
 	public Map queryMyRecordsChart(String playerId,int currentPage,int pageSize);
+	/**
+	 * 查询每一个人
+	 * @return
+	 */
+	public Map queryEveryOne();
 	
 }

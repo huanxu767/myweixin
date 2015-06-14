@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.xh.mobile.dao.IRecordDao;
@@ -104,5 +103,17 @@ public class RecordServiceImpl implements IRecordService{
 		resultMap.put("xList",xList );
 		resultMap.put("yList", yList);
 		return resultMap;
+	}
+
+
+	public Map queryEveryOne() {
+		Map map = new HashMap();
+		List list = recordDao.queryEveryOne();
+		map.put("list", list);
+		int recordNum = recordDao.queryRecordNum();
+		map.put("recordNum", recordNum);
+		int recordMoney = recordDao.queryRecordMoney();
+		map.put("recordMoney", recordMoney);
+		return map;
 	}
 }

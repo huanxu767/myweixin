@@ -111,4 +111,15 @@ public class MaJiangControler extends BaseActionController {
 		}
 		outResult(response, map);
 	}
+	@RequestMapping(value = "/getEveryOne.do")
+	public void getEveryOne(HttpServletRequest request,HttpServletResponse response) {
+		Map map = new HashMap();
+		map = recordService.queryEveryOne();
+		if(map.isEmpty()){
+			map.put("flag", false);
+		}else{
+			map.put("flag", true);
+		}
+		outResult(response, map);
+	}
 }

@@ -1,6 +1,7 @@
 package com.xh.mobile.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xh.mobile.pojo.MajiangRecord;
 import com.xh.mobile.pojo.PlayerRecord;
@@ -34,5 +35,18 @@ public interface IRecordDao {
 	 * @return
 	 */
 	public List queryMyrecordsChart(String playerId,int currentPage,int pageSize);
+	/**
+	 * 查询每一个人 
+	 * @return
+	 */
+	public List queryEveryOne();
+	/**
+	 * 查询总局数
+	 */
+	public int queryRecordNum();
+	/**
+	 * 总输赢
+	 */
+	public int queryRecordMoney();
 	
 }

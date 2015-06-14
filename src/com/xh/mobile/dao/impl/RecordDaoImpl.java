@@ -169,4 +169,23 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 		return this.getJdbcTemplate().queryForList(sql.toString(), new Object[]{playerId,(currentPage-1)*pageSize,pageSize});
 	}
 
+	public List queryEveryOne() {
+		StringBuffer sql = new StringBuffer();
+		sql.append(" select u.id,u.image_url,u.real_name,r.counts from m_user u ");
+		sql.append(" left join (select count(*) counts,player_id from m_player_record group by player_id) r");
+		sql.append(" on r.player_id = u.id");
+		sql.append(" where u.real_name is not null");
+		sql.append(" order by r.counts desc");
+		return this.getJdbcTemplate().queryForList(sql.toString());
+		
+	}
+
+	public int queryRecordNum() {
+		String sql = "select count(*) from m_record";
+		return this.getJdbcTemplate().queryForInt(sql);
+	}
+	public int queryRecordMoney() {
+		String sql = "select sum(money) from m_player_record where is_win = 1";
+		return this.getJdbcTemplate().queryForInt(sql);
+	}
 }
