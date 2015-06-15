@@ -21,9 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <form action="test/login.do" method="post">
-  	<input type="text" name="name" value="">
-  	<input type="submit" value="submit"/>
-  </form>
+	<a href="./mobile/recordRankingList.html">排行榜</a>
+	<a href="./mobile/allHistory.html">历史信息</a>
+	<a href="./mobile/addMajiangRecord.html">添加纪录</a>
   </body>
 </html>
