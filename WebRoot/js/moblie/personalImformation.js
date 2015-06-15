@@ -84,9 +84,11 @@ var initPage = {
 			initPage.swipLeft("edit_name");
 			$("#name").html($("#userName").val());
 			//可以优化下  看是否改变
-			if($("#name").html() != $("#userName").val()){
-				initPage.updateName("1",$("#userName").val());
-			}
+			initPage.updateName("1",$("#userName").val());
+//			console.log($("#name").html() +"  "+$("#userName").val());
+//			if($("#name").html() != $("#userName").val()){
+//				initPage.updateName("1",$("#userName").val());
+//			}
 		});
 		//取消更改姓名
 		$("#cancelNo").bind("click",function(){
@@ -125,6 +127,7 @@ var initPage = {
 		$("#"+id).addClass("animated fadeOutRight");
 	},
 	updateName : function(type,value){
+		console.log(type+"  val:"+value);
 		commAjax({
 		    'url':"/mobile/updateUser.do",
 		    'data':"openid="+this.option.openid+"&type="+type+"&value="+value,
