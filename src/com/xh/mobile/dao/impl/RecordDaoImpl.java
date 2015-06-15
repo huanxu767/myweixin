@@ -127,9 +127,9 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 		sql.append(" FROM m_player_record m");
 		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
 		sql.append(" LEFT JOIN m_record rc ON rc.id = m.record_id ");
-		sql.append(" GROUP BY m.record_id ORDER BY rc.record_time DESC ");
+		sql.append(" GROUP BY m.record_id DESC , rc.record_time DESC ");
 		if (!StringUtils.isEmpty(openid)) {
-			if(openid.length()>20){
+			if(openid.length()>10){
 				sql.append(" HAVING GROUP_CONCAT(us.open_id) LIKE ? ");
 			}else{
 				sql.append(" HAVING GROUP_CONCAT(us.id) like ? ");
