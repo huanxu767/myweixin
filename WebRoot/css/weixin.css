@@ -21,6 +21,7 @@ span p {
 .head_photo{
 	width: 80px;
 	height: 80px;
+	border-radius:7px;
 }
 .personalInformation{
 	height: 100px;
@@ -48,10 +49,13 @@ span p {
 	height:50px;
 	width: 50px;
 }
-
+.p_name{
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
 .p_small_name {
-	height:25px;
-	line-height: 25px;
+	height:18px;
+	line-height:18px;
 	font-size:0.9em;
 	color: #888888;
 }
@@ -66,6 +70,8 @@ span p {
 }
 .table_tr{
 	height: 40px;
+	border-bottom: 1px #ddd solid;
+	
 }
 .table_tr_80{
 	height: 80px;
@@ -81,9 +87,10 @@ td{
 }
 
 .go_to_right{
-	background-image: url(../images/2222.gif);
+	background-image: url(../images/circle-right-gray.svg);
 	background-repeat: no-repeat;
 	background-position:center right;
+	width: 200px;
 }
 .go_to_right span{
 	padding-right: 20px;
@@ -137,3 +144,11 @@ td{
       opacity: 0.4;
       display: none;
   }
+ .text_right{text-align: right;padding-right:15px;}
+ .table{width: 100%;}
+  .content{padding-left:15px;background-color: #fff;
+            border-top: 1px #ddd solid; border-bottom: 1px #ddd solid;}
+     .content > div{height: 35px;line-height: 35px;border-bottom: 1px #ddd solid;padding-right: 15px;}
+     .content > div:last-child{border-bottom-width: 0;padding-right: 0px;}
+     .cell div:nth-child(1){float: left;color: #565252;}
+     .cell div:nth-child(2){float: right;}
