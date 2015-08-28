@@ -35,7 +35,9 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	private final static Logger logger = Logger.getLogger(RecordDaoImpl.class);
 	/** 进入排行榜最低要求，参与场次要达到一定要求*/
 	private final static int rankMinLimite = Integer.parseInt(WebAppConfig.GLOBAL_CONFIG_PROPERTIES.getProperty("majiang.rank.mintime"));
-	private final static String PAGER_SIZE = "40";
+	private final static String PAGER_SIZE = WebAppConfig.GLOBAL_CONFIG_PROPERTIES.getProperty("majiang.rank.pagerSize");
+
+	
 
 	public Long addRecord(final MajiangRecord record) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
