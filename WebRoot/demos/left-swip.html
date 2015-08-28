@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>left-swip.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+    <a href="javascript:swipRight()"><h1>向右滑动</h1></a>
+  </body>
+  <script type="text/javascript">
+	function swipRight(){
+		$.ajax({
+			url: "./right-swip.html",//目标页面
+			dataType: "html",
+			type: "GET",
+			cache: false,
+			success: function(html){
+				$("html").html(html);
+			}
+		});
+	}
+  </script>
+</html>

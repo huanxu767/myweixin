@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HelloWorld</title>
+    <meta charset="utf-8" />
+    <link href="../Style/HTML1.css" rel="stylesheet" />
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("nav a").bind("click", function (e) {
+                $("html,body").animate({ "scrollTop": $($(this).attr("href")).position().top + 'px' }, 1000);
+                e.cancelBubble = true;
+
+            });
+            $("#tb-side").bind("click", function(e) {
+                $("html,body").animate({ "scrollTop":  '0px' }, 1000);
+                e.cancelBubble = true;
+            })
+        })
+    </script>
+    <style type="text/css">
+    
+    body {
+    background-color: #CCCCCC;
+    font-family: geneva, arial, helvetica, sans-serif;
+    margin: 0px auto;
+    max-width: 900px;
+    border: solid;
+    border-color: #FFFFFF;
+}
+header {
+    background-color: #F47D31;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+}
+header h2 {
+    margin: 0px;
+}
+h1 {
+    font-size: 72px;
+    margin: 0px;
+}
+h2 {
+    font-size: 24px;
+    margin: 0px;
+    text-align: center;
+    color: #F47D31;
+
+}
+h3 {
+    font-size: 18px;
+    margin: 0px;
+    text-align: center;
+    color: #f47d31;
+}
+article {
+    height: 300px;
+}
+#tb-side {
+    position: fixed;
+    right: .5%;
+    bottom: 50px;
+    z-index: 10000;
+   
+}
+    #tb-side li
+    {
+        position: relative;
+        padding: 4px 0;
+        width: 30px;
+        height: 30px;
+        list-style: none;
+        background: #f47d31;
+        color: white;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Header</h1>
+        <h2>SubTitle</h2>
+        <h4>HTML5 ROCKS</h4>
+    </header>
+    <div id="container">
+        <nav>
+            <h3>NAV</h3>
+            <a href="#article1" >LINK1</a>
+            <a href="#article2" >LINK2</a>
+            <a href="#article3" >LINK3</a>
+            <a href="#article4" >LINK4</a>
+            <a href="#article5" >LINK5</a>
+            <a href="#article6">LINK6</a>
+            <a href="#article7" >LINK7</a>
+
+        </nav>
+        <section>
+            <article id="article1">
+                <header>Article Header</header>
+                <p>
+                    article1
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article2">
+                <header>Article Header</header>
+                <p>
+                    article2
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article3">
+                <header>Article Header</header>
+                <p>
+                    articl3
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article4">
+                <header>Article Header</header>
+                <p>
+                    articl4
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article5">
+                <header>Article Header</header>
+                <p>
+                    articl5
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article6">
+                <header>Article Header</header>
+                <p>
+                    articl6
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+            <article id="article7">
+                <header>Article Header</header>
+                <p>
+                    articl7
+                </p>
+
+                <footer>
+                    <h2>Article Footer</h2>
+                </footer>
+            </article>
+
+        </section>
+        <aside>
+            <h3>Aside</h3>
+            <p>
+                HTML5: "Lorem ipsum dolor nunc aut nunquam sit amet, consectetur adipiscing
+                elit. Vivamus at est eros, vel fringilla urna. Pellentesque odio rhoncus
+            </p>
+        </aside>
+        <footer>
+            <h2>Footer</h2>
+        </footer>
+    </div>
+    <div id="tb-side">
+        <ul>
+            <li>
+                <a>Top</a>
+            </li>
+        </ul>
+   
+    </div>
+</body>
+</html>
