@@ -124,7 +124,6 @@ public class RecordServiceImpl implements IRecordService{
 		List resultList = new ArrayList();
 		List list = recordDao.queryAllHistory(index,size);
 		//section组List
-		List sectionList = new ArrayList();
 		List cellList = new ArrayList();
 		Map sectionTitleMap = new HashMap();
 		//记录当前的
@@ -139,11 +138,9 @@ public class RecordServiceImpl implements IRecordService{
 				//这次记录与上次日期记录不同
 				//记录
 				if(i != 0){
-					sectionList.add(sectionTitleMap);
-					sectionList.add(cellList);
-					resultList.add(sectionList);
+					sectionTitleMap.put("content", cellList);
+					resultList.add(sectionTitleMap);
 					//重置cell List
-					sectionList = new ArrayList();
 					cellList = new ArrayList();
 					sectionTitleMap = new HashMap();
 				}
