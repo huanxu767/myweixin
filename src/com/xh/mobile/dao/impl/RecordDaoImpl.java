@@ -200,8 +200,8 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 			size = PAGER_SIZE;
 		}
 		int pagerSize = Integer.parseInt(size);
-		sql.append(" SELECT rc.place, DATE_FORMAT(rc.create_time,'%y-%m-%d'  ) DATE_YD,DATE_FORMAT(rc.create_time,'%W') WEEKDATE,DATE_FORMAT(rc.create_time,'%c月%d日') WEEKDATE, ");
-		sql.append(" DATE_FORMAT( rc.create_time, '%Y') YEAR,DATE_FORMAT(rc.create_time,'%h:%i%p') HFDATE,");
+		sql.append(" SELECT rc.place, DATE_FORMAT(rc.record_time,'%y-%m-%d'  ) date_yd,DATE_FORMAT(rc.record_time,'%W') weekdate,DATE_FORMAT(rc.record_time,'%c月%d日') yddate, ");
+		sql.append(" DATE_FORMAT( rc.record_time, '%Y') year,DATE_FORMAT(rc.record_time,'%h:%i%p') hfdate,");
 		sql.append(" GROUP_CONCAT(CONCAT(us.real_name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(money,CHAR)) ) content");
 		sql.append(" FROM m_player_record m");
 		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
