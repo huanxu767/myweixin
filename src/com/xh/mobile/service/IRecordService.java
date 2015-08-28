@@ -42,6 +42,11 @@ public interface IRecordService {
 	 */
 	public List queryAllHistory(String uuid);
 	/**
+	 * 查询全部历史记录分页
+	 * @return
+	 */
+	public List queryAllHistory(String index,String size);
+	/**
 	 * 查询个人纪录图表
 	 * @param playerId
 	 * @return

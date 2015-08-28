@@ -23,6 +23,9 @@ public interface IRecordDao {
 	public List queryHistory(String playerId);
 
 	public List queryAllHistory(String openid);
+
+	public List queryAllHistory(String index, String size);
+
 	/**
 	 * 查询我的纪录总数
 	 * @param playerId
@@ -48,5 +51,6 @@ public interface IRecordDao {
 	 * 总输赢
 	 */
 	public int queryRecordMoney();
+
 	
 }

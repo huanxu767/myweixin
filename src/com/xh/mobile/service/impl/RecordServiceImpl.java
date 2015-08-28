@@ -116,4 +116,48 @@ public class RecordServiceImpl implements IRecordService{
 		map.put("recordMoney", recordMoney);
 		return map;
 	}
+	
+
+	@Override
+	public List queryAllHistory(String index, String size) {
+		//最终List
+		List resultList = new ArrayList();
+		List list = recordDao.queryAllHistory(index,size);
+		//section组List
+		List sectionList = new ArrayList();
+		List cellList = new ArrayList();
+		Map sectionTitleMap = new HashMap();
+		//记录当前的
+		String tempYDFlag = "" ;
+		for (int i = 0; i < list.size(); i++) {
+			Map tempMap = (Map)list.get(i);
+			//这条记录与上一条记录 年月日相同 则添加到    tempContentList  否则 重置 tempContentList 
+			String tempYearDay = tempMap.get("date_yd") +"";
+			if(!tempYearDay.equals(tempYDFlag)){
+				//重置判断位
+				tempYDFlag = tempYearDay;
+				//这次记录与上次日期记录不同
+				//记录
+				if(i != 0){
+					sectionList.add(sectionTitleMap);
+					sectionList.add(cellList);
+					resultList.add(sectionList);
+					//重置cell List
+					sectionList = new ArrayList();
+					cellList = new ArrayList();
+					sectionTitleMap = new HashMap();
+				}
+				//数据
+				sectionTitleMap.put("title",tempYearDay);
+				cellList.add(tempMap);
+				
+			}else{
+				//这次记录与上次相同
+				cellList.add(tempMap);
+			}
+		}
+		return resultList;
+	}
 }
+
+

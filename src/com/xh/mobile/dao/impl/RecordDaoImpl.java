@@ -35,7 +35,8 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	private final static Logger logger = Logger.getLogger(RecordDaoImpl.class);
 	/** 进入排行榜最低要求，参与场次要达到一定要求*/
 	private final static int rankMinLimite = Integer.parseInt(WebAppConfig.GLOBAL_CONFIG_PROPERTIES.getProperty("majiang.rank.mintime"));
-	
+	private final static String PAGER_SIZE = "40";
+
 	public Long addRecord(final MajiangRecord record) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.getJdbcTemplate().update(new PreparedStatementCreator() {
@@ -187,5 +188,22 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	public int queryRecordMoney() {
 		String sql = "select sum(money) from m_player_record where is_win = 1";
 		return this.getJdbcTemplate().queryForInt(sql);
+	}
+	
+	@Override
+	public List queryAllHistory(String index, String size) {
+		StringBuffer sql = new StringBuffer();
+		int beginIndex = Integer.parseInt(index) - 1;
+		int pagerSize = Integer.parseInt(size);
+		if(StringUtils.isEmpty(size)){
+			size = PAGER_SIZE;
+		}
+		sql.append(" SELECT rc.place,DATE_FORMAT(rc.create_time,'%y-%m-%d %r %w') date,  DATE_FORMAT(rc.create_time,'%y-%m-%d'  ) DATE_YD, ");
+		sql.append(" GROUP_CONCAT(CONCAT(us.real_name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(money,CHAR)) ) content");
+		sql.append(" FROM m_player_record m");
+		sql.append(" LEFT JOIN m_user us ON us.id = m.player_id ");
+		sql.append(" LEFT JOIN m_record rc ON rc.id = m.record_id ");
+		sql.append(" GROUP BY m.record_id desc  LIMIT "+beginIndex*pagerSize+" , "+size);
+		return this.getJdbcTemplate().queryForList(sql.toString());
 	}
 }
