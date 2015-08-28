@@ -13,6 +13,7 @@ package com.xh.mobile.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -115,6 +116,19 @@ public class BaseActionController extends MultiActionController {
 			e.printStackTrace();
 		}
 		out.print(JSONUtil.toJSONString(map));
+		out.flush();
+		out.close();
+	}
+	public void outResult(HttpServletResponse response, List list) {
+		response.setContentType("text/plain;charset=UTF-8");
+//		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		out.print(JSONUtil.toJSONString(list));
 		out.flush();
 		out.close();
 	}
