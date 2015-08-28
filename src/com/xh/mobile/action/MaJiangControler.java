@@ -1,6 +1,7 @@
 package com.xh.mobile.action;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,18 @@ public class MaJiangControler extends BaseActionController {
 	public void getAllHistory(HttpServletRequest request,HttpServletResponse response) {
 		Map map = new HashMap();
 		List list = recordService.queryAllHistory();
+		map.put("list", list);
+		outResult(response, map);
+	}
+	/**
+	 * 全部历史记录分页
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getAllHistoryPager.do")
+	public void getAllHistoryPager(HttpServletRequest request,HttpServletResponse response,String pagerSize,String pagerIndex) {
+		Map map = new HashMap();
+		List list = recordService.queryAllHistory(pagerIndex,pagerSize);
 		map.put("list", list);
 		outResult(response, map);
 	}
