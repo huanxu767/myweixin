@@ -196,10 +196,10 @@ public class RecordDaoImpl extends BaseJdbcDAO implements IRecordDao{
 	public List queryAllHistory(String index, String size) {
 		StringBuffer sql = new StringBuffer();
 		int beginIndex = Integer.parseInt(index) - 1;
-		int pagerSize = Integer.parseInt(size);
 		if(StringUtils.isEmpty(size)){
 			size = PAGER_SIZE;
 		}
+		int pagerSize = Integer.parseInt(size);
 		sql.append(" SELECT rc.place, DATE_FORMAT(rc.create_time,'%y-%m-%d'  ) DATE_YD,DATE_FORMAT(rc.create_time,'%W') WEEKDATE,DATE_FORMAT(rc.create_time,'%c月%d日') WEEKDATE, ");
 		sql.append(" DATE_FORMAT( rc.create_time, '%Y') YEAR,DATE_FORMAT(rc.create_time,'%h:%i%p') HFDATE,");
 		sql.append(" GROUP_CONCAT(CONCAT(us.real_name,CASE is_win WHEN '1' THEN '+' WHEN '0' THEN '-' ELSE '+' END ,CONVERT(money,CHAR)) ) content");
