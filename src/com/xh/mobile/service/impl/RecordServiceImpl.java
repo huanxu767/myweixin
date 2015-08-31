@@ -131,7 +131,7 @@ public class RecordServiceImpl implements IRecordService{
 		for (int i = 0; i < list.size(); i++) {
 			Map tempMap = (Map)list.get(i);
 			//这条记录与上一条记录 年月日相同 则添加到    tempContentList  否则 重置 tempContentList 
-			String tempYearDay = tempMap.get("date_yd") +"";
+			String tempYearDay = tempMap.get("date_yd") + "";
 			if(!tempYearDay.equals(tempYDFlag)){
 				//重置判断位
 				tempYDFlag = tempYearDay;
